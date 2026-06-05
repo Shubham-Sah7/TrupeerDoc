@@ -27,7 +27,7 @@ export function DocumentsContent() {
                 <Sparkles className="w-4 h-4 inline mr-2" strokeWidth={1.5} />
                 Generate From Recording
               </button>
-              <button className="px-4 py-2.5 text-[13px] font-medium text-white bg-[#8F8CFF] rounded-lg hover:bg-[#7B77FF] hover:shadow-lg transition-all">
+              <button className="px-4 py-2.5 text-[13px] font-medium text-white bg-[#D85BD6] rounded-lg hover:bg-[#C84AC7] hover:shadow-lg transition-all">
                 <Plus className="w-4 h-4 inline mr-2" strokeWidth={2} />
                 Create Document
               </button>
@@ -117,7 +117,7 @@ export function DocumentsContent() {
         {/* AI Generated Documents */}
         <section className="mb-12">
           <div className="flex items-center gap-2.5 mb-5">
-            <Sparkles className="w-5 h-5 text-[#8F8CFF]" strokeWidth={1.5} />
+            <Sparkles className="w-5 h-5 text-[#D85BD6]" strokeWidth={1.5} />
             <h2 className="text-[20px] font-semibold text-[#18181B]">AI Generated Documents</h2>
           </div>
           <div className="grid grid-cols-3 gap-4">
@@ -147,7 +147,7 @@ export function DocumentsContent() {
               <input
                 type="text"
                 placeholder="Search documentation..."
-                className="w-full pl-10 pr-4 py-2.5 text-[13px] bg-white border border-[#E8E8E6] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#8F8CFF] focus:border-transparent transition-all"
+                className="w-full pl-10 pr-4 py-2.5 text-[13px] bg-white border border-[#E8E8E6] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#D85BD6] focus:border-transparent transition-all"
               />
             </div>
             <button className="px-4 py-2.5 text-[13px] font-medium text-[#52525B] bg-white border border-[#E8E8E6] rounded-lg hover:border-[#D4D4D2] transition-all">
@@ -181,7 +181,7 @@ export function DocumentsContent() {
           <h2 className="text-[20px] font-semibold text-[#18181B] mb-5">All Documents</h2>
           <div className="grid grid-cols-4 gap-4">
             <DocumentCard
-              title="Getting Started with Trupeer"
+              title="Getting Started with Clueso"
               category="Product Guide"
               lastUpdated="2 days ago"
               owner="Sarah Chen"
@@ -293,9 +293,9 @@ interface QuickStartCardProps {
 
 function QuickStartCard({ icon, title, description }: QuickStartCardProps) {
   return (
-    <button className="group flex flex-col items-center justify-center p-6 bg-white border border-[#E8E8E6] rounded-lg hover:border-[#8F8CFF] hover:shadow-md hover:-translate-y-0.5 transition-all">
-      <div className="p-3 bg-[#F5F5F3] rounded-lg mb-3 group-hover:bg-[#F5F5FF] transition-colors">
-        <div className="text-[#52525B] group-hover:text-[#8F8CFF] transition-colors">
+    <button className="group flex flex-col items-center justify-center p-6 bg-white border border-[#E8E8E6] rounded-lg hover:border-[#D85BD6] hover:shadow-md hover:-translate-y-0.5 transition-all">
+      <div className="p-3 bg-[#F5F5F3] rounded-lg mb-3 group-hover:bg-[#FDF4FD] transition-colors">
+        <div className="text-[#52525B] group-hover:text-[#D85BD6] transition-colors">
           {icon}
         </div>
       </div>
@@ -318,7 +318,7 @@ function ContinueWorkingCard({ title, type, lastUpdated, status, readingTime, pr
   const statusColors = {
     Published: "bg-[#F0FDF4] text-[#15803D] border-[#BBF7D0]",
     Draft: "bg-[#F5F5F3] text-[#52525B] border-[#E8E8E6]",
-    Review: "bg-[#F5F5FF] text-[#8F8CFF] border-[#E8E7FF]"
+    Review: "bg-[#FDF4FD] text-[#D85BD6] border-[#F1D6F1]"
   }
 
   return (
@@ -341,17 +341,17 @@ function ContinueWorkingCard({ title, type, lastUpdated, status, readingTime, pr
         </div>
         <div className="flex items-center justify-between text-[11px] mb-1.5">
           <span className="text-[#71717A]">Progress</span>
-          <span className="text-[#8F8CFF] font-medium">{progress}%</span>
+          <span className="text-[#D85BD6] font-medium">{progress}%</span>
         </div>
         <div className="w-full bg-[#F5F5F3] h-1 rounded-full overflow-hidden">
           <div 
-            className="bg-[#8F8CFF] h-full rounded-full transition-all"
+            className="bg-[#D85BD6] h-full rounded-full transition-all"
             style={{ width: `${progress}%` }}
           />
         </div>
       </div>
 
-      <button className="w-full py-1.5 text-[12px] font-medium text-[#8F8CFF] bg-[#F5F5FF] rounded hover:bg-[#E8E7FF] transition-colors opacity-0 group-hover:opacity-100">
+      <button className="w-full py-1.5 text-[12px] font-medium text-[#D85BD6] bg-[#FDF4FD] rounded hover:bg-[#F1D6F1] transition-colors opacity-0 group-hover:opacity-100">
         Continue Editing
       </button>
     </div>
@@ -365,7 +365,7 @@ interface TemplateCardProps {
 
 function TemplateCard({ title, thumbnail }: TemplateCardProps) {
   return (
-    <button className="bg-white border border-[#E8E8E6] rounded-lg overflow-hidden hover:border-[#8F8CFF] hover:shadow-sm hover:-translate-y-0.5 transition-all group">
+    <button className="bg-white border border-[#E8E8E6] rounded-lg overflow-hidden hover:border-[#D85BD6] hover:shadow-sm hover:-translate-y-0.5 transition-all group">
       <div className="aspect-square bg-[#FAFAF9] relative overflow-hidden">
         <img 
           src={thumbnail} 
@@ -389,13 +389,13 @@ interface AIGeneratedCardProps {
 
 function AIGeneratedCard({ title, source, readingTime }: AIGeneratedCardProps) {
   return (
-    <div className="bg-[#F5F5FF] border border-[#E8E7FF] rounded-lg p-5 hover:border-[#8F8CFF] hover:shadow-md hover:-translate-y-0.5 transition-all cursor-pointer group">
+    <div className="bg-[#FDF4FD] border border-[#F1D6F1] rounded-lg p-5 hover:border-[#D85BD6] hover:shadow-md hover:-translate-y-0.5 transition-all cursor-pointer group">
       <div className="flex items-start gap-3 mb-4">
         <div className="p-2 bg-white rounded-md">
-          <Sparkles className="w-4 h-4 text-[#8F8CFF]" strokeWidth={1.5} />
+          <Sparkles className="w-4 h-4 text-[#D85BD6]" strokeWidth={1.5} />
         </div>
         <div className="flex-1 min-w-0">
-          <div className="text-[11px] text-[#8F8CFF] font-medium mb-1">Generated from</div>
+          <div className="text-[11px] text-[#D85BD6] font-medium mb-1">Generated from</div>
           <div className="text-[11px] text-[#71717A]">{source}</div>
         </div>
       </div>
@@ -405,7 +405,7 @@ function AIGeneratedCard({ title, source, readingTime }: AIGeneratedCardProps) {
           <Clock className="w-3 h-3" strokeWidth={1.5} />
           {readingTime}
         </div>
-        <button className="text-[12px] font-medium text-[#8F8CFF] opacity-0 group-hover:opacity-100 transition-opacity">
+        <button className="text-[12px] font-medium text-[#D85BD6] opacity-0 group-hover:opacity-100 transition-opacity">
           Open →
         </button>
       </div>
@@ -420,17 +420,17 @@ interface AISuggestionCardProps {
 
 function AISuggestionCard({ title, description }: AISuggestionCardProps) {
   return (
-    <div className="bg-white border border-[#E8E8E6] rounded-lg p-5 hover:border-[#8F8CFF] hover:shadow-md hover:-translate-y-0.5 transition-all cursor-pointer group">
+    <div className="bg-white border border-[#E8E8E6] rounded-lg p-5 hover:border-[#D85BD6] hover:shadow-md hover:-translate-y-0.5 transition-all cursor-pointer group">
       <div className="flex items-start gap-3 mb-4">
-        <div className="p-2 bg-[#F5F5FF] rounded-md">
-          <Sparkles className="w-4 h-4 text-[#8F8CFF]" strokeWidth={1.5} />
+        <div className="p-2 bg-[#FDF4FD] rounded-md">
+          <Sparkles className="w-4 h-4 text-[#D85BD6]" strokeWidth={1.5} />
         </div>
         <div className="flex-1 min-w-0">
           <h3 className="text-[14px] font-medium text-[#18181B] mb-1">{title}</h3>
           <p className="text-[12px] text-[#71717A]">{description}</p>
         </div>
       </div>
-      <button className="flex items-center gap-1.5 text-[12px] font-medium text-[#8F8CFF] group-hover:gap-2 transition-all">
+      <button className="flex items-center gap-1.5 text-[12px] font-medium text-[#D85BD6] group-hover:gap-2 transition-all">
         Generate
         <ArrowRight className="w-3 h-3" strokeWidth={2} />
       </button>
@@ -451,7 +451,7 @@ function DocumentCard({ title, category, lastUpdated, owner, readingTime, status
   const statusColors = {
     Published: "bg-[#F0FDF4] text-[#15803D] border-[#BBF7D0]",
     Draft: "bg-[#F5F5F3] text-[#52525B] border-[#E8E8E6]",
-    Review: "bg-[#F5F5FF] text-[#8F8CFF] border-[#E8E7FF]"
+    Review: "bg-[#FDF4FD] text-[#D85BD6] border-[#F1D6F1]"
   }
 
   return (
@@ -514,7 +514,7 @@ function ActivityItem({ action, target, user, time }: ActivityItemProps) {
     <div className="flex items-center justify-between p-4 hover:bg-[#FAFAF8] transition-colors">
       <div className="flex items-center gap-3">
         <div className={`w-8 h-8 rounded-full flex items-center justify-center text-[13px] font-medium ${
-          isAI ? "bg-[#F5F5FF] text-[#8F8CFF]" : "bg-[#F5F5F3] text-[#52525B]"
+          isAI ? "bg-[#FDF4FD] text-[#D85BD6]" : "bg-[#F5F5F3] text-[#52525B]"
         }`}>
           {isAI ? <Sparkles className="w-4 h-4" strokeWidth={1.5} /> : user.charAt(0)}
         </div>

@@ -26,7 +26,7 @@ export function ProjectsContent() {
                 <Upload className="w-4 h-4 inline mr-2" strokeWidth={1.5} />
                 Import Project
               </button>
-              <button className="px-4 py-2.5 text-[13px] font-medium text-white bg-[#8F8CFF] rounded-lg hover:bg-[#7B77FF] hover:shadow-lg transition-all">
+              <button className="px-4 py-2.5 text-[13px] font-medium text-white bg-[#D85BD6] rounded-lg hover:bg-[#C84AC7] hover:shadow-lg transition-all">
                 <Plus className="w-4 h-4 inline mr-2" strokeWidth={1.5} />
                 New Project
               </button>
@@ -69,7 +69,7 @@ export function ProjectsContent() {
               <input
                 type="text"
                 placeholder="Search projects, videos, documents, demos..."
-                className="w-full pl-10 pr-4 py-2.5 text-[13px] bg-white border border-[#E8E8E6] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#8F8CFF] focus:border-transparent transition-all"
+                className="w-full pl-10 pr-4 py-2.5 text-[13px] bg-white border border-[#E8E8E6] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#D85BD6] focus:border-transparent transition-all"
               />
               <kbd className="absolute right-3 top-1/2 -translate-y-1/2 text-[11px] text-[#A1A1AA] font-mono">⌘K</kbd>
             </div>
@@ -117,7 +117,7 @@ export function ProjectsContent() {
         {/* AI Insights */}
         <section className="mb-12">
           <div className="flex items-center gap-2.5 mb-5">
-            <Sparkles className="w-5 h-5 text-[#8F8CFF]" strokeWidth={1.5} />
+            <Sparkles className="w-5 h-5 text-[#D85BD6]" strokeWidth={1.5} />
             <h2 className="text-[20px] font-semibold text-[#18181B]">AI Insights</h2>
           </div>
           <div className="grid grid-cols-4 gap-4">
@@ -246,7 +246,7 @@ export function ProjectsContent() {
         <section className="mb-12">
           <div className="flex items-center justify-between mb-5">
             <h2 className="text-[20px] font-semibold text-[#18181B]">Start From Template</h2>
-            <button className="text-[13px] font-medium text-[#8F8CFF] hover:text-[#7B77FF] transition-colors">
+            <button className="text-[13px] font-medium text-[#D85BD6] hover:text-[#C84AC7] transition-colors">
               Browse all templates
             </button>
           </div>
@@ -315,12 +315,12 @@ function OverviewCard({ label, value, icon, active }: OverviewCardProps) {
   return (
     <div className={`bg-white border rounded-lg p-5 transition-all ${
       active 
-        ? "border-[#8F8CFF] shadow-[0_0_0_3px_rgba(143,140,255,0.1)]" 
+        ? "border-[#D85BD6] shadow-[0_0_0_3px_rgba(143,140,255,0.1)]" 
         : "border-[#E8E8E6]"
     }`}>
       <div className="flex items-center justify-between mb-3">
-        <div className={`p-2 rounded-md ${active ? "bg-[#F5F5FF]" : "bg-[#F5F5F3]"}`}>
-          <div className={active ? "text-[#8F8CFF]" : "text-[#52525B]"}>
+        <div className={`p-2 rounded-md ${active ? "bg-[#FDF4FD]" : "bg-[#F5F5F3]"}`}>
+          <div className={active ? "text-[#D85BD6]" : "text-[#52525B]"}>
             {icon}
           </div>
         </div>
@@ -352,7 +352,7 @@ function ContinueWorkingCard({ thumbnail, type, title, lastEdited, progress, aiS
         />
         <div className="absolute inset-0 flex items-center justify-center">
           <div className="w-14 h-14 rounded-full bg-white/95 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity shadow-lg">
-            <Play className="w-6 h-6 text-[#8F8CFF] ml-0.5" strokeWidth={1.5} />
+            <Play className="w-6 h-6 text-[#D85BD6] ml-0.5" strokeWidth={1.5} />
           </div>
         </div>
         <div className="absolute top-3 left-3 bg-white/95 backdrop-blur-sm text-[#18181B] text-[11px] font-medium px-2.5 py-1 rounded-md">
@@ -364,20 +364,20 @@ function ContinueWorkingCard({ thumbnail, type, title, lastEdited, progress, aiS
         
         <div className="flex items-center justify-between text-[12px] mb-2.5">
           <span className="text-[#71717A]">{lastEdited}</span>
-          <span className="text-[#8F8CFF] font-medium">{progress}%</span>
+          <span className="text-[#D85BD6] font-medium">{progress}%</span>
         </div>
         
         <div className="w-full bg-[#F5F5F3] h-1.5 rounded-full overflow-hidden mb-4">
           <div 
-            className="bg-[#8F8CFF] h-full rounded-full transition-all"
+            className="bg-[#D85BD6] h-full rounded-full transition-all"
             style={{ width: `${progress}%` }}
           />
         </div>
 
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <Sparkles className="w-3.5 h-3.5 text-[#8F8CFF]" strokeWidth={1.5} />
-            <span className="text-[12px] text-[#8F8CFF] font-medium">{aiStatus}</span>
+            <Sparkles className="w-3.5 h-3.5 text-[#D85BD6]" strokeWidth={1.5} />
+            <span className="text-[12px] text-[#D85BD6] font-medium">{aiStatus}</span>
           </div>
           <div className="flex items-center gap-1">
             {Array.from({ length: Math.min(collaborators, 3) }).map((_, i) => (
@@ -386,7 +386,7 @@ function ContinueWorkingCard({ thumbnail, type, title, lastEdited, progress, aiS
           </div>
         </div>
 
-        <button className="w-full mt-4 py-2 text-[13px] font-medium text-[#8F8CFF] bg-[#F5F5FF] rounded-md hover:bg-[#E8E7FF] transition-colors">
+        <button className="w-full mt-4 py-2 text-[13px] font-medium text-[#D85BD6] bg-[#FDF4FD] rounded-md hover:bg-[#F1D6F1] transition-colors">
           Resume Editing
         </button>
       </div>
@@ -402,12 +402,12 @@ interface AIInsightCardProps {
 
 function AIInsightCard({ title, description, action }: AIInsightCardProps) {
   return (
-    <div className="bg-[#F5F5FF] border border-[#E8E7FF] rounded-lg p-4 hover:border-[#8F8CFF] hover:shadow-md hover:-translate-y-0.5 transition-all cursor-pointer group">
+    <div className="bg-[#FDF4FD] border border-[#F1D6F1] rounded-lg p-4 hover:border-[#D85BD6] hover:shadow-md hover:-translate-y-0.5 transition-all cursor-pointer group">
       <div className="mb-3">
         <h3 className="font-medium text-[14px] text-[#18181B] mb-1">{title}</h3>
         <p className="text-[12px] text-[#71717A]">{description}</p>
       </div>
-      <button className="flex items-center gap-1.5 text-[12px] font-medium text-[#8F8CFF] group-hover:gap-2 transition-all">
+      <button className="flex items-center gap-1.5 text-[12px] font-medium text-[#D85BD6] group-hover:gap-2 transition-all">
         {action}
         <ArrowRight className="w-3 h-3" strokeWidth={2} />
       </button>
@@ -428,7 +428,7 @@ function ViewTab({ label, count, active, onClick }: ViewTabProps) {
       onClick={onClick}
       className={`px-4 py-3 text-[13px] font-medium border-b-2 transition-colors ${
         active
-          ? "text-[#8F8CFF] border-[#8F8CFF]"
+          ? "text-[#D85BD6] border-[#D85BD6]"
           : "text-[#71717A] border-transparent hover:text-[#18181B]"
       }`}
     >
@@ -452,7 +452,7 @@ function ProjectCard({ thumbnail, type, title, lastModified, duration, collabora
   const statusColors = {
     Published: "bg-[#F0FDF4] text-[#15803D] border-[#BBF7D0]",
     Draft: "bg-[#F5F5F3] text-[#52525B] border-[#E8E8E6]",
-    Review: "bg-[#F5F5FF] text-[#8F8CFF] border-[#E8E7FF]"
+    Review: "bg-[#FDF4FD] text-[#D85BD6] border-[#F1D6F1]"
   }
 
   return (
@@ -472,7 +472,7 @@ function ProjectCard({ thumbnail, type, title, lastModified, duration, collabora
         />
         <div className="absolute inset-0 flex items-center justify-center">
           <div className="w-12 h-12 rounded-full bg-white/90 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-            <Play className="w-5 h-5 text-[#8F8CFF] ml-0.5" strokeWidth={1.5} />
+            <Play className="w-5 h-5 text-[#D85BD6] ml-0.5" strokeWidth={1.5} />
           </div>
         </div>
         <div className="absolute bottom-2 right-2 bg-[#18181B]/80 text-white text-[11px] font-medium px-2 py-1 rounded">
@@ -496,7 +496,7 @@ function ProjectCard({ thumbnail, type, title, lastModified, duration, collabora
         {progress < 100 && (
           <div className="w-full bg-[#F5F5F3] h-1 rounded-full overflow-hidden mb-3">
             <div 
-              className="bg-[#8F8CFF] h-full rounded-full transition-all"
+              className="bg-[#D85BD6] h-full rounded-full transition-all"
               style={{ width: `${progress}%` }}
             />
           </div>
@@ -508,7 +508,7 @@ function ProjectCard({ thumbnail, type, title, lastModified, duration, collabora
               <div key={i} className="w-5 h-5 rounded-full bg-[#E8E8E6] border-2 border-white -ml-1 first:ml-0" />
             ))}
           </div>
-          <button className="text-[11px] text-[#8F8CFF] font-medium opacity-0 group-hover:opacity-100 transition-opacity">
+          <button className="text-[11px] text-[#D85BD6] font-medium opacity-0 group-hover:opacity-100 transition-opacity">
             Open →
           </button>
         </div>
@@ -524,7 +524,7 @@ interface TemplateCardProps {
 
 function TemplateCard({ title, image }: TemplateCardProps) {
   return (
-    <div className="bg-white border border-[#E8E8E6] rounded-lg overflow-hidden hover:border-[#8F8CFF] hover:shadow-sm hover:-translate-y-0.5 transition-all cursor-pointer group">
+    <div className="bg-white border border-[#E8E8E6] rounded-lg overflow-hidden hover:border-[#D85BD6] hover:shadow-sm hover:-translate-y-0.5 transition-all cursor-pointer group">
       <div className="aspect-square bg-[#F5F5F3] relative overflow-hidden">
         <img 
           src={image} 
@@ -553,7 +553,7 @@ function ActivityItem({ user, action, target, time, aiAction }: ActivityItemProp
     <div className="flex items-center justify-between p-4 hover:bg-[#FAFAF8] transition-colors">
       <div className="flex items-center gap-3">
         <div className={`w-8 h-8 rounded-full flex items-center justify-center text-[13px] font-medium ${
-          aiAction ? "bg-[#F5F5FF] text-[#8F8CFF]" : "bg-[#F5F5F3] text-[#52525B]"
+          aiAction ? "bg-[#FDF4FD] text-[#D85BD6]" : "bg-[#F5F5F3] text-[#52525B]"
         }`}>
           {aiAction ? <Sparkles className="w-4 h-4" strokeWidth={1.5} /> : user.charAt(0)}
         </div>

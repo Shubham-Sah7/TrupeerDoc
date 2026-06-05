@@ -21,7 +21,7 @@ export function BrandKitContent() {
                 Manage logos, colors, fonts, voiceovers, and brand guidelines in one place.
               </p>
             </div>
-            <button className="px-4 py-2.5 text-[13px] font-medium text-white bg-[#8F8CFF] rounded-lg hover:bg-[#7B77FF] hover:shadow-lg transition-all">
+            <button className="px-4 py-2.5 text-[13px] font-medium text-white bg-[#D85BD6] rounded-lg hover:bg-[#C84AC7] hover:shadow-lg transition-all">
               <Upload className="w-4 h-4 inline mr-2" strokeWidth={1.5} />
               Upload Brand Assets
             </button>
@@ -37,14 +37,14 @@ export function BrandKitContent() {
               value="Uploaded"
               preview={
                 <div className="w-full h-16 flex items-center justify-center">
-                  <img src="/images/trupeer.jpeg" alt="Trupeer Logo" className="max-w-full max-h-full object-contain" />
+                  <img src="/images/Clueso.png" alt="Clueso Logo" className="max-w-full max-h-full object-contain" />
                 </div>
               }
             />
             <BrandOverviewCard
               label="Primary Color"
-              value="#8F8CFF"
-              preview={<div className="w-full h-16 bg-[#8F8CFF] rounded-lg shadow-sm"></div>}
+              value="#D85BD6"
+              preview={<div className="w-full h-16 bg-[#D85BD6] rounded-lg shadow-sm"></div>}
             />
             <BrandOverviewCard
               label="Secondary Color"
@@ -68,15 +68,15 @@ export function BrandKitContent() {
         <section className="mb-12">
           <div className="flex items-center justify-between mb-5">
             <h2 className="text-[20px] font-semibold text-[#18181B]">Assets</h2>
-            <button className="text-[13px] font-medium text-[#8F8CFF] hover:text-[#7B77FF] transition-colors">
+            <button className="text-[13px] font-medium text-[#D85BD6] hover:text-[#C84AC7] transition-colors">
               <Plus className="w-4 h-4 inline mr-1" strokeWidth={1.5} />
               Add Asset
             </button>
           </div>
           <div className="grid grid-cols-6 gap-4">
-            <AssetCard type="Logo" name="Primary Logo" thumbnail="/images/trupeer.jpeg" />
-            <AssetCard type="Logo" name="Logo Mark" thumbnail="/images/trupeer.jpeg" />
-            <AssetCard type="Icon" name="App Icon" thumbnail="/images/trupeer.jpeg" />
+            <AssetCard type="Logo" name="Primary Logo" thumbnail="/images/Clueso.png" />
+            <AssetCard type="Logo" name="Logo Mark" thumbnail="/images/Clueso.png" />
+            <AssetCard type="Icon" name="App Icon" thumbnail="/images/Clueso.png" />
             <AssetCard type="Image" name="Hero Image" thumbnail="/images/screenshot-1.png" />
             <AssetCard type="Image" name="Background" thumbnail="/images/screenshot-2.png" />
             <AssetCard type="Illustration" name="Empty State" thumbnail="/images/screenshot-3.png" />
@@ -92,7 +92,7 @@ export function BrandKitContent() {
               <div>
                 <h3 className="text-[15px] font-semibold text-[#18181B] mb-4">Colors</h3>
                 <div className="space-y-3">
-                  <ColorSetting label="Primary" color="#8F8CFF" />
+                  <ColorSetting label="Primary" color="#D85BD6" />
                   <ColorSetting label="Secondary" color="#18181B" />
                   <ColorSetting label="Accent" color="#10B981" />
                   <ColorSetting label="Background" color="#FAFAF8" />
@@ -133,7 +133,7 @@ export function BrandKitContent() {
         {/* AI Branding */}
         <section>
           <h2 className="text-[20px] font-semibold text-[#18181B] mb-5">AI Branding</h2>
-          <div className="bg-[#F5F5FF] border border-[#E8E7FF] rounded-xl p-8">
+          <div className="bg-[#FDF4FD] border border-[#F1D6F1] rounded-xl p-8">
             <p className="text-[15px] text-[#52525B] mb-6">
               AI automatically applies your brand settings across all generated content
             </p>
@@ -260,7 +260,7 @@ interface AIBrandingFeatureProps {
 function AIBrandingFeature({ text }: AIBrandingFeatureProps) {
   return (
     <div className="flex items-center gap-2.5">
-      <CheckCircle2 className="w-5 h-5 text-[#8F8CFF] flex-shrink-0" strokeWidth={2} />
+      <CheckCircle2 className="w-5 h-5 text-[#D85BD6] flex-shrink-0" strokeWidth={2} />
       <span className="text-[14px] text-[#18181B]">{text}</span>
     </div>
   )

@@ -192,11 +192,11 @@ function WorkflowCard({ icon, title, description, metadata, onClick }: WorkflowC
   return (
     <button
       onClick={onClick}
-      className="group text-left bg-white border-2 border-[#E4E4E7] rounded-[14px] p-8 hover:border-[#8F8CFF] hover:shadow-xl hover:-translate-y-1 transition-all duration-200"
+      className="group text-left bg-white border-2 border-[#E4E4E7] rounded-[14px] p-8 hover:border-[#D85BD6] hover:shadow-xl hover:-translate-y-1 transition-all duration-200"
     >
       {/* Icon */}
-      <div className="w-14 h-14 rounded-[12px] bg-[#F4F4F5] group-hover:bg-[#F5F5FF] flex items-center justify-center mb-6 transition-colors">
-        <div className="text-[#52525B] group-hover:text-[#8F8CFF] transition-colors">
+      <div className="w-14 h-14 rounded-[12px] bg-[#F4F4F5] group-hover:bg-[#FDF4FD] flex items-center justify-center mb-6 transition-colors">
+        <div className="text-[#52525B] group-hover:text-[#D85BD6] transition-colors">
           {icon}
         </div>
       </div>
@@ -212,7 +212,7 @@ function WorkflowCard({ icon, title, description, metadata, onClick }: WorkflowC
       {/* Metadata */}
       <div className="flex items-center justify-between">
         <span className="text-[13px] font-medium text-[#71717A]">{metadata}</span>
-        <ChevronRight className="w-5 h-5 text-[#A1A1AA] group-hover:text-[#8F8CFF] group-hover:translate-x-1 transition-all" strokeWidth={1.5} />
+        <ChevronRight className="w-5 h-5 text-[#A1A1AA] group-hover:text-[#D85BD6] group-hover:translate-x-1 transition-all" strokeWidth={1.5} />
       </div>
     </button>
   )
@@ -266,7 +266,7 @@ function QuickSetupSheet({ onStart, onClose }: QuickSetupSheetProps) {
               type="text"
               value={projectName}
               onChange={(e) => setProjectName(e.target.value)}
-              className="w-full px-4 py-3 bg-[#FAFAFA] border border-[#E4E4E7] rounded-[10px] text-[15px] text-[#111111] focus:outline-none focus:border-[#8F8CFF] focus:ring-2 focus:ring-[#8F8CFF]/20 transition-all"
+              className="w-full px-4 py-3 bg-[#FAFAFA] border border-[#E4E4E7] rounded-[10px] text-[15px] text-[#111111] focus:outline-none focus:border-[#D85BD6] focus:ring-2 focus:ring-[#D85BD6]/20 transition-all"
               placeholder="Enter project name"
             />
           </div>
@@ -327,7 +327,7 @@ function QuickSetupSheet({ onStart, onClose }: QuickSetupSheetProps) {
                   <label className="text-[13px] font-medium text-[#52525B] mb-2 block">
                     Resolution
                   </label>
-                  <select className="w-full px-3 py-2 bg-[#FAFAFA] border border-[#E4E4E7] rounded-[8px] text-[14px] text-[#111111] focus:outline-none focus:border-[#8F8CFF]">
+                  <select className="w-full px-3 py-2 bg-[#FAFAFA] border border-[#E4E4E7] rounded-[8px] text-[14px] text-[#111111] focus:outline-none focus:border-[#D85BD6]">
                     <option>1080p (Recommended)</option>
                     <option>720p</option>
                     <option>4K</option>
@@ -337,7 +337,7 @@ function QuickSetupSheet({ onStart, onClose }: QuickSetupSheetProps) {
                   <label className="text-[13px] font-medium text-[#52525B] mb-2 block">
                     Frame Rate
                   </label>
-                  <select className="w-full px-3 py-2 bg-[#FAFAFA] border border-[#E4E4E7] rounded-[8px] text-[14px] text-[#111111] focus:outline-none focus:border-[#8F8CFF]">
+                  <select className="w-full px-3 py-2 bg-[#FAFAFA] border border-[#E4E4E7] rounded-[8px] text-[14px] text-[#111111] focus:outline-none focus:border-[#D85BD6]">
                     <option>30 FPS (Recommended)</option>
                     <option>60 FPS</option>
                   </select>
@@ -352,7 +352,7 @@ function QuickSetupSheet({ onStart, onClose }: QuickSetupSheetProps) {
         <div className="p-6 border-t border-[#E4E4E7] space-y-3">
           <button
             onClick={onStart}
-            className="w-full py-3.5 bg-[#8F8CFF] hover:bg-[#7B77FF] text-white font-semibold text-[16px] rounded-[10px] transition-colors"
+            className="w-full py-3.5 bg-[#D85BD6] hover:bg-[#C84AC7] text-white font-semibold text-[16px] rounded-[10px] transition-colors"
           >
             Start Recording
           </button>
@@ -383,18 +383,18 @@ function RecordSourceOption({ icon, label, selected, onClick }: RecordSourceOpti
       onClick={onClick}
       className={`w-full flex items-center gap-3 p-3 rounded-[10px] border-2 transition-all ${
         selected
-          ? "border-[#8F8CFF] bg-[#F5F5FF]"
+          ? "border-[#D85BD6] bg-[#FDF4FD]"
           : "border-[#E4E4E7] bg-white hover:border-[#D4D4D8]"
       }`}
     >
-      <div className={selected ? "text-[#8F8CFF]" : "text-[#52525B]"}>
+      <div className={selected ? "text-[#D85BD6]" : "text-[#52525B]"}>
         {icon}
       </div>
       <span className={`text-[15px] font-medium ${selected ? "text-[#111111]" : "text-[#52525B]"}`}>
         {label}
       </span>
       {selected && (
-        <Check className="w-5 h-5 text-[#8F8CFF] ml-auto" strokeWidth={2} />
+        <Check className="w-5 h-5 text-[#D85BD6] ml-auto" strokeWidth={2} />
       )}
     </button>
   )
@@ -414,13 +414,13 @@ function QuickToggle({ icon, label, enabled, onToggle }: QuickToggleProps) {
       className="w-full flex items-center justify-between p-3 rounded-[10px] bg-[#FAFAFA] hover:bg-[#F4F4F5] transition-colors"
     >
       <div className="flex items-center gap-3">
-        <div className={enabled ? "text-[#8F8CFF]" : "text-[#A1A1AA]"}>
+        <div className={enabled ? "text-[#D85BD6]" : "text-[#A1A1AA]"}>
           {icon}
         </div>
         <span className="text-[15px] font-medium text-[#111111]">{label}</span>
       </div>
       <div className={`w-11 h-6 rounded-full transition-colors relative ${
-        enabled ? "bg-[#8F8CFF]" : "bg-[#D4D4D8]"
+        enabled ? "bg-[#D85BD6]" : "bg-[#D4D4D8]"
       }`}>
         <div className={`absolute top-0.5 w-5 h-5 bg-white rounded-full transition-transform ${
           enabled ? "left-5" : "left-0.5"
@@ -587,7 +587,7 @@ function ProcessingScreen({ onComplete }: ProcessingScreenProps) {
         
         {/* Spinner */}
         <div className="w-14 h-14 mx-auto mb-8">
-          <div className="w-full h-full border-4 border-[#E4E4E7] border-t-[#8F8CFF] rounded-full animate-spin" />
+          <div className="w-full h-full border-4 border-[#E4E4E7] border-t-[#D85BD6] rounded-full animate-spin" />
         </div>
 
         {/* Steps */}
@@ -601,9 +601,9 @@ function ProcessingScreen({ onComplete }: ProcessingScreenProps) {
             >
               <div className={`w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 ${
                 index < currentStep
-                  ? "bg-[#8F8CFF]"
+                  ? "bg-[#D85BD6]"
                   : index === currentStep
-                  ? "bg-[#F5F5FF] border-2 border-[#8F8CFF]"
+                  ? "bg-[#FDF4FD] border-2 border-[#D85BD6]"
                   : "bg-[#E4E4E7]"
               }`}>
                 {index < currentStep && (
@@ -658,7 +658,7 @@ function InstantReview({ onContinue, onReRecord }: InstantReviewProps) {
             {/* Play Overlay */}
             <div className="absolute inset-0 flex items-center justify-center bg-black/20">
               <button className="w-16 h-16 rounded-full bg-white shadow-xl flex items-center justify-center hover:scale-110 transition-transform">
-                <Play className="w-7 h-7 text-[#8F8CFF] ml-1" strokeWidth={1.5} fill="#8F8CFF" />
+                <Play className="w-7 h-7 text-[#D85BD6] ml-1" strokeWidth={1.5} fill="#D85BD6" />
               </button>
             </div>
             {/* Duration Badge */}
@@ -694,7 +694,7 @@ function InstantReview({ onContinue, onReRecord }: InstantReviewProps) {
           </button>
           <button
             onClick={onContinue}
-            className="flex-[2] py-3.5 bg-[#8F8CFF] hover:bg-[#7B77FF] text-white font-semibold text-[15px] rounded-[10px] transition-colors flex items-center justify-center gap-2"
+            className="flex-[2] py-3.5 bg-[#D85BD6] hover:bg-[#C84AC7] text-white font-semibold text-[15px] rounded-[10px] transition-colors flex items-center justify-center gap-2"
           >
             Continue Editing
             <ArrowRight className="w-5 h-5" strokeWidth={1.5} />
@@ -730,7 +730,7 @@ function EditorReady({ path }: EditorReadyProps) {
           <button className="px-4 py-2 text-[14px] font-medium text-[#52525B] hover:bg-[#F4F4F5] rounded-[8px] transition-colors">
             Preview
           </button>
-          <button className="px-5 py-2 bg-[#8F8CFF] hover:bg-[#7B77FF] text-white font-semibold text-[14px] rounded-[8px] transition-colors">
+          <button className="px-5 py-2 bg-[#D85BD6] hover:bg-[#C84AC7] text-white font-semibold text-[14px] rounded-[8px] transition-colors">
             Publish
           </button>
         </div>
@@ -741,8 +741,8 @@ function EditorReady({ path }: EditorReadyProps) {
         <div className="max-w-[600px] text-center">
           
           {/* Success Icon */}
-          <div className="w-20 h-20 bg-[#F5F5FF] rounded-full flex items-center justify-center mx-auto mb-6">
-            <CheckCircle2 className="w-10 h-10 text-[#8F8CFF]" strokeWidth={1.5} />
+          <div className="w-20 h-20 bg-[#FDF4FD] rounded-full flex items-center justify-center mx-auto mb-6">
+            <CheckCircle2 className="w-10 h-10 text-[#D85BD6]" strokeWidth={1.5} />
           </div>
 
           {/* Message */}
@@ -784,7 +784,7 @@ interface ReadyItemProps {
 function ReadyItem({ icon, label }: ReadyItemProps) {
   return (
     <div className="flex items-center gap-3">
-      <div className="text-[#8F8CFF]">{icon}</div>
+      <div className="text-[#D85BD6]">{icon}</div>
       <span className="text-[15px] text-[#111111] font-medium">{label}</span>
       <Check className="w-4 h-4 text-[#15803D] ml-auto" strokeWidth={2} />
     </div>
@@ -843,8 +843,8 @@ function UploadFlow({ onUpload, onBack }: UploadFlowProps) {
           onDrop={handleDrop}
           className={`border-2 border-dashed rounded-[14px] p-16 text-center transition-all ${
             isDragging
-              ? "border-[#8F8CFF] bg-[#F5F5FF]"
-              : "border-[#D4D4D8] bg-white hover:border-[#8F8CFF] hover:bg-[#FAFAFA]"
+              ? "border-[#D85BD6] bg-[#FDF4FD]"
+              : "border-[#D4D4D8] bg-white hover:border-[#D85BD6] hover:bg-[#FAFAFA]"
           }`}
         >
           <div className="w-16 h-16 rounded-full bg-[#F4F4F5] flex items-center justify-center mx-auto mb-6">
@@ -860,7 +860,7 @@ function UploadFlow({ onUpload, onBack }: UploadFlowProps) {
 
           <button
             onClick={onUpload}
-            className="px-6 py-3 bg-[#8F8CFF] hover:bg-[#7B77FF] text-white font-semibold text-[15px] rounded-[10px] transition-colors"
+            className="px-6 py-3 bg-[#D85BD6] hover:bg-[#C84AC7] text-white font-semibold text-[15px] rounded-[10px] transition-colors"
           >
             Choose File
           </button>
@@ -974,7 +974,7 @@ function TemplatePreview({ template, onUse, onBack }: TemplatePreviewProps) {
           </div>
           <button
             onClick={onUse}
-            className="px-6 py-3 bg-[#8F8CFF] hover:bg-[#7B77FF] text-white font-semibold text-[15px] rounded-[10px] transition-colors"
+            className="px-6 py-3 bg-[#D85BD6] hover:bg-[#C84AC7] text-white font-semibold text-[15px] rounded-[10px] transition-colors"
           >
             Use Template
           </button>

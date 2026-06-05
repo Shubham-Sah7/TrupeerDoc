@@ -154,7 +154,7 @@ function UploadModal({ onUpload, onClose }: UploadModalProps) {
             onDrop={handleDrop}
             className={`border-2 border-dashed rounded-[12px] p-8 text-center transition-all ${
               isDragging
-                ? "border-[#8F8CFF] bg-[#F5F5FF]"
+                ? "border-[#D85BD6] bg-[#FDF4FD]"
                 : "border-[#E4E4E7] hover:border-[#D4D4D8] hover:bg-[#FAFAFA]"
             }`}
           >
@@ -178,7 +178,7 @@ function UploadModal({ onUpload, onClose }: UploadModalProps) {
             />
             <label
               htmlFor="file-upload"
-              className="inline-block px-5 py-2 bg-[#8F8CFF] hover:bg-[#7B77FF] text-white font-medium text-[13px] rounded-[10px] cursor-pointer transition-colors"
+              className="inline-block px-5 py-2 bg-[#D85BD6] hover:bg-[#C84AC7] text-white font-medium text-[13px] rounded-[10px] cursor-pointer transition-colors"
             >
               Browse Files
             </label>
@@ -264,7 +264,7 @@ function ProcessingScreen({ onComplete }: ProcessingScreenProps) {
         
         {/* Spinner */}
         <div className="w-12 h-12 mx-auto mb-8">
-          <div className="w-full h-full border-[3px] border-[#E4E4E7] border-t-[#8F8CFF] rounded-full animate-spin" />
+          <div className="w-full h-full border-[3px] border-[#E4E4E7] border-t-[#D85BD6] rounded-full animate-spin" />
         </div>
 
         {/* Heading */}
@@ -286,9 +286,9 @@ function ProcessingScreen({ onComplete }: ProcessingScreenProps) {
             >
               <div className={`w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 ${
                 index < currentStep
-                  ? "bg-[#8F8CFF]"
+                  ? "bg-[#D85BD6]"
                   : index === currentStep
-                  ? "border-2 border-[#8F8CFF]"
+                  ? "border-2 border-[#D85BD6]"
                   : "border-2 border-[#E4E4E7]"
               }`}>
                 {index < currentStep && (
@@ -361,7 +361,7 @@ function AIUnderstandingScreen({ onContinue }: AIUnderstandingScreenProps) {
         {/* CTA */}
         <button
           onClick={onContinue}
-          className="w-full py-2.5 bg-[#8F8CFF] hover:bg-[#7B77FF] text-white font-medium text-[14px] rounded-[10px] transition-colors"
+          className="w-full py-2.5 bg-[#D85BD6] hover:bg-[#C84AC7] text-white font-medium text-[14px] rounded-[10px] transition-colors"
         >
           Continue
         </button>
@@ -395,7 +395,7 @@ function InsightBadge({ text, primary }: InsightBadgeProps) {
     <div className={`flex items-center gap-2.5 py-2 px-3 rounded-[8px] ${
       primary ? "bg-[#FAFAFA]" : ""
     }`}>
-      <Check className="w-4 h-4 text-[#8F8CFF] flex-shrink-0" strokeWidth={2} />
+      <Check className="w-4 h-4 text-[#D85BD6] flex-shrink-0" strokeWidth={2} />
       <span className={`text-[13px] ${primary ? "font-medium text-[#111111]" : "text-[#71717A]"}`}>
         {text}
       </span>
@@ -457,11 +457,11 @@ function ChooseOutputScreen({ onSelect }: ChooseOutputScreenProps) {
         {/* Multiple Outputs Option */}
         <button
           onClick={() => onSelect("multiple")}
-          className="w-full p-4 bg-white border border-[#E4E4E7] rounded-[12px] hover:border-[#8F8CFF] hover:bg-[#FAFAFA] transition-all group"
+          className="w-full p-4 bg-white border border-[#E4E4E7] rounded-[12px] hover:border-[#D85BD6] hover:bg-[#FAFAFA] transition-all group"
         >
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-[10px] bg-[#F4F4F5] group-hover:bg-[#F5F5FF] flex items-center justify-center flex-shrink-0 transition-colors">
-              <Layers className="w-5 h-5 text-[#52525B] group-hover:text-[#8F8CFF]" strokeWidth={1.5} />
+            <div className="w-10 h-10 rounded-[10px] bg-[#F4F4F5] group-hover:bg-[#FDF4FD] flex items-center justify-center flex-shrink-0 transition-colors">
+              <Layers className="w-5 h-5 text-[#52525B] group-hover:text-[#D85BD6]" strokeWidth={1.5} />
             </div>
             <div className="flex-1 text-left">
               <h3 className="text-[15px] font-medium text-[#111111] mb-0.5">Multiple Outputs</h3>
@@ -469,7 +469,7 @@ function ChooseOutputScreen({ onSelect }: ChooseOutputScreenProps) {
                 Generate everything
               </p>
             </div>
-            <ChevronRight className="w-4 h-4 text-[#A1A1AA] group-hover:text-[#8F8CFF] transition-colors" strokeWidth={1.5} />
+            <ChevronRight className="w-4 h-4 text-[#A1A1AA] group-hover:text-[#D85BD6] transition-colors" strokeWidth={1.5} />
           </div>
         </button>
 
@@ -492,18 +492,18 @@ function OutputCard({ icon, title, description, recommended, onClick }: OutputCa
       onClick={onClick}
       className={`text-left p-4 rounded-[12px] border transition-all ${
         recommended
-          ? "border-[#8F8CFF] bg-[#FAFAFA]"
+          ? "border-[#D85BD6] bg-[#FAFAFA]"
           : "border-[#E4E4E7] bg-white hover:border-[#D4D4D8] hover:bg-[#FAFAFA]"
       }`}
     >
       <div className="flex items-start gap-3 mb-3">
         <div className={`p-2 rounded-[8px] flex-shrink-0 ${
-          recommended ? "bg-[#F5F5FF] text-[#8F8CFF]" : "bg-[#F4F4F5] text-[#52525B]"
+          recommended ? "bg-[#FDF4FD] text-[#D85BD6]" : "bg-[#F4F4F5] text-[#52525B]"
         }`}>
           {icon}
         </div>
         {recommended && (
-          <Check className="w-4 h-4 text-[#8F8CFF] ml-auto" strokeWidth={2} />
+          <Check className="w-4 h-4 text-[#D85BD6] ml-auto" strokeWidth={2} />
         )}
       </div>
       
@@ -561,10 +561,10 @@ function PreviewScreen({ output, fileName, onGenerate }: PreviewScreenProps) {
           <div className="border-t border-[#E4E4E7] my-5" />
 
           {/* Smart Recommendation */}
-          <div className="bg-[#F5F5FF] border border-[#8F8CFF]/20 rounded-[10px] p-4">
+          <div className="bg-[#FDF4FD] border border-[#D85BD6]/20 rounded-[10px] p-4">
             <div className="flex items-start gap-3">
-              <div className="w-8 h-8 rounded-[8px] bg-[#8F8CFF]/10 flex items-center justify-center flex-shrink-0 mt-0.5">
-                <CheckCircle2 className="w-4 h-4 text-[#8F8CFF]" strokeWidth={2} />
+              <div className="w-8 h-8 rounded-[8px] bg-[#D85BD6]/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                <CheckCircle2 className="w-4 h-4 text-[#D85BD6]" strokeWidth={2} />
               </div>
               <div className="flex-1">
                 <h4 className="text-[13px] font-medium text-[#111111] mb-1">
@@ -582,7 +582,7 @@ function PreviewScreen({ output, fileName, onGenerate }: PreviewScreenProps) {
         {/* CTA */}
         <button
           onClick={onGenerate}
-          className="w-full py-2.5 bg-[#8F8CFF] hover:bg-[#7B77FF] text-white font-medium text-[14px] rounded-[10px] transition-colors"
+          className="w-full py-2.5 bg-[#D85BD6] hover:bg-[#C84AC7] text-white font-medium text-[14px] rounded-[10px] transition-colors"
         >
           Generate
         </button>
@@ -656,7 +656,7 @@ function GeneratingScreen({ output, onComplete }: GeneratingScreenProps) {
         
         {/* Spinner */}
         <div className="w-12 h-12 mx-auto mb-8">
-          <div className="w-full h-full border-[3px] border-[#E4E4E7] border-t-[#8F8CFF] rounded-full animate-spin" />
+          <div className="w-full h-full border-[3px] border-[#E4E4E7] border-t-[#D85BD6] rounded-full animate-spin" />
         </div>
 
         {/* Heading */}
@@ -678,9 +678,9 @@ function GeneratingScreen({ output, onComplete }: GeneratingScreenProps) {
             >
               <div className={`w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 ${
                 index < currentStep
-                  ? "bg-[#8F8CFF]"
+                  ? "bg-[#D85BD6]"
                   : index === currentStep
-                  ? "border-2 border-[#8F8CFF]"
+                  ? "border-2 border-[#D85BD6]"
                   : "border-2 border-[#E4E4E7]"
               }`}>
                 {index < currentStep && (
@@ -738,7 +738,7 @@ function ReviewScreen({ output, onClose }: ReviewScreenProps) {
             />
             <div className="absolute inset-0 flex items-center justify-center bg-black/10">
               <button className="w-12 h-12 rounded-full bg-white shadow-lg flex items-center justify-center hover:scale-110 transition-transform">
-                <Play className="w-5 h-5 text-[#8F8CFF] ml-0.5" strokeWidth={1.5} fill="#8F8CFF" />
+                <Play className="w-5 h-5 text-[#D85BD6] ml-0.5" strokeWidth={1.5} fill="#D85BD6" />
               </button>
             </div>
           </div>
@@ -759,7 +759,7 @@ function ReviewScreen({ output, onClose }: ReviewScreenProps) {
             <button className="flex-1 py-2.5 border border-[#E4E4E7] hover:border-[#D4D4D8] hover:bg-[#FAFAFA] text-[#52525B] hover:text-[#111111] font-medium text-[14px] rounded-[10px] transition-all">
               Edit
             </button>
-            <button className="flex-1 py-2.5 bg-[#8F8CFF] hover:bg-[#7B77FF] text-white font-medium text-[14px] rounded-[10px] transition-colors">
+            <button className="flex-1 py-2.5 bg-[#D85BD6] hover:bg-[#C84AC7] text-white font-medium text-[14px] rounded-[10px] transition-colors">
               Publish
             </button>
           </div>

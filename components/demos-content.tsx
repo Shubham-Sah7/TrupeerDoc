@@ -22,7 +22,7 @@ export function DemosContent() {
                 Convert recordings and guides into engaging product walkthroughs.
               </p>
             </div>
-            <button className="px-5 py-3 text-[14px] font-medium text-white bg-[#8F8CFF] rounded-lg hover:bg-[#7B77FF] hover:shadow-lg transition-all">
+            <button className="px-5 py-3 text-[14px] font-medium text-white bg-[#D85BD6] rounded-lg hover:bg-[#C84AC7] hover:shadow-lg transition-all">
               <Plus className="w-4 h-4 inline mr-2" strokeWidth={2} />
               Create Demo
             </button>
@@ -122,7 +122,7 @@ export function DemosContent() {
         {/* AI Suggestions */}
         <section className="mb-12">
           <div className="flex items-center gap-2.5 mb-5">
-            <Sparkles className="w-5 h-5 text-[#8F8CFF]" strokeWidth={1.5} />
+            <Sparkles className="w-5 h-5 text-[#D85BD6]" strokeWidth={1.5} />
             <h2 className="text-[20px] font-semibold text-[#18181B]">AI Suggestions</h2>
           </div>
           <div className="grid grid-cols-3 gap-4">
@@ -219,9 +219,9 @@ interface QuickStartCardProps {
 
 function QuickStartCard({ icon, title, description }: QuickStartCardProps) {
   return (
-    <button className="group flex items-start gap-4 p-6 bg-white border border-[#E8E8E6] rounded-xl hover:border-[#8F8CFF] hover:shadow-lg hover:-translate-y-1 transition-all text-left">
-      <div className="p-3 bg-[#F5F5F3] rounded-lg group-hover:bg-[#F5F5FF] transition-colors">
-        <div className="text-[#52525B] group-hover:text-[#8F8CFF] transition-colors">
+    <button className="group flex items-start gap-4 p-6 bg-white border border-[#E8E8E6] rounded-xl hover:border-[#D85BD6] hover:shadow-lg hover:-translate-y-1 transition-all text-left">
+      <div className="p-3 bg-[#F5F5F3] rounded-lg group-hover:bg-[#FDF4FD] transition-colors">
+        <div className="text-[#52525B] group-hover:text-[#D85BD6] transition-colors">
           {icon}
         </div>
       </div>
@@ -242,7 +242,7 @@ interface TemplateCardProps {
 
 function TemplateCard({ title, description, uses, thumbnail }: TemplateCardProps) {
   return (
-    <button className="group bg-white border border-[#E8E8E6] rounded-lg p-5 hover:border-[#8F8CFF] hover:shadow-md hover:-translate-y-0.5 transition-all text-left">
+    <button className="group bg-white border border-[#E8E8E6] rounded-lg p-5 hover:border-[#D85BD6] hover:shadow-md hover:-translate-y-0.5 transition-all text-left">
       <div className="aspect-video bg-[#F5F5F3] rounded-lg mb-4 relative overflow-hidden">
         <img 
           src={thumbnail} 
@@ -251,7 +251,7 @@ function TemplateCard({ title, description, uses, thumbnail }: TemplateCardProps
         />
         <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/10">
           <div className="w-12 h-12 rounded-full bg-white/90 flex items-center justify-center">
-            <Play className="w-5 h-5 text-[#8F8CFF] ml-0.5" strokeWidth={1.5} />
+            <Play className="w-5 h-5 text-[#D85BD6] ml-0.5" strokeWidth={1.5} />
           </div>
         </div>
       </div>
@@ -291,17 +291,17 @@ interface AISuggestionCardProps {
 
 function AISuggestionCard({ title, source }: AISuggestionCardProps) {
   return (
-    <div className="bg-[#F5F5FF] border border-[#E8E7FF] rounded-lg p-5 hover:border-[#8F8CFF] hover:shadow-md hover:-translate-y-0.5 transition-all cursor-pointer group">
+    <div className="bg-[#FDF4FD] border border-[#F1D6F1] rounded-lg p-5 hover:border-[#D85BD6] hover:shadow-md hover:-translate-y-0.5 transition-all cursor-pointer group">
       <div className="flex items-start gap-3 mb-4">
         <div className="p-2 bg-white rounded-md">
-          <Sparkles className="w-4 h-4 text-[#8F8CFF]" strokeWidth={1.5} />
+          <Sparkles className="w-4 h-4 text-[#D85BD6]" strokeWidth={1.5} />
         </div>
         <div className="flex-1 min-w-0">
           <h3 className="text-[14px] font-medium text-[#18181B] mb-1 leading-snug">{title}</h3>
           <p className="text-[12px] text-[#71717A]">{source}</p>
         </div>
       </div>
-      <button className="flex items-center gap-1.5 text-[12px] font-medium text-[#8F8CFF] group-hover:gap-2 transition-all">
+      <button className="flex items-center gap-1.5 text-[12px] font-medium text-[#D85BD6] group-hover:gap-2 transition-all">
         Create Demo
         <ArrowRight className="w-3 h-3" strokeWidth={2} />
       </button>
@@ -341,7 +341,7 @@ function DemoCard({ title, status, views, lastEdited, thumbnail }: DemoCardProps
         />
         <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/10">
           <div className="w-12 h-12 rounded-full bg-white/90 flex items-center justify-center">
-            <Play className="w-5 h-5 text-[#8F8CFF] ml-0.5" strokeWidth={1.5} />
+            <Play className="w-5 h-5 text-[#D85BD6] ml-0.5" strokeWidth={1.5} />
           </div>
         </div>
       </div>
@@ -375,7 +375,7 @@ function DemoCard({ title, status, views, lastEdited, thumbnail }: DemoCardProps
             Share
           </button>
           {status === "Draft" && (
-            <button className="flex-1 py-1.5 text-[11px] font-medium text-white bg-[#8F8CFF] rounded hover:bg-[#7B77FF] transition-colors">
+            <button className="flex-1 py-1.5 text-[11px] font-medium text-white bg-[#D85BD6] rounded hover:bg-[#C84AC7] transition-colors">
               <CheckCircle2 className="w-3 h-3 inline mr-1" strokeWidth={1.5} />
               Publish
             </button>

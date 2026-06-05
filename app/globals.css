@@ -64,8 +64,8 @@
     --destructive: #EF4444;
     --border: #E4E4E7;
     --input: #E4E4E7;
-    --ring: #8F8CFF;
-    --chart-1: #8F8CFF;
+    --ring: #D85BD6;
+    --chart-1: #D85BD6;
     --chart-2: #6366F1;
     --chart-3: #8B5CF6;
     --chart-4: #A78BFA;
@@ -73,20 +73,20 @@
     --radius: 0.75rem;
     --sidebar: #FFFFFF;
     --sidebar-foreground: #0A0A0A;
-    --sidebar-primary: #8F8CFF;
+    --sidebar-primary: #D85BD6;
     --sidebar-primary-foreground: #FFFFFF;
     --sidebar-accent: #F4F4F5;
     --sidebar-accent-foreground: #0A0A0A;
     --sidebar-border: #E4E4E7;
-    --sidebar-ring: #8F8CFF;
+    --sidebar-ring: #D85BD6;
     
-    /* Trupeer Enhanced Brand Colors */
-    --brand-primary: #8F8CFF;
-    --brand-hover: #7B77FF;
-    --brand-active: #6B68EE;
-    --brand-light: #E8E7FF;
-    --brand-lighter: #F5F5FF;
-    --brand-subtle: #FAFAFF;
+    /* Clueso Brand Colors */
+    --brand-primary: #D85BD6;
+    --brand-hover: #C84AC7;
+    --brand-active: #B83AB7;
+    --brand-light: #F1D6F1;
+    --brand-lighter: #FDF4FD;
+    --brand-subtle: #FDF4FD;
     
     /* Enhanced Semantic Colors */
     --text-primary: #0A0A0A;
@@ -146,13 +146,112 @@
 @layer base {
   * {
     @apply border-border outline-ring/50;
-    }
+  }
   body {
     @apply bg-background text-foreground;
-    }
+  }
   html {
     @apply font-sans;
-    }
+    color-scheme: light;
+  }
+  html.dark {
+    color-scheme: dark;
+  }
+}
+
+/* ── Smooth theme transitions ──────────────────────────────────────────────── */
+/* Applied to structural containers only — not every element (would conflict with hover) */
+aside,
+main,
+header,
+nav,
+footer,
+[data-theme-surface] {
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+              border-color     250ms cubic-bezier(0.4, 0, 0.2, 1),
+              color            250ms cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow       250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ── Dark mode global overrides for sub-page components ─────────────────── */
+/* These live in @layer base so Tailwind utilities (dark: variants) take      */
+/* precedence — components with explicit dark: classes are unaffected.        */
+@layer base {
+  /* Page/main backgrounds */
+  .dark .bg-\[\#FAFAF8\],
+  .dark .bg-\[\#FAFAFA\],
+  .dark .bg-\[\#F8F8F7\] { background-color: #0A0A0B; }
+
+  /* Card / surface backgrounds */
+  .dark .bg-white { background-color: #17171A; }
+
+  /* Muted / thumbnail backgrounds */
+  .dark .bg-\[\#F5F5F3\],
+  .dark .bg-\[\#F8F9FA\],
+  .dark .bg-\[\#FAFAF9\] { background-color: #1C1C1F; }
+
+  /* Subtle / secondary backgrounds */
+  .dark .bg-\[\#F4F4F5\],
+  .dark .bg-\[\#E8E8E6\] { background-color: #26262B; }
+
+  /* Brand-tinted AI / suggestion card backgrounds */
+  .dark .bg-\[\#FDF4FD\] { background-color: #1E0E1E; }
+  .dark .bg-\[\#F1D6F1\] { background-color: #2A1A2A; }
+
+  /* Status backgrounds */
+  .dark .bg-\[\#F0FDF4\] { background-color: #052E1C; }
+  .dark .bg-\[\#FFF7ED\] { background-color: #2D1500; }
+  .dark .bg-\[\#EFF6FF\] { background-color: #0C1A2E; }
+  .dark .bg-\[\#FDF2F8\] { background-color: #1E0E1E; }
+
+  /* Hover backgrounds */
+  .dark .hover\:bg-\[\#FAFAF8\]:hover,
+  .dark .hover\:bg-\[\#FAFAFA\]:hover,
+  .dark .hover\:bg-\[\#FAFAF9\]:hover { background-color: #1C1C1F; }
+  .dark .hover\:bg-\[\#ECECEA\]:hover,
+  .dark .hover\:bg-\[\#F5F5F3\]:hover { background-color: #26262B; }
+  .dark .hover\:bg-\[\#F1D6F1\]:hover { background-color: #3A2030; }
+
+  /* Borders */
+  .dark .border-\[\#E8E8E6\],
+  .dark .border-\[\#E4E4E7\],
+  .dark .border-\[\#F0F0F0\] { border-color: rgba(255, 255, 255, 0.08); }
+  .dark .border-\[\#D4D4D8\],
+  .dark .border-\[\#D4D4D2\] { border-color: rgba(255, 255, 255, 0.1); }
+  .dark .border-\[\#F1D6F1\] { border-color: #3A1F3A; }
+  .dark .border-\[\#BBF7D0\] { border-color: #14532D; }
+
+  /* Hover borders */
+  .dark .hover\:border-\[\#D4D4D2\]:hover,
+  .dark .hover\:border-\[\#D4D4D8\]:hover { border-color: rgba(255, 255, 255, 0.14); }
+
+  /* Dividers */
+  .dark .divide-\[\#E8E8E6\] > * + * { border-color: rgba(255, 255, 255, 0.08); }
+
+  /* Primary text */
+  .dark .text-\[\#18181B\],
+  .dark .text-\[\#111111\],
+  .dark .text-\[\#0A0A0A\] { color: #FAFAFA; }
+
+  /* Secondary text */
+  .dark .text-\[\#52525B\] { color: #A1A1AA; }
+
+  /* Tertiary text */
+  .dark .text-\[\#71717A\] { color: #71717A; }
+
+  /* Muted text */
+  .dark .text-\[\#A1A1AA\] { color: rgba(255, 255, 255, 0.35); }
+
+  /* Input fields */
+  .dark input:not([class*="bg-"]) { background-color: #17171A; color: #FAFAFA; }
+  .dark input::placeholder { color: rgba(255, 255, 255, 0.3); }
+
+  /* Textarea fields */
+  .dark textarea:not([class*="bg-"]) { background-color: #17171A; color: #FAFAFA; }
+  .dark textarea::placeholder { color: rgba(255, 255, 255, 0.3); }
+
+  /* Select elements */
+  .dark select:not([class*="bg-"]) { background-color: #17171A; color: #FAFAFA; }
 }
 
 @layer utilities {

@@ -22,7 +22,7 @@ export function TeamAssetsContent() {
                 Store and organize screenshots, videos, logos, voiceovers, templates, and media files.
               </p>
             </div>
-            <button className="px-4 py-2.5 text-[13px] font-medium text-white bg-[#8F8CFF] rounded-lg hover:bg-[#7B77FF] hover:shadow-lg transition-all">
+            <button className="px-4 py-2.5 text-[13px] font-medium text-white bg-[#D85BD6] rounded-lg hover:bg-[#C84AC7] hover:shadow-lg transition-all">
               <Upload className="w-4 h-4 inline mr-2" strokeWidth={1.5} />
               Upload Asset
             </button>
@@ -73,7 +73,7 @@ export function TeamAssetsContent() {
             <input
               type="text"
               placeholder="Search assets..."
-              className="w-full pl-12 pr-4 py-3 text-[14px] bg-white border border-[#E8E8E6] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#8F8CFF] focus:border-transparent transition-all"
+              className="w-full pl-12 pr-4 py-3 text-[14px] bg-white border border-[#E8E8E6] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#D85BD6] focus:border-transparent transition-all"
             />
           </div>
         </section>
@@ -93,7 +93,7 @@ export function TeamAssetsContent() {
         {/* AI Suggestions */}
         <section className="mb-12">
           <div className="flex items-center gap-2.5 mb-5">
-            <Sparkles className="w-5 h-5 text-[#8F8CFF]" strokeWidth={1.5} />
+            <Sparkles className="w-5 h-5 text-[#D85BD6]" strokeWidth={1.5} />
             <h2 className="text-[20px] font-semibold text-[#18181B]">AI Suggestions</h2>
           </div>
           <div className="grid grid-cols-3 gap-4">
@@ -207,9 +207,9 @@ interface CategoryCardProps {
 
 function CategoryCard({ icon, title, count }: CategoryCardProps) {
   return (
-    <button className="group bg-white border border-[#E8E8E6] rounded-lg p-5 hover:border-[#8F8CFF] hover:shadow-md hover:-translate-y-0.5 transition-all">
-      <div className="p-3 bg-[#F5F5F3] rounded-lg inline-flex mb-3 group-hover:bg-[#F5F5FF] transition-colors">
-        <div className="text-[#52525B] group-hover:text-[#8F8CFF] transition-colors">
+    <button className="group bg-white border border-[#E8E8E6] rounded-lg p-5 hover:border-[#D85BD6] hover:shadow-md hover:-translate-y-0.5 transition-all">
+      <div className="p-3 bg-[#F5F5F3] rounded-lg inline-flex mb-3 group-hover:bg-[#FDF4FD] transition-colors">
+        <div className="text-[#52525B] group-hover:text-[#D85BD6] transition-colors">
           {icon}
         </div>
       </div>
@@ -251,17 +251,17 @@ interface SuggestionCardProps {
 
 function SuggestionCard({ title, description, count }: SuggestionCardProps) {
   return (
-    <div className="bg-[#F5F5FF] border border-[#E8E7FF] rounded-lg p-5 hover:border-[#8F8CFF] hover:shadow-md hover:-translate-y-0.5 transition-all cursor-pointer">
+    <div className="bg-[#FDF4FD] border border-[#F1D6F1] rounded-lg p-5 hover:border-[#D85BD6] hover:shadow-md hover:-translate-y-0.5 transition-all cursor-pointer">
       <div className="flex items-start gap-3 mb-3">
         <div className="p-2 bg-white rounded-md">
-          <Sparkles className="w-4 h-4 text-[#8F8CFF]" strokeWidth={1.5} />
+          <Sparkles className="w-4 h-4 text-[#D85BD6]" strokeWidth={1.5} />
         </div>
         <div className="flex-1 min-w-0">
           <h3 className="text-[14px] font-semibold text-[#18181B] mb-1">{title}</h3>
           <p className="text-[12px] text-[#71717A]">{description}</p>
         </div>
       </div>
-      <div className="text-[12px] text-[#8F8CFF] font-medium">{count} assets</div>
+      <div className="text-[12px] text-[#D85BD6] font-medium">{count} assets</div>
     </div>
   )
 }

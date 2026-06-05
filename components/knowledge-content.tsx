@@ -36,7 +36,7 @@ export function KnowledgeContent() {
                 <Plus className="w-4 h-4 inline mr-2" strokeWidth={1.5} />
                 Create Article
               </button>
-              <button className="px-4 py-2.5 text-[13px] font-medium text-white bg-[#8F8CFF] rounded-lg hover:bg-[#7B77FF] hover:shadow-lg transition-all">
+              <button className="px-4 py-2.5 text-[13px] font-medium text-white bg-[#D85BD6] rounded-lg hover:bg-[#C84AC7] hover:shadow-lg transition-all">
                 <Sparkles className="w-4 h-4 inline mr-2" strokeWidth={1.5} />
                 Generate With AI
               </button>
@@ -48,7 +48,7 @@ export function KnowledgeContent() {
         <section className="mb-12">
           <div className="bg-white border border-[#E8E8E6] rounded-2xl p-10">
             <div className="max-w-3xl mx-auto text-center mb-8">
-              <div className="inline-flex items-center gap-2 bg-[#F5F5FF] text-[#8F8CFF] px-4 py-2 rounded-full text-[13px] font-medium mb-4">
+              <div className="inline-flex items-center gap-2 bg-[#FDF4FD] text-[#D85BD6] px-4 py-2 rounded-full text-[13px] font-medium mb-4">
                 <Brain className="w-4 h-4" strokeWidth={1.5} />
                 Ask Your Workspace
               </div>
@@ -66,9 +66,9 @@ export function KnowledgeContent() {
               <input
                 type="text"
                 placeholder="Ask anything about your content..."
-                className="w-full pl-14 pr-14 py-4 text-[15px] bg-[#F5F5F3] border-2 border-transparent rounded-xl focus:outline-none focus:ring-2 focus:ring-[#8F8CFF] focus:bg-white focus:border-[#8F8CFF] transition-all"
+                className="w-full pl-14 pr-14 py-4 text-[15px] bg-[#F5F5F3] border-2 border-transparent rounded-xl focus:outline-none focus:ring-2 focus:ring-[#D85BD6] focus:bg-white focus:border-[#D85BD6] transition-all"
               />
-              <button className="absolute right-3 top-1/2 -translate-y-1/2 p-2 bg-[#8F8CFF] text-white rounded-lg hover:bg-[#7B77FF] transition-colors">
+              <button className="absolute right-3 top-1/2 -translate-y-1/2 p-2 bg-[#D85BD6] text-white rounded-lg hover:bg-[#C84AC7] transition-colors">
                 <ArrowRight className="w-5 h-5" strokeWidth={2} />
               </button>
             </div>
@@ -154,7 +154,7 @@ export function KnowledgeContent() {
         {/* Auto Generated Knowledge */}
         <section className="mb-12">
           <div className="flex items-center gap-2.5 mb-5">
-            <Sparkles className="w-5 h-5 text-[#8F8CFF]" strokeWidth={1.5} />
+            <Sparkles className="w-5 h-5 text-[#D85BD6]" strokeWidth={1.5} />
             <h2 className="text-[20px] font-semibold text-[#18181B]">Auto Generated Knowledge</h2>
           </div>
           <div className="grid grid-cols-3 gap-4">
@@ -185,7 +185,7 @@ export function KnowledgeContent() {
         {/* AI Recommendations */}
         <section className="mb-12">
           <div className="flex items-center gap-2.5 mb-5">
-            <Zap className="w-5 h-5 text-[#8F8CFF]" strokeWidth={1.5} />
+            <Zap className="w-5 h-5 text-[#D85BD6]" strokeWidth={1.5} />
             <h2 className="text-[20px] font-semibold text-[#18181B]">AI Recommendations</h2>
           </div>
           <div className="grid grid-cols-3 gap-4">
@@ -228,13 +228,13 @@ export function KnowledgeContent() {
         <section className="mb-12">
           <div className="flex items-center justify-between mb-5">
             <h2 className="text-[20px] font-semibold text-[#18181B]">Documentation Hub</h2>
-            <button className="text-[13px] font-medium text-[#8F8CFF] hover:text-[#7B77FF] transition-colors">
+            <button className="text-[13px] font-medium text-[#D85BD6] hover:text-[#C84AC7] transition-colors">
               View all articles
             </button>
           </div>
           <div className="grid grid-cols-3 gap-5">
             <DocumentationCard
-              title="Getting Started with Trupeer"
+              title="Getting Started with Clueso"
               description="Learn the basics of creating videos, guides, and demos with AI assistance"
               category="Product"
               owner="Sarah Chen"
@@ -302,7 +302,7 @@ export function KnowledgeContent() {
         {/* Knowledge Graph */}
         <section className="mb-12">
           <div className="flex items-center gap-2.5 mb-5">
-            <Network className="w-5 h-5 text-[#8F8CFF]" strokeWidth={1.5} />
+            <Network className="w-5 h-5 text-[#D85BD6]" strokeWidth={1.5} />
             <h2 className="text-[20px] font-semibold text-[#18181B]">Knowledge Graph</h2>
           </div>
           <div className="bg-white border border-[#E8E8E6] rounded-lg p-6">
@@ -374,7 +374,7 @@ interface ExampleQueryProps {
 
 function ExampleQuery({ text }: ExampleQueryProps) {
   return (
-    <button className="text-[12px] text-[#71717A] bg-white border border-[#E8E8E6] px-3 py-1.5 rounded-full hover:border-[#8F8CFF] hover:text-[#8F8CFF] transition-all">
+    <button className="text-[12px] text-[#71717A] bg-white border border-[#E8E8E6] px-3 py-1.5 rounded-full hover:border-[#D85BD6] hover:text-[#D85BD6] transition-all">
       {text}
     </button>
   )
@@ -392,11 +392,11 @@ function OverviewCard({ icon, label, count, growth, active }: OverviewCardProps)
   return (
     <div className={`bg-white border rounded-lg p-5 transition-all ${
       active 
-        ? "border-[#8F8CFF] shadow-[0_0_0_3px_rgba(143,140,255,0.1)]" 
+        ? "border-[#D85BD6] shadow-[0_0_0_3px_rgba(143,140,255,0.1)]" 
         : "border-[#E8E8E6] hover:border-[#D4D4D2]"
     }`}>
-      <div className={`p-2.5 rounded-lg inline-flex mb-3 ${active ? "bg-[#F5F5FF]" : "bg-[#F5F5F3]"}`}>
-        <div className={active ? "text-[#8F8CFF]" : "text-[#52525B]"}>
+      <div className={`p-2.5 rounded-lg inline-flex mb-3 ${active ? "bg-[#FDF4FD]" : "bg-[#F5F5F3]"}`}>
+        <div className={active ? "text-[#D85BD6]" : "text-[#52525B]"}>
           {icon}
         </div>
       </div>
@@ -422,14 +422,14 @@ function CollectionCard({ icon, title, count, active, onClick, highlight }: Coll
       onClick={onClick}
       className={`flex items-center gap-3 p-4 rounded-lg border transition-all text-left ${
         active
-          ? "bg-[#F5F5FF] border-[#8F8CFF] shadow-sm"
+          ? "bg-[#FDF4FD] border-[#D85BD6] shadow-sm"
           : highlight
-          ? "bg-[#F5F5FF] border-[#E8E7FF] hover:border-[#8F8CFF]"
+          ? "bg-[#FDF4FD] border-[#F1D6F1] hover:border-[#D85BD6]"
           : "bg-white border-[#E8E8E6] hover:border-[#D4D4D2]"
       }`}
     >
       <div className={`p-2 rounded-md ${active || highlight ? "bg-white" : "bg-[#F5F5F3]"}`}>
-        <div className={active || highlight ? "text-[#8F8CFF]" : "text-[#52525B]"}>
+        <div className={active || highlight ? "text-[#D85BD6]" : "text-[#52525B]"}>
           {icon}
         </div>
       </div>
@@ -459,15 +459,15 @@ function AutoGeneratedCard({ source, title, type, generatedFrom, views }: AutoGe
   }
 
   return (
-    <div className="bg-[#F5F5FF] border border-[#E8E7FF] rounded-lg p-5 hover:border-[#8F8CFF] hover:shadow-md hover:-translate-y-0.5 transition-all cursor-pointer group">
+    <div className="bg-[#FDF4FD] border border-[#F1D6F1] rounded-lg p-5 hover:border-[#D85BD6] hover:shadow-md hover:-translate-y-0.5 transition-all cursor-pointer group">
       <div className="flex items-start gap-3 mb-4">
-        <div className="p-2 bg-white rounded-md text-[#8F8CFF]">
+        <div className="p-2 bg-white rounded-md text-[#D85BD6]">
           <Sparkles className="w-4 h-4" strokeWidth={1.5} />
         </div>
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-2 mb-1">
-            <span className="text-[11px] text-[#8F8CFF] font-medium">Generated from</span>
-            <div className="text-[#8F8CFF]">{getIcon()}</div>
+            <span className="text-[11px] text-[#D85BD6] font-medium">Generated from</span>
+            <div className="text-[#D85BD6]">{getIcon()}</div>
           </div>
           <div className="text-[11px] text-[#71717A]">{source}</div>
         </div>
@@ -494,9 +494,9 @@ interface AIRecommendationCardProps {
 
 function AIRecommendationCard({ title, description, action }: AIRecommendationCardProps) {
   return (
-    <div className="bg-white border border-[#E8E8E6] rounded-lg p-5 hover:border-[#8F8CFF] hover:shadow-md hover:-translate-y-0.5 transition-all cursor-pointer group">
+    <div className="bg-white border border-[#E8E8E6] rounded-lg p-5 hover:border-[#D85BD6] hover:shadow-md hover:-translate-y-0.5 transition-all cursor-pointer group">
       <div className="flex items-start gap-3 mb-4">
-        <div className="p-2 bg-[#F5F5FF] rounded-md text-[#8F8CFF]">
+        <div className="p-2 bg-[#FDF4FD] rounded-md text-[#D85BD6]">
           <Zap className="w-4 h-4" strokeWidth={1.5} />
         </div>
         <div className="flex-1 min-w-0">
@@ -504,7 +504,7 @@ function AIRecommendationCard({ title, description, action }: AIRecommendationCa
           <p className="text-[12px] text-[#71717A]">{description}</p>
         </div>
       </div>
-      <button className="flex items-center gap-1.5 text-[12px] font-medium text-[#8F8CFF] group-hover:gap-2 transition-all">
+      <button className="flex items-center gap-1.5 text-[12px] font-medium text-[#D85BD6] group-hover:gap-2 transition-all">
         {action}
         <ArrowRight className="w-3 h-3" strokeWidth={2} />
       </button>
@@ -519,8 +519,8 @@ interface TopicCardProps {
 
 function TopicCard({ title, count }: TopicCardProps) {
   return (
-    <button className="bg-white border border-[#E8E8E6] rounded-lg p-4 hover:border-[#8F8CFF] hover:shadow-sm hover:-translate-y-0.5 transition-all text-left group">
-      <div className="font-medium text-[14px] text-[#18181B] mb-1 group-hover:text-[#8F8CFF] transition-colors">
+    <button className="bg-white border border-[#E8E8E6] rounded-lg p-4 hover:border-[#D85BD6] hover:shadow-sm hover:-translate-y-0.5 transition-all text-left group">
+      <div className="font-medium text-[14px] text-[#18181B] mb-1 group-hover:text-[#D85BD6] transition-colors">
         {title}
       </div>
       <div className="text-[12px] text-[#71717A]">{count} articles</div>
@@ -548,7 +548,7 @@ function DocumentationCard({
   const statusColors = {
     Published: "bg-[#F0FDF4] text-[#15803D] border-[#BBF7D0]",
     Draft: "bg-[#F5F5F3] text-[#52525B] border-[#E8E8E6]",
-    Review: "bg-[#F5F5FF] text-[#8F8CFF] border-[#E8E7FF]"
+    Review: "bg-[#FDF4FD] text-[#D85BD6] border-[#F1D6F1]"
   }
 
   return (
@@ -568,7 +568,7 @@ function DocumentationCard({
           {category}
         </span>
         {aiGenerated && (
-          <span className="text-[11px] bg-[#F5F5FF] text-[#8F8CFF] px-2 py-1 rounded font-medium flex items-center gap-1">
+          <span className="text-[11px] bg-[#FDF4FD] text-[#D85BD6] px-2 py-1 rounded font-medium flex items-center gap-1">
             <Sparkles className="w-3 h-3" strokeWidth={1.5} />
             AI
           </span>
@@ -603,7 +603,7 @@ function DocumentationCard({
         <span className={`text-[11px] font-medium px-2 py-1 rounded border ${statusColors[status as keyof typeof statusColors]}`}>
           {status}
         </span>
-        <button className="text-[12px] text-[#8F8CFF] font-medium opacity-0 group-hover:opacity-100 transition-opacity">
+        <button className="text-[12px] text-[#D85BD6] font-medium opacity-0 group-hover:opacity-100 transition-opacity">
           Open →
         </button>
       </div>
@@ -625,7 +625,7 @@ function PopularCard({ title, views, badge }: PopularCardProps) {
         <TrendingUp className="w-4 h-4 text-[#10B981] flex-shrink-0" strokeWidth={1.5} />
       </div>
       <div className="flex items-center justify-between">
-        <span className="text-[11px] bg-[#F5F5FF] text-[#8F8CFF] px-2 py-1 rounded font-medium">
+        <span className="text-[11px] bg-[#FDF4FD] text-[#D85BD6] px-2 py-1 rounded font-medium">
           {badge}
         </span>
         <div className="flex items-center gap-1 text-[11px] text-[#71717A]">
@@ -650,10 +650,10 @@ function KnowledgeConnection({ from, to, type }: KnowledgeConnectionProps) {
         <div className="text-[12px] font-medium text-[#18181B]">{from}</div>
       </div>
       <div className="flex flex-col items-center gap-1">
-        <ArrowRight className="w-4 h-4 text-[#8F8CFF]" strokeWidth={1.5} />
+        <ArrowRight className="w-4 h-4 text-[#D85BD6]" strokeWidth={1.5} />
         <span className="text-[10px] text-[#A1A1AA] font-medium">{type}</span>
       </div>
-      <div className="flex-1 bg-[#F5F5FF] rounded-lg p-3 border border-[#E8E7FF]">
+      <div className="flex-1 bg-[#FDF4FD] rounded-lg p-3 border border-[#F1D6F1]">
         <div className="text-[12px] font-medium text-[#18181B]">{to}</div>
       </div>
     </div>
@@ -683,7 +683,7 @@ function ActivityItem({ user, action, target, time, type }: ActivityItemProps) {
     <div className="flex items-center justify-between p-4 hover:bg-[#FAFAF8] transition-colors">
       <div className="flex items-center gap-3">
         <div className={`w-8 h-8 rounded-full flex items-center justify-center ${
-          isAI ? "bg-[#F5F5FF] text-[#8F8CFF]" : "bg-[#F5F5F3] text-[#52525B]"
+          isAI ? "bg-[#FDF4FD] text-[#D85BD6]" : "bg-[#F5F5F3] text-[#52525B]"
         }`}>
           {getIcon()}
         </div>
