@@ -1,7 +1,8 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { 
+import { useRouter } from "next/navigation"
+import {
   Monitor, Video, Mic, Volume2, Camera, Play, Square, Pause,
   X, Check, CheckCircle2, ArrowRight, FileText, Presentation,
   GraduationCap, Layers, Loader2, ChevronRight, Settings
@@ -804,6 +805,8 @@ interface ReviewScreenProps {
 }
 
 function ReviewScreen({ output, onClose }: ReviewScreenProps) {
+  const router = useRouter()
+
   return (
     <div className="fixed inset-0 bg-[#FAFAFA] flex items-center justify-center z-50 p-8">
       <div className="w-full max-w-[680px]">
@@ -850,7 +853,9 @@ function ReviewScreen({ output, onClose }: ReviewScreenProps) {
 
           {/* Actions */}
           <div className="flex items-center gap-3">
-            <button className="flex-1 py-2.5 border border-[#E4E4E7] hover:border-[#D4D4D8] hover:bg-[#FAFAFA] text-[#52525B] hover:text-[#111111] font-medium text-[14px] rounded-[10px] transition-all">
+            <button
+              onClick={() => router.push("/editor")}
+              className="flex-1 py-2.5 border border-[#E4E4E7] hover:border-[#D4D4D8] hover:bg-[#FAFAFA] text-[#52525B] hover:text-[#111111] font-medium text-[14px] rounded-[10px] transition-all">
               Edit
             </button>
             <button className="flex-1 py-2.5 bg-[#6C5DD3] hover:bg-[#5B4EC2] text-white font-medium text-[14px] rounded-[10px] transition-colors">

@@ -11,23 +11,24 @@ import { usePathname } from "next/navigation"
 import Image from "next/image"
 
 const primaryNav = [
-  { icon: Home,           label: "Home",          href: "/" },
-  { icon: FolderKanban,   label: "Projects",       href: "/projects" },
-  { icon: BookOpen,       label: "Knowledge Base", href: "/knowledge" },
-  { icon: BookMarked,     label: "Guides",         href: "/library" },
-  { icon: LayoutTemplate, label: "Templates",      href: "/shared-pages" },
+  { icon: Home,           label: "Home",          href: "/",             disabled: false },
+  { icon: FolderKanban,   label: "Projects",       href: "/projects",     disabled: true  },
+  { icon: BookOpen,       label: "Knowledge Base", href: "/knowledge",    disabled: true  },
+  { icon: BookMarked,     label: "Guides",         href: "/library",      disabled: true  },
+  { icon: LayoutTemplate, label: "Templates",      href: "/shared-pages", disabled: true  },
 ]
 
 const createNav = [
-  { icon: Workflow, label: "Capture Workflow", href: "/record" },
-  { icon: PenLine,  label: "Guide Builder",   href: "/editor" },
-  { icon: Sparkles, label: "AI Copilot",      href: "/ai-studio" },
+  { icon: Workflow,  label: "Capture Workflow", href: "/record",    disabled: false },
+  { icon: PenLine,   label: "Guide Builder",    href: "/editor",    disabled: true  },
+  { icon: FileText,  label: "Document Editor",  href: "/editor",    disabled: false },
+  { icon: Sparkles,  label: "AI Copilot",       href: "/ai-studio", disabled: true  },
 ]
 
 const workspaceNav = [
-  { icon: FileText,  label: "Documentation", href: "/documents" },
-  { icon: ImageIcon, label: "Media Library",  href: "/demos" },
-  { icon: Palette,   label: "Brand Kit",      href: "/brand-kit" },
+  { icon: FileText,  label: "Documentation", href: "/documents", disabled: true },
+  { icon: ImageIcon, label: "Media Library",  href: "/demos",     disabled: true },
+  { icon: Palette,   label: "Brand Kit",      href: "/brand-kit", disabled: true },
 ]
 
 export function Sidebar() {
@@ -55,11 +56,12 @@ export function Sidebar() {
         <NavGroup label="Primary">
           {primaryNav.map((item) => (
             <NavItem
-              key={item.href}
+              key={item.label}
               icon={item.icon}
               label={item.label}
               href={item.href}
-              active={item.href === "/" ? pathname === "/" : pathname.startsWith(item.href)}
+              active={!item.disabled && (item.href === "/" ? pathname === "/" : pathname.startsWith(item.href))}
+              disabled={item.disabled}
             />
           ))}
         </NavGroup>
@@ -67,11 +69,12 @@ export function Sidebar() {
         <NavGroup label="Create">
           {createNav.map((item) => (
             <NavItem
-              key={item.href}
+              key={item.label}
               icon={item.icon}
               label={item.label}
               href={item.href}
-              active={pathname.startsWith(item.href)}
+              active={!item.disabled && pathname.startsWith(item.href)}
+              disabled={item.disabled}
             />
           ))}
         </NavGroup>
@@ -79,11 +82,12 @@ export function Sidebar() {
         <NavGroup label="Workspace">
           {workspaceNav.map((item) => (
             <NavItem
-              key={item.href}
+              key={item.label}
               icon={item.icon}
               label={item.label}
               href={item.href}
-              active={pathname.startsWith(item.href)}
+              active={!item.disabled && pathname.startsWith(item.href)}
+              disabled={item.disabled}
             />
           ))}
         </NavGroup>
@@ -158,9 +162,18 @@ interface NavItemProps {
   label: string
   href: string
   active?: boolean
+  disabled?: boolean
 }
 
-function NavItem({ icon: Icon, label, href, active }: NavItemProps) {
+function NavItem({ icon: Icon, label, href, active, disabled }: NavItemProps) {
+  if (disabled) {
+    return (
+      <div className="relative flex items-center gap-3 w-full px-3 py-2 rounded-[8px] text-[15px] font-medium opacity-40 cursor-default select-none">
+        <Icon className="w-[18px] h-[18px] flex-shrink-0 text-[#71717A]" strokeWidth={2} />
+        <span className="flex-1 text-[#18181B]">{label}</span>
+      </div>
+    )
+  }
   return (
     <Link
       href={href}

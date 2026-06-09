@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import { useRouter } from "next/navigation"
 import {
   FileText, Upload, Workflow, ArrowRight, Eye, Users,
   Clock, CheckCircle2, AlertCircle, Sparkles, BookOpen,
@@ -21,6 +22,7 @@ const SCREENSHOTS = [
 ]
 
 export function MainContent() {
+  const router = useRouter()
   const [showRecordFlow, setShowRecordFlow] = useState(false)
   const [showUploadFlow, setShowUploadFlow] = useState(false)
   const [showTemplateFlow, setShowTemplateFlow] = useState(false)
@@ -63,13 +65,13 @@ export function MainContent() {
               icon={<Upload className="w-[18px] h-[18px]" strokeWidth={1.5} />}
               title="Upload Screenshots"
               description="Build a guide from images or recordings"
-              onClick={() => setShowUploadFlow(true)}
+              disabled
             />
             <QuickAction
               icon={<FileText className="w-[18px] h-[18px]" strokeWidth={1.5} />}
               title="Create Documentation"
               description="Start from a proven template"
-              onClick={() => setShowTemplateFlow(true)}
+              disabled
             />
           </div>
         </section>
@@ -86,6 +88,8 @@ export function MainContent() {
               views={284}
               contributors={3}
               screenshotIndex={0}
+              onClick={() => router.push("/editor")}
+              highlight
             />
             <DocCard
               title="API Documentation"
@@ -95,6 +99,7 @@ export function MainContent() {
               views={1204}
               contributors={2}
               screenshotIndex={1}
+              disabled
             />
             <DocCard
               title="Employee Training Guide"
@@ -104,6 +109,7 @@ export function MainContent() {
               views={47}
               contributors={1}
               screenshotIndex={2}
+              disabled
             />
           </div>
         </section>
@@ -111,7 +117,7 @@ export function MainContent() {
         {/* AI Recommendations */}
         <section className="mb-16 max-w-[1400px]">
           <SectionHeader title="AI Recommendations" />
-          <div className="grid grid-cols-3 gap-4">
+          <div className="grid grid-cols-3 gap-4 opacity-40 pointer-events-none select-none">
             <RecommendationCard
               icon={<FileText className="w-4 h-4" strokeWidth={1.5} />}
               title="Generate SOP"
@@ -154,7 +160,7 @@ export function MainContent() {
         {/* Popular Templates */}
         <section className="max-w-[1400px]">
           <SectionHeader title="Popular Templates" action="Browse all" />
-          <div className="grid grid-cols-4 gap-4">
+          <div className="grid grid-cols-4 gap-4 opacity-40 pointer-events-none select-none">
             <TemplateCard title="Product Onboarding" category="Onboarding" uses="3.1k" src="/images/template/template-1.png" />
             <TemplateCard title="API Documentation"  category="Technical"  uses="2.4k" src="/images/template/template-2.png" />
             <TemplateCard title="Employee Training"  category="Training"   uses="1.9k" src="/images/template/template-3.png" />
@@ -186,10 +192,23 @@ function SectionHeader({ title, action }: { title: string; action?: string }) {
 // ── Quick Actions ─────────────────────────────────────────────────────────────
 
 function QuickAction({
-  icon, title, description, onClick, primary,
+  icon, title, description, onClick, primary, disabled,
 }: {
-  icon: React.ReactNode; title: string; description: string; onClick?: () => void; primary?: boolean
+  icon: React.ReactNode; title: string; description: string; onClick?: () => void; primary?: boolean; disabled?: boolean
 }) {
+  if (disabled) {
+    return (
+      <div className="flex items-center gap-3.5 px-5 py-4 rounded-[10px] border border-[#E4E4E7] bg-white text-left opacity-40 cursor-default select-none">
+        <div className="p-2 bg-[#F8F9FA] rounded-[8px] flex-shrink-0">
+          <div className="text-[#52525B]">{icon}</div>
+        </div>
+        <div className="flex-1 min-w-0">
+          <div className="font-semibold text-[15px] mb-0.5 text-[#18181B]">{title}</div>
+          <div className="text-[13px] text-[#71717A]">{description}</div>
+        </div>
+      </div>
+    )
+  }
   return (
     <button
       onClick={onClick}
@@ -230,16 +249,27 @@ const statusConfig = {
 } as const
 
 function DocCard({
-  title, type, status, lastEdited, views, contributors, screenshotIndex,
+  title, type, status, lastEdited, views, contributors, screenshotIndex, onClick, highlight, disabled,
 }: {
   title: string; type: string; status: "Published" | "In Progress" | "Draft"
   lastEdited: string; views: number; contributors: number; screenshotIndex: number
+  onClick?: () => void; highlight?: boolean; disabled?: boolean
 }) {
   const cfg = statusConfig[status]
   const StatusIcon = cfg.icon
 
   return (
-    <div className="group bg-white border border-[#E4E4E7] rounded-[12px] overflow-hidden hover:border-[#D4D4D8] hover:shadow-md hover:-translate-y-0.5 transition-all duration-200 cursor-pointer">
+    <div
+      onClick={disabled ? undefined : onClick}
+      className={cn(
+        "group bg-white rounded-[12px] overflow-hidden transition-all duration-200",
+        disabled
+          ? "border border-[#E4E4E7] opacity-50 cursor-default"
+          : highlight
+          ? "border border-[#C8BFEF] cursor-pointer hover:border-[#9B8FE0] hover:shadow-md hover:-translate-y-0.5"
+          : "border border-[#E4E4E7] cursor-pointer hover:border-[#D4D4D8] hover:shadow-md hover:-translate-y-0.5"
+      )}
+    >
       <div className="aspect-[16/9] bg-[#F8F9FA] relative overflow-hidden">
         <Image
           src={SCREENSHOTS[screenshotIndex % SCREENSHOTS.length]}
