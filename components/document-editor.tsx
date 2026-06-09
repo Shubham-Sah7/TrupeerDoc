@@ -11,7 +11,7 @@ interface DocumentEditorProps {
   onBack?: () => void
 }
 
-export function DocumentEditor({ onBack }: DocumentEditorProps = {}) {
+export function DocumentEditor({ onBack }: DocumentEditorProps) {
   const [documentMode, setDocumentMode] = useState<"doc" | "video">("doc")
   const [showAICopilot, setShowAICopilot] = useState(true)
 
@@ -44,22 +44,22 @@ export function DocumentEditor({ onBack }: DocumentEditorProps = {}) {
           <div className="flex items-center bg-[#F8F9FA] rounded-lg p-1">
             <button
               onClick={() => setDocumentMode("doc")}
-              className={\`px-3 py-1.5 text-[12px] font-medium rounded-md transition-all \${
+              className={`px-3 py-1.5 text-[12px] font-medium rounded-md transition-all ${
                 documentMode === "doc"
                   ? "bg-white text-[#18181B] shadow-sm"
                   : "text-[#71717A] hover:text-[#18181B]"
-              }\`}
+              }`}
             >
               <FileText className="w-3.5 h-3.5 inline mr-1.5" strokeWidth={1.5} />
               Document
             </button>
             <button
               onClick={() => setDocumentMode("video")}
-              className={\`px-3 py-1.5 text-[12px] font-medium rounded-md transition-all \${
+              className={`px-3 py-1.5 text-[12px] font-medium rounded-md transition-all ${
                 documentMode === "video"
                   ? "bg-white text-[#18181B] shadow-sm"
                   : "text-[#71717A] hover:text-[#18181B]"
-              }\`}
+              }`}
             >
               <Video className="w-3.5 h-3.5 inline mr-1.5" strokeWidth={1.5} />
               Video
