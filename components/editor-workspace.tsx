@@ -291,15 +291,15 @@ function pickAIResponse(action: string): string {
 
 // ── AI Panel static data ───────────────────────────────────────────────────────
 
-const AI_SUGGESTIONS = [
-  { icon: "✨", label: "Make this more concise" },
-  { icon: "🎯", label: "Rewrite for technical audience" },
-  { icon: "📖", label: "Improve readability" },
-  { icon: "❓", label: "Generate FAQ" },
-  { icon: "🔧", label: "Add troubleshooting section" },
-  { icon: "📋", label: "Create executive summary" },
-  { icon: "📸", label: "Suggest missing screenshots" },
-  { icon: "📝", label: "Convert into step-by-step guide" },
+const AI_SUGGESTIONS: { icon: React.ElementType; label: string }[] = [
+  { icon: Minus,         label: "Make this section more concise"  },
+  { icon: Code2,         label: "Rewrite for a technical audience" },
+  { icon: AlignLeft,     label: "Improve readability and flow"     },
+  { icon: List,          label: "Generate an FAQ section"          },
+  { icon: AlertTriangle, label: "Add troubleshooting steps"        },
+  { icon: FileText,      label: "Summarise for executive readers"  },
+  { icon: ImageIcon,     label: "Suggest missing screenshots"      },
+  { icon: LayoutList,    label: "Convert to step-by-step format"   },
 ]
 
 function pickProposalTitle(action: string): string {
@@ -368,23 +368,11 @@ function renderDiffSuggestion(original: string, suggestion: string): React.React
   })
 }
 
-// ── Trupeer AI Avatar ──────────────────────────────────────────────────────────
-function TrupeerAIAvatar({ size = 28 }: { size?: number }) {
+// ── Trupeer brand mark (logo, used once in panel header) ─────────────────────
+function TrupeerMark({ size = 20 }: { size?: number }) {
   return (
-    <div
-      className="rounded-full flex items-center justify-center shrink-0"
-      style={{
-        width: size, height: size,
-        background: "linear-gradient(145deg, #9B87F5 0%, #6C5DD3 55%, #5448C4 100%)",
-        boxShadow: "0 2px 10px rgba(108,93,211,0.4), inset 0 1px 0 rgba(255,255,255,0.2)",
-      }}
-    >
-      <svg width={Math.round(size * 0.52)} height={Math.round(size * 0.52)} viewBox="0 0 22 22" fill="none">
-        <path
-          d="M11 2L12.8 8.2H19L13.9 11.8L15.7 18L11 14.4L6.3 18L8.1 11.8L3 8.2H9.2L11 2Z"
-          fill="white" fillOpacity={0.95}
-        />
-      </svg>
+    <div className="shrink-0 rounded-[3px] overflow-hidden" style={{ width: size, height: size }}>
+      <Image src="/images/trupeer.jpeg" alt="Trupeer" width={size} height={size} className="object-contain" />
     </div>
   )
 }
@@ -680,19 +668,14 @@ export function EditorWorkspace({ onBack }: EditorWorkspaceProps = {}) {
 
     if (msg.status === "loading") {
       return (
-        <div key={msg.id} className="flex items-end gap-2">
-          <TrupeerAIAvatar size={24} />
-          <div className="bg-[#F8F6FF] border border-[#EDE9FF] rounded-[13px] rounded-bl-[4px] px-4 py-3">
-            <div className="flex items-center gap-1.5">
-              {[0, 150, 300].map((delay, i) => (
-                <div
-                  key={i}
-                  className="w-1.5 h-1.5 rounded-full bg-[#6C5DD3]/50 animate-bounce"
-                  style={{ animationDelay: `${delay}ms` }}
-                />
-              ))}
-            </div>
-          </div>
+        <div key={msg.id} className="flex items-center gap-1.5 py-1">
+          {[0, 150, 300].map((delay, i) => (
+            <div
+              key={i}
+              className="w-1.5 h-1.5 rounded-full bg-[#C8C8C8] animate-bounce"
+              style={{ animationDelay: `${delay}ms` }}
+            />
+          ))}
         </div>
       )
     }
@@ -700,123 +683,93 @@ export function EditorWorkspace({ onBack }: EditorWorkspaceProps = {}) {
     if (msg.type === "proposal" && msg.proposal) {
       const p = msg.proposal
       return (
-        <div key={msg.id} className="flex items-start gap-2">
-          <TrupeerAIAvatar size={24} />
-          <div className="flex-1 min-w-0">
-            <div className={cn(
-              "rounded-[13px] border overflow-hidden transition-all",
-              p.applied
-                ? "border-[#10B981]/25 bg-[#F6FEF9]"
-                : p.dismissed
-                  ? "border-[#F0F0F0] bg-[#FAFAFA] opacity-50"
-                  : "border-[#6C5DD3]/20 bg-[#FAFAFF]",
-            )}>
-              {/* Card header */}
-              <div className="px-3.5 pt-3 pb-2.5 border-b border-[#F0F0F0]">
-                <div className="flex items-center gap-2">
-                  {p.applied ? (
-                    <div className="w-5 h-5 rounded-full bg-[#10B981] flex items-center justify-center shrink-0">
-                      <Check className="w-3 h-3 text-white" strokeWidth={3} />
-                    </div>
-                  ) : (
-                    <div className="w-5 h-5 rounded-full bg-[#F0EEFF] flex items-center justify-center shrink-0">
-                      <Sparkles className="w-3 h-3 text-[#6C5DD3]" strokeWidth={1.5} />
-                    </div>
-                  )}
-                  <span className="text-[12.5px] font-semibold text-[#1A1A1A] leading-tight">{p.title}</span>
-                </div>
-                {p.applied && (
-                  <p className="text-[10px] text-[#10B981] font-medium mt-1 ml-7">Applied to document ✓</p>
-                )}
-              </div>
-              {/* Preview */}
-              {!p.dismissed && (
-                <div className="px-3.5 pt-2.5 pb-3">
-                  <p className="text-[9.5px] font-bold text-[#C0C0C0] uppercase tracking-wider mb-2">Preview</p>
-                  <ul className="space-y-1.5">
-                    {p.preview.map((line, i) => (
-                      <li key={i} className="flex items-start gap-2 text-[12.5px] text-[#3A3A3A] leading-snug">
-                        <span className="text-[#6C5DD3] font-bold text-[10px] mt-[3px] shrink-0">·</span>
-                        {line}
-                      </li>
-                    ))}
-                  </ul>
-                  <div className="mt-3 pt-2.5 border-t border-[#F0F0F0] flex items-center gap-2">
-                    <span className="text-[11px] font-semibold text-[#6C5DD3] bg-[#F0EEFF] px-2 py-0.5 rounded-full">
-                      +{p.wordDelta} words
-                    </span>
-                  </div>
+        <div key={msg.id}>
+          <div className={cn(
+            "rounded-[9px] border overflow-hidden transition-all",
+            p.applied  ? "border-[#C6F0E2] bg-[#F6FEF9]"
+            : p.dismissed ? "border-[#EBEBEB] bg-[#FAFAFA] opacity-50"
+            : "border-[#E4E4E7] bg-white",
+          )}>
+            {/* Card header */}
+            <div className="px-3.5 pt-3 pb-2 border-b border-[#F4F4F5] flex items-center gap-2">
+              {p.applied && (
+                <div className="w-3.5 h-3.5 rounded-full bg-[#10B981] flex items-center justify-center shrink-0">
+                  <Check className="w-2 h-2 text-white" strokeWidth={3} />
                 </div>
               )}
-              {/* Actions */}
-              {!p.applied && !p.dismissed && (
-                <div className="px-3.5 pb-3 flex items-center gap-2">
-                  <button
-                    onClick={() => applyProposal(msg.id)}
-                    className="flex items-center gap-1.5 px-3 py-1.5 text-[12px] font-semibold text-white rounded-[8px] transition-all hover:opacity-90"
-                    style={{ background: "linear-gradient(145deg, #8B6FE8, #6C5DD3)" }}
-                  >
-                    <Check className="w-3 h-3" strokeWidth={3} />Apply
-                  </button>
-                  <button
-                    onClick={() => setShowDiff(msg.id)}
-                    className="flex items-center gap-1.5 px-3 py-1.5 text-[12px] font-medium text-[#6C5DD3] bg-white border border-[#6C5DD3]/25 rounded-[8px] hover:bg-[#F0EEFF] transition-all"
-                  >
-                    Preview
-                  </button>
-                  <button
-                    onClick={() => dismissProposal(msg.id)}
-                    className="ml-auto p-1.5 text-[#C8C8C8] hover:text-[#888] rounded-[6px] transition-all"
-                    title="Dismiss"
-                  >
-                    <X className="w-3.5 h-3.5" strokeWidth={2} />
-                  </button>
-                </div>
-              )}
+              <span className="text-[12.5px] font-semibold text-[#111] leading-tight flex-1">{p.title}</span>
+              {p.applied && <span className="text-[10.5px] text-[#10B981] shrink-0">Applied</span>}
             </div>
-            {/* Follow-up suggestions */}
-            {msg.suggestions && msg.suggestions.length > 0 && !p.dismissed && (
-              <div className="mt-2.5 space-y-1">
-                {msg.suggestions.map(s => (
-                  <button
-                    key={s}
-                    onClick={() => submitAIMessage(s)}
-                    className="flex items-center gap-2 text-[11.5px] text-[#8B8B8B] hover:text-[#6C5DD3] transition-colors py-0.5 w-full text-left"
-                  >
-                    <ArrowRight className="w-3 h-3 shrink-0" strokeWidth={2} />{s}
-                  </button>
-                ))}
+            {/* Preview */}
+            {!p.dismissed && (
+              <div className="px-3.5 pt-2.5 pb-3">
+                <ul className="space-y-1.5">
+                  {p.preview.map((line, i) => (
+                    <li key={i} className="flex items-start gap-2 text-[12px] text-[#444] leading-snug">
+                      <span className="text-[#C0C0C0] text-[11px] mt-[2px] shrink-0 select-none">–</span>
+                      {line}
+                    </li>
+                  ))}
+                </ul>
+                <p className="text-[11px] text-[#9CA3AF] mt-2.5">+{p.wordDelta} words</p>
               </div>
             )}
-            <p className="text-[9.5px] text-[#C8C8C8] mt-1.5">{msg.time}</p>
+            {/* Actions */}
+            {!p.applied && !p.dismissed && (
+              <div className="px-3.5 pb-3 flex items-center gap-2">
+                <button
+                  onClick={() => applyProposal(msg.id)}
+                  className="px-2.5 py-1.5 text-[12px] font-medium text-white bg-[#6C5DD3] hover:bg-[#5B4EC2] rounded-[6px] transition-colors"
+                >
+                  Apply
+                </button>
+                <button
+                  onClick={() => setShowDiff(msg.id)}
+                  className="px-2.5 py-1.5 text-[12px] font-medium text-[#555] border border-[#E4E4E7] hover:border-[#C0C0C0] rounded-[6px] transition-colors"
+                >
+                  Preview diff
+                </button>
+                <button
+                  onClick={() => dismissProposal(msg.id)}
+                  className="ml-auto p-1 text-[#C0C0C0] hover:text-[#555] transition-colors"
+                  title="Dismiss"
+                >
+                  <X className="w-3.5 h-3.5" strokeWidth={2} />
+                </button>
+              </div>
+            )}
           </div>
+          {/* Follow-up suggestions */}
+          {msg.suggestions && msg.suggestions.length > 0 && !p.dismissed && (
+            <div className="mt-2 flex flex-wrap gap-x-3 gap-y-1 px-0.5">
+              {msg.suggestions.map(s => (
+                <button key={s} onClick={() => submitAIMessage(s)}
+                  className="text-[11.5px] text-[#888] hover:text-[#1A1A1A] transition-colors py-0.5 text-left">
+                  {s}
+                </button>
+              ))}
+            </div>
+          )}
+          <p className="text-[10px] text-[#C0C0C0] mt-1.5">{msg.time}</p>
         </div>
       )
     }
 
     // Regular AI message
     return (
-      <div key={msg.id} className="flex items-start gap-2">
-        <TrupeerAIAvatar size={24} />
-        <div className="flex-1 min-w-0">
-          <div className="bg-[#F8F6FF] border border-[#EDE9FF] rounded-[13px] rounded-bl-[4px] px-3.5 py-2.5">
-            <p className="text-[13px] text-[#1A1A1A] leading-relaxed whitespace-pre-wrap">{msg.content}</p>
+      <div key={msg.id}>
+        <p className="text-[13px] text-[#1A1A1A] leading-relaxed whitespace-pre-wrap">{msg.content}</p>
+        {msg.suggestions && msg.suggestions.length > 0 && (
+          <div className="mt-2 flex flex-wrap gap-x-3 gap-y-1 px-0.5">
+            {msg.suggestions.map(s => (
+              <button key={s} onClick={() => submitAIMessage(s)}
+                className="text-[11.5px] text-[#888] hover:text-[#1A1A1A] transition-colors py-0.5 text-left">
+                {s}
+              </button>
+            ))}
           </div>
-          {msg.suggestions && msg.suggestions.length > 0 && (
-            <div className="mt-2 space-y-1">
-              {msg.suggestions.map(s => (
-                <button
-                  key={s}
-                  onClick={() => submitAIMessage(s)}
-                  className="flex items-center gap-2 text-[11.5px] text-[#8B8B8B] hover:text-[#6C5DD3] transition-colors py-0.5 w-full text-left"
-                >
-                  <ArrowRight className="w-3 h-3 shrink-0" strokeWidth={2} />{s}
-                </button>
-              ))}
-            </div>
           )}
-          <p className="text-[9.5px] text-[#C8C8C8] mt-1.5">{msg.time}</p>
-        </div>
+        <p className="text-[10px] text-[#C0C0C0] mt-1.5">{msg.time}</p>
       </div>
     )
   }
@@ -1215,10 +1168,10 @@ export function EditorWorkspace({ onBack }: EditorWorkspaceProps = {}) {
         {isAI && (
           <div className="mt-2 animate-in fade-in-0 slide-in-from-top-1 duration-150">
             {aiRewrite!.status === "loading" ? (
-              <div className="flex items-center gap-2.5 px-3.5 py-3 bg-[#F8F6FF] rounded-[11px] border border-[#EDE9FF]">
-                <div className="w-3.5 h-3.5 border-2 border-[#6C5DD3]/20 border-t-[#6C5DD3] rounded-full animate-spin shrink-0" />
-                <span className="text-[12px] text-[#6C5DD3] font-medium">Rewriting…</span>
-                <span className="text-[11px] text-[#C8C8C8] ml-auto">Trupeer AI</span>
+              <div className="flex items-center gap-2.5 px-3.5 py-3 bg-[#F5F5F5] rounded-[10px] border border-[#EBEBEB]">
+                <div className="w-3.5 h-3.5 border-2 border-[#D0D0D0] border-t-[#555] rounded-full animate-spin shrink-0" />
+                <span className="text-[12px] text-[#555] font-medium">Rewriting…</span>
+                <span className="text-[11px] text-[#C0C0C0] ml-auto">Trupeer AI</span>
               </div>
             ) : (
               <div
@@ -1236,8 +1189,8 @@ export function EditorWorkspace({ onBack }: EditorWorkspaceProps = {}) {
                 </div>
                 {/* Suggestion with diff */}
                 <div className="px-4 py-3 bg-white border-b border-[#F0F0F0]">
-                  <p className="text-[9px] font-bold text-[#6C5DD3] uppercase tracking-wider mb-1.5 flex items-center gap-1.5">
-                    <Sparkles className="w-3 h-3" strokeWidth={1.5} />Suggestion
+                  <p className="text-[9px] font-bold text-[#9CA3AF] uppercase tracking-wider mb-1.5">
+                    Suggestion
                   </p>
                   <p className="text-[13.5px] leading-relaxed text-[#1A1A1A]">
                     {renderDiffSuggestion(aiRewrite!.original, aiRewrite!.suggestion)}
@@ -1277,7 +1230,7 @@ export function EditorWorkspace({ onBack }: EditorWorkspaceProps = {}) {
                       <button
                         key={label}
                         onClick={() => refineAI(action)}
-                        className="px-2.5 py-1 text-[11px] font-medium text-[#777] bg-[#F7F7F7] border border-[#E8E8E8] rounded-full hover:border-[#6C5DD3]/40 hover:text-[#6C5DD3] hover:bg-[#F0EEFF] transition-all whitespace-nowrap"
+                        className="px-2.5 py-1 text-[11px] font-medium text-[#777] bg-[#F7F7F7] border border-[#E8E8E8] rounded-full hover:border-[#C0C0C0] hover:text-[#333] hover:bg-[#F0F0F0] transition-all whitespace-nowrap"
                       >
                         {label}
                       </button>
@@ -1340,10 +1293,10 @@ export function EditorWorkspace({ onBack }: EditorWorkspaceProps = {}) {
             onClick={() => setCopilotOpen(!copilotOpen)}
             className={cn(
               "flex items-center gap-1.5 px-2.5 py-1.5 text-[12px] font-medium rounded-[7px] transition-all",
-              copilotOpen ? "text-[#6C5DD3] bg-[#F0EEFF]" : "text-[#A0A0A0] hover:text-[#6C5DD3] hover:bg-[#F0EEFF]"
+              copilotOpen ? "text-[#6C5DD3] bg-[#F0EEFF]" : "text-[#A0A0A0] hover:text-[#1A1A1A] hover:bg-[#F5F5F5]"
             )}
           >
-            <TrupeerAIAvatar size={16} />
+            <MessageSquare className="w-3.5 h-3.5" strokeWidth={1.5} />
             <span className="hidden sm:inline">AI</span>
           </button>
           <button className="p-1.5 text-[#A0A0A0] hover:text-[#1A1A1A] hover:bg-[#F5F5F5] rounded-[6px] transition-all">
@@ -1490,133 +1443,73 @@ export function EditorWorkspace({ onBack }: EditorWorkspaceProps = {}) {
 
         {/* ── TRUPEER AI PANEL ── */}
         {copilotOpen && (
-          <aside
-            className="w-[360px] shrink-0 flex flex-col border-l border-[#EBEBEB] animate-in slide-in-from-right-2 duration-250 ease-out"
-            style={{ background: "#FEFEFE", boxShadow: "-6px 0 32px rgba(0,0,0,0.05)" }}
-          >
-            {/* Header */}
-            <div
-              className="px-4 py-3.5 shrink-0 border-b border-[#F2F2F2]"
-              style={{ background: "linear-gradient(180deg, #FFFFFF 0%, #F9F8FF 100%)" }}
-            >
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-2.5">
-                  <TrupeerAIAvatar size={32} />
-                  <div>
-                    <div className="flex items-center gap-1.5">
-                      <span className="text-[13.5px] font-semibold text-[#111]">Trupeer AI</span>
-                      <span
-                        className="text-[8.5px] font-bold text-white px-1.5 py-0.5 rounded-full leading-none tracking-wide uppercase"
-                        style={{ background: "linear-gradient(135deg, #9B87F5, #6C5DD3)" }}
-                      >
-                        Beta
-                      </span>
-                    </div>
-                    <div className="flex items-center gap-1 mt-0.5">
-                      <span
-                        className="w-1.5 h-1.5 rounded-full bg-[#10B981]"
-                        style={{ boxShadow: "0 0 5px #10B981" }}
-                      />
-                      <span className="text-[10px] text-[#10B981] font-medium">Ready</span>
-                    </div>
-                  </div>
-                </div>
-                <div className="flex items-center gap-0.5">
-                  {aiMessages.length > 0 && (
-                    <button
-                      onClick={() => setAIMessages([])}
-                      className="p-1.5 text-[#C8C8C8] hover:text-[#6C5DD3] hover:bg-[#F0EEFF] rounded-[7px] transition-all"
-                      title="Clear conversation"
-                    >
-                      <RefreshCw className="w-3.5 h-3.5" strokeWidth={1.5} />
-                    </button>
-                  )}
+          <aside className="w-[340px] shrink-0 flex flex-col border-l border-[#EBEBEB] bg-white animate-in slide-in-from-right-2 duration-200 ease-out">
+            {/* Header — one brand reference, nothing else */}
+            <div className="px-4 py-3 shrink-0 border-b border-[#F0F0F0] flex items-center justify-between">
+              <span className="text-[13px] font-semibold text-[#111]">Trupeer AI</span>
+              <div className="flex items-center gap-0.5">
+                {aiMessages.length > 0 && (
                   <button
-                    onClick={() => setCopilotOpen(false)}
-                    className="p-1.5 text-[#C8C8C8] hover:text-[#1A1A1A] hover:bg-[#F5F5F5] rounded-[7px] transition-all"
+                    onClick={() => setAIMessages([])}
+                    className="p-1.5 text-[#C0C0C0] hover:text-[#555] hover:bg-[#F5F5F5] rounded-[6px] transition-all"
+                    title="Clear conversation"
                   >
-                    <X className="w-3.5 h-3.5" strokeWidth={2} />
+                    <RefreshCw className="w-3.5 h-3.5" strokeWidth={1.5} />
                   </button>
-                </div>
+                )}
+                <button
+                  onClick={() => setCopilotOpen(false)}
+                  className="p-1.5 text-[#C0C0C0] hover:text-[#111] hover:bg-[#F5F5F5] rounded-[6px] transition-all"
+                >
+                  <X className="w-3.5 h-3.5" strokeWidth={2} />
+                </button>
               </div>
             </div>
 
             {/* Context chips */}
             {(aiCtx.sectionName || (aiCtx.selectedWords !== undefined && aiCtx.selectedWords > 0)) && (
-              <div className="px-3.5 py-2 border-b border-[#F5F5F5] flex items-center gap-1.5 flex-wrap bg-[#FAFAFA]">
-                <span className="text-[9.5px] font-bold text-[#C0C0C0] uppercase tracking-wider shrink-0">Context</span>
+              <div className="px-3.5 py-2 border-b border-[#F0F0F0] flex items-center gap-1.5 flex-wrap">
                 {aiCtx.sectionName && (
-                  <span className="inline-flex items-center gap-1 text-[10.5px] font-medium text-[#6C5DD3] bg-[#F0EEFF] border border-[#E8E3FF] px-2 py-0.5 rounded-full leading-none">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#6C5DD3] shrink-0" />
-                    Step {aiCtx.sectionStep} · {aiCtx.sectionName}
+                  <span className="text-[11px] text-[#6B7280] bg-[#F4F4F5] px-2 py-0.5 rounded-[4px]">
+                    §{aiCtx.sectionStep} {aiCtx.sectionName}
                   </span>
                 )}
                 {aiCtx.selectedWords !== undefined && aiCtx.selectedWords > 0 && (
-                  <span className="inline-flex items-center text-[10.5px] font-medium text-[#555] bg-white border border-[#E8E8E8] px-2 py-0.5 rounded-full leading-none">
-                    {aiCtx.selectedWords} {aiCtx.selectedWords === 1 ? "word" : "words"} selected
+                  <span className="text-[11px] text-[#6B7280] bg-[#F4F4F5] px-2 py-0.5 rounded-[4px]">
+                    {aiCtx.selectedWords}w selected
                   </span>
                 )}
               </div>
             )}
 
             {/* Messages / Empty state */}
-            <div ref={aiScrollRef} className="flex-1 overflow-auto p-4">
+            <div ref={aiScrollRef} className="flex-1 overflow-auto px-4 py-3">
               {aiMessages.length === 0 ? (
-                <div className="flex flex-col h-full">
-                  {/* Welcome */}
-                  <div className="flex flex-col items-center text-center pt-5 pb-5">
-                    <div className="relative mb-4">
-                      <TrupeerAIAvatar size={52} />
-                      <div
-                        className="absolute flex items-center justify-center border-2 border-white rounded-full"
-                        style={{ width: 18, height: 18, bottom: -2, right: -2, background: "#10B981" }}
+                <div className="pt-1">
+                  <p className="text-[11px] text-[#B8B8B8] mb-2">Suggested</p>
+                  <div className="space-y-px">
+                    {AI_SUGGESTIONS.map(({ icon: Icon, label }) => (
+                      <button
+                        key={label}
+                        onClick={() => submitAIMessage(label)}
+                        className="w-full flex items-center gap-2.5 px-2.5 py-[7px] rounded-[6px] hover:bg-[#F5F5F5] transition-colors group text-left"
                       >
-                        <Check className="w-2.5 h-2.5 text-white" strokeWidth={3} />
-                      </div>
-                    </div>
-                    <h3 className="text-[15px] font-semibold text-[#111] leading-snug mb-2">
-                      Hi, I&apos;m Trupeer AI
-                    </h3>
-                    <p className="text-[12.5px] text-[#808080] leading-relaxed max-w-[232px]">
-                      I can improve, expand, rewrite, structure and make your documentation publish-ready.
-                    </p>
-                  </div>
-
-                  {/* Suggested actions */}
-                  <div className="mt-1">
-                    <p className="text-[9.5px] font-bold text-[#C8C8C8] uppercase tracking-wider mb-2.5 px-0.5">
-                      Suggested actions
-                    </p>
-                    <div className="space-y-1.5">
-                      {AI_SUGGESTIONS.map(s => (
-                        <button
-                          key={s.label}
-                          onClick={() => submitAIMessage(s.label)}
-                          className="w-full flex items-center gap-2.5 px-3 py-2.5 text-left rounded-[11px] border border-[#F0F0F0] hover:border-[#D8D3FF] hover:bg-[#FAFAFF] transition-all group"
-                        >
-                          <span className="text-[14px] shrink-0 leading-none">{s.icon}</span>
-                          <span className="text-[12.5px] font-medium text-[#3A3A3A] group-hover:text-[#6C5DD3] transition-colors leading-snug flex-1">
-                            {s.label}
-                          </span>
-                          <ArrowRight
-                            className="w-3 h-3 text-[#D8D8D8] group-hover:text-[#6C5DD3] shrink-0 transition-all group-hover:translate-x-0.5"
-                            strokeWidth={2}
-                          />
-                        </button>
-                      ))}
-                    </div>
+                        <Icon className="w-[14px] h-[14px] text-[#AEAEAE] shrink-0 group-hover:text-[#555] transition-colors" strokeWidth={1.5} />
+                        <span className="text-[12.5px] text-[#555] group-hover:text-[#111] transition-colors leading-snug">{label}</span>
+                      </button>
+                    ))}
                   </div>
                 </div>
               ) : (
-                <div className="space-y-4 pt-1">
+                <div className="space-y-4">
                   {aiMessages.map(msg => renderAIMessage(msg))}
                 </div>
               )}
             </div>
 
             {/* Input */}
-            <div className="px-3 pt-2.5 pb-3 border-t border-[#F2F2F2] shrink-0 bg-white">
-              <div className="relative">
+            <div className="px-3 pt-2.5 pb-3 border-t border-[#F0F0F0] shrink-0">
+              <div className="relative flex items-end gap-2">
                 <textarea
                   value={aiInputVal}
                   onChange={e => setAIInputVal(e.target.value)}
@@ -1626,23 +1519,23 @@ export function EditorWorkspace({ onBack }: EditorWorkspaceProps = {}) {
                       if (aiInputVal.trim()) submitAIMessage(aiInputVal)
                     }
                   }}
-                  placeholder="Ask Trupeer AI anything…"
+                  placeholder="Ask Trupeer AI…"
                   rows={1}
-                  className="w-full pl-3.5 pr-12 py-2.5 text-[13px] bg-[#F7F7F9] border border-[#EBEBEB] rounded-[11px] text-[#1A1A1A] placeholder:text-[#C4C4C4] focus:outline-none focus:bg-white focus:border-[#6C5DD3]/50 transition-all resize-none leading-relaxed"
-                  style={{ minHeight: 44, maxHeight: 130, overflowY: "auto" }}
+                  className="flex-1 px-3 py-2.5 text-[13px] bg-[#F5F5F5] border border-transparent rounded-[8px] text-[#1A1A1A] placeholder:text-[#C0C0C0] focus:outline-none focus:bg-white focus:border-[#E0E0E0] transition-all resize-none leading-[1.5]"
+                  style={{ minHeight: 38, maxHeight: 130, overflowY: "auto" }}
                 />
                 <button
                   onClick={() => { if (aiInputVal.trim()) submitAIMessage(aiInputVal) }}
                   disabled={!aiInputVal.trim()}
-                  className="absolute right-2 bottom-2 w-8 h-8 flex items-center justify-center rounded-[8px] transition-all disabled:opacity-35 disabled:cursor-not-allowed"
-                  style={{ background: aiInputVal.trim() ? "linear-gradient(145deg, #9B87F5, #6C5DD3)" : "#E8E8E8" }}
+                  className={cn(
+                    "shrink-0 w-[30px] h-[30px] flex items-center justify-center rounded-[7px] mb-[4px] transition-colors",
+                    aiInputVal.trim() ? "bg-[#1A1A1A] hover:bg-[#333]" : "bg-[#E8E8E8] cursor-not-allowed"
+                  )}
                 >
-                  <ArrowRight className="w-3.5 h-3.5 text-white" strokeWidth={2.5} />
+                  <ArrowRight className="w-3.5 h-3.5 text-white" strokeWidth={2} />
                 </button>
               </div>
-              <p className="text-[9.5px] text-[#D4D4D4] mt-1.5 text-center tracking-wide">
-                ↵ Send · ⇧↵ New line
-              </p>
+              <p className="text-[10px] text-[#C8C8C8] mt-1.5 text-center">↵ send · ⇧↵ newline</p>
             </div>
           </aside>
         )}
@@ -1652,15 +1545,10 @@ export function EditorWorkspace({ onBack }: EditorWorkspaceProps = {}) {
       {!copilotOpen && (
         <button
           onClick={() => setCopilotOpen(true)}
-          className="fixed bottom-7 right-7 z-40 flex items-center gap-2 pl-2.5 pr-4 py-2 rounded-full transition-all hover:scale-105 active:scale-95"
-          style={{
-            background: "linear-gradient(145deg, #9B87F5 0%, #6C5DD3 100%)",
-            boxShadow: "0 4px 20px rgba(108,93,211,0.5), 0 2px 8px rgba(108,93,211,0.3)",
-          }}
+          className="fixed bottom-6 right-6 z-40 flex items-center gap-2 px-3.5 py-2 bg-white border border-[#E0E0E0] rounded-full shadow-sm hover:shadow-md hover:border-[#C8C8C8] transition-all active:scale-[0.97]"
         >
-          <TrupeerAIAvatar size={28} />
-          <span className="text-[13px] font-semibold text-white">Ask AI</span>
-          <Sparkles className="w-3.5 h-3.5 text-white/65 ml-0.5" strokeWidth={1.5} />
+          <MessageSquare className="w-3.5 h-3.5 text-[#555]" strokeWidth={1.5} />
+          <span className="text-[12.5px] font-medium text-[#374151]">Ask AI</span>
         </button>
       )}
 
@@ -1830,7 +1718,7 @@ export function EditorWorkspace({ onBack }: EditorWorkspaceProps = {}) {
                     setAICustomVal("")
                   }}
                   disabled={!aiCustomVal.trim()}
-                  className="flex items-center gap-1 px-2.5 py-1 text-[11px] font-semibold text-[#9B8EFF] bg-[#9B8EFF]/15 hover:bg-[#9B8EFF]/25 disabled:opacity-30 rounded-[6px] transition-all shrink-0 whitespace-nowrap"
+                  className="flex items-center gap-1 px-2.5 py-1 text-[11px] font-semibold text-white/70 bg-white/10 hover:bg-white/20 disabled:opacity-30 rounded-[6px] transition-all shrink-0 whitespace-nowrap"
                 >
                   Generate <ArrowRight className="w-3 h-3" strokeWidth={2.5} />
                 </button>
@@ -1864,30 +1752,30 @@ export function EditorWorkspace({ onBack }: EditorWorkspaceProps = {}) {
 
                 {/* Row 2: AI actions */}
                 <div className="flex items-center gap-px px-2 py-1.5">
-                  <span className="text-[8px] font-bold text-[#9B8EFF] uppercase tracking-widest px-1 shrink-0 select-none">AI</span>
+                  <span className="text-[8px] font-bold text-white/25 uppercase tracking-widest px-1 shrink-0 select-none">AI</span>
                   {[
-                    { label: "Improve",      action: "improve",      sym: "✦" },
-                    { label: "Simplify",     action: "simplify",     sym: "↓" },
-                    { label: "Expand",       action: "expand",       sym: "↑" },
-                    { label: "Technical",    action: "technical",    sym: "⚙" },
-                    { label: "Professional", action: "professional", sym: "◎" },
-                    { label: "Friendly",     action: "friendly",     sym: "✉" },
-                    { label: "Fix Grammar",  action: "grammar",      sym: "✓" },
-                  ].map(({ label, action, sym }) => (
+                    { label: "Improve",      action: "improve"      },
+                    { label: "Simplify",     action: "simplify"     },
+                    { label: "Expand",       action: "expand"       },
+                    { label: "Technical",    action: "technical"    },
+                    { label: "Professional", action: "professional" },
+                    { label: "Friendly",     action: "friendly"     },
+                    { label: "Fix Grammar",  action: "grammar"      },
+                  ].map(({ label, action }) => (
                     <button
                       key={label}
                       onMouseDown={e => { e.preventDefault(); triggerAI(action) }}
-                      className="flex items-center gap-[3px] px-2 py-1.5 text-[11px] font-medium text-white/50 hover:text-white hover:bg-white/10 rounded-[6px] transition-all whitespace-nowrap"
+                      className="px-2 py-1.5 text-[11px] font-medium text-white/50 hover:text-white hover:bg-white/10 rounded-[6px] transition-all whitespace-nowrap"
                     >
-                      <span className="text-[#9B8EFF] text-[9px]">{sym}</span>{label}
+                      {label}
                     </button>
                   ))}
                   <div className="w-px h-4 bg-white/10 mx-0.5 shrink-0" />
                   <button
                     onMouseDown={e => { e.preventDefault(); setAICustomPrompt(true) }}
-                    className="flex items-center gap-[3px] px-2 py-1.5 text-[11px] font-medium text-white/50 hover:text-white hover:bg-white/10 rounded-[6px] transition-all whitespace-nowrap"
+                    className="px-2 py-1.5 text-[11px] font-medium text-white/50 hover:text-white hover:bg-white/10 rounded-[6px] transition-all whitespace-nowrap"
                   >
-                    <span className="text-[#9B8EFF] text-[9px]">✎</span>Custom
+                    Custom
                   </button>
                 </div>
               </>
@@ -1921,9 +1809,6 @@ export function EditorWorkspace({ onBack }: EditorWorkspaceProps = {}) {
               <div className="flex items-start justify-between px-6 py-5 border-b border-[#F0F0F0] shrink-0">
                 <div>
                   <div className="flex items-center gap-2.5 mb-1">
-                    <div className="w-7 h-7 rounded-full bg-[#F0EEFF] flex items-center justify-center shrink-0">
-                      <Sparkles className="w-3.5 h-3.5 text-[#6C5DD3]" strokeWidth={1.5} />
-                    </div>
                     <h3 className="text-[15.5px] font-semibold text-[#111]">{p.title}</h3>
                   </div>
                   <p className="text-[12px] text-[#9B9B9B] ml-9.5">Review proposed changes before applying</p>
@@ -1950,7 +1835,7 @@ export function EditorWorkspace({ onBack }: EditorWorkspaceProps = {}) {
                 {/* After */}
                 <div className="p-5 overflow-auto bg-[#F6FEF9]">
                   <div className="flex items-center gap-2 mb-3">
-                    <Sparkles className="w-3 h-3 text-[#10B981]" strokeWidth={1.5} />
+                    <div className="w-2 h-2 rounded-full bg-[#6EE7B7]" />
                     <span className="text-[10px] font-bold text-[#10B981] uppercase tracking-wider">After</span>
                   </div>
                   <ul className="space-y-2.5">
@@ -1972,10 +1857,9 @@ export function EditorWorkspace({ onBack }: EditorWorkspaceProps = {}) {
               <div className="flex items-center gap-2.5 px-6 py-4 border-t border-[#F0F0F0] shrink-0">
                 <button
                   onClick={() => { applyProposal(showDiff); setShowDiff(null) }}
-                  className="flex items-center gap-2 px-4 py-2 text-[13px] font-semibold text-white rounded-[10px] transition-all hover:opacity-90"
-                  style={{ background: "linear-gradient(145deg, #9B87F5, #6C5DD3)" }}
+                  className="flex items-center gap-2 px-4 py-2 text-[13px] font-semibold text-white bg-[#6C5DD3] hover:bg-[#5B4EC2] rounded-[10px] transition-colors"
                 >
-                  <Check className="w-4 h-4" strokeWidth={2.5} />Apply Changes
+                  Apply Changes
                 </button>
                 <button
                   onClick={() => setShowDiff(null)}

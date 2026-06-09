@@ -4,7 +4,7 @@ import { Inter, Instrument_Serif } from "next/font/google"
 import "./globals.css"
 
 export const metadata: Metadata = {
-  title: "Clueso",
+  title: "Trupeer",
   description: "Create beautiful product videos and demos with AI",
 }
 import { ThemeProvider } from "@/components/theme-provider"
