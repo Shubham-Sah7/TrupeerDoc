@@ -23,7 +23,7 @@ export function SharedPagesContent() {
                 Manage every published page, guide, demo, and document from one place.
               </p>
             </div>
-            <button className="px-4 py-2.5 text-[13px] font-medium text-white bg-[#D85BD6] rounded-lg hover:bg-[#C84AC7] hover:shadow-lg transition-all">
+            <button className="px-4 py-2.5 text-[13px] font-medium text-white bg-[#6C5DD3] rounded-lg hover:bg-[#5B4EC2] hover:shadow-lg transition-all">
               <Share2 className="w-4 h-4 inline mr-2" strokeWidth={1.5} />
               Create Shared Page
             </button>
@@ -83,7 +83,7 @@ export function SharedPagesContent() {
             />
             <div className="bg-white border border-[#E8E8E6] rounded-lg p-5">
               <div className="flex items-center gap-2 mb-4">
-                <TrendingUp className="w-4 h-4 text-[#D85BD6]" strokeWidth={1.5} />
+                <TrendingUp className="w-4 h-4 text-[#6C5DD3]" strokeWidth={1.5} />
                 <h3 className="text-[14px] font-medium text-[#18181B]">Completion Rate</h3>
               </div>
               <div className="text-[32px] font-semibold text-[#18181B] mb-2">78%</div>
@@ -122,14 +122,14 @@ export function SharedPagesContent() {
           <div className="flex items-center justify-between mb-5">
             <h2 className="text-[20px] font-semibold text-[#18181B]">Shared Pages</h2>
             <div className="flex items-center gap-3">
-              <select className="px-3 py-1.5 text-[13px] bg-white border border-[#E8E8E6] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#D85BD6] focus:border-transparent">
+              <select className="px-3 py-1.5 text-[13px] bg-white border border-[#E8E8E6] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#6C5DD3] focus:border-transparent">
                 <option>All Types</option>
                 <option>Guides</option>
                 <option>Demos</option>
                 <option>Documentation</option>
                 <option>Training</option>
               </select>
-              <select className="px-3 py-1.5 text-[13px] bg-white border border-[#E8E8E6] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#D85BD6] focus:border-transparent">
+              <select className="px-3 py-1.5 text-[13px] bg-white border border-[#E8E8E6] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#6C5DD3] focus:border-transparent">
                 <option>All Status</option>
                 <option>Published</option>
                 <option>Draft</option>

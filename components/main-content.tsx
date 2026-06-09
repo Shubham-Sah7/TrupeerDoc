@@ -174,7 +174,7 @@ function SectionHeader({ title, action }: { title: string; action?: string }) {
     <div className="flex items-center justify-between mb-5">
       <h2 className="text-[20px] font-semibold text-[#18181B]">{title}</h2>
       {action && (
-        <button className="text-[13px] text-[#D85BD6] hover:text-[#C84AC7] font-medium transition-colors flex items-center gap-1.5">
+        <button className="text-[13px] text-[#6C5DD3] hover:text-[#5B4EC2] font-medium transition-colors flex items-center gap-1.5">
           {action}
           <ArrowRight className="w-4 h-4" strokeWidth={1.5} />
         </button>
@@ -196,17 +196,17 @@ function QuickAction({
       className={cn(
         "group flex items-center gap-3.5 px-5 py-4 rounded-[10px] border text-left transition-all duration-200 active:scale-[0.98]",
         primary
-          ? "bg-[#D85BD6] border-[#D85BD6] hover:bg-[#C84AC7] hover:border-[#C84AC7] hover:shadow-lg"
+          ? "bg-[#6C5DD3] border-[#6C5DD3] hover:bg-[#5B4EC2] hover:border-[#5B4EC2] hover:shadow-lg"
           : "border-[#E4E4E7] bg-white hover:border-[#D4D4D8] hover:shadow-md"
       )}
     >
       <div className={cn(
         "p-2 rounded-[8px] flex-shrink-0 transition-colors duration-200",
-        primary ? "bg-white/15" : "bg-[#F8F9FA] group-hover:bg-[#FDF4FD]"
+        primary ? "bg-white/15" : "bg-[#F8F9FA] group-hover:bg-[#F5F4FF]"
       )}>
         <div className={cn(
           "transition-colors duration-200",
-          primary ? "text-white" : "text-[#52525B] group-hover:text-[#D85BD6]"
+          primary ? "text-white" : "text-[#52525B] group-hover:text-[#6C5DD3]"
         )}>{icon}</div>
       </div>
       <div className="flex-1 min-w-0">
@@ -225,7 +225,7 @@ function QuickAction({
 
 const statusConfig = {
   Published:    { color: "text-[#059669]", bg: "bg-[#ECFDF5]",   icon: CheckCircle2 },
-  "In Progress":{ color: "text-[#D85BD6]", bg: "bg-[#FDF4FD]",   icon: AlertCircle },
+  "In Progress":{ color: "text-[#6C5DD3]", bg: "bg-[#F5F4FF]",   icon: AlertCircle },
   Draft:        { color: "text-[#71717A]", bg: "bg-[#F4F4F5]",   icon: Clock },
 } as const
 
@@ -287,17 +287,17 @@ function RecommendationCard({
   icon, title, description, action,
 }: { icon: React.ReactNode; title: string; description: string; action: string }) {
   return (
-    <div className="group bg-white border border-[#E4E4E7] rounded-[10px] p-4 hover:border-[#F1D6F1] hover:shadow-sm transition-all duration-200 cursor-pointer">
+    <div className="group bg-white border border-[#E4E4E7] rounded-[10px] p-4 hover:border-[#E4E1FF] hover:shadow-sm transition-all duration-200 cursor-pointer">
       <div className="flex items-start gap-3 mb-3">
-        <div className="p-2 bg-[#FDF4FD] rounded-[8px] flex-shrink-0 group-hover:bg-[#F1D6F1] transition-colors">
-          <div className="text-[#D85BD6]">{icon}</div>
+        <div className="p-2 bg-[#F5F4FF] rounded-[8px] flex-shrink-0 group-hover:bg-[#E4E1FF] transition-colors">
+          <div className="text-[#6C5DD3]">{icon}</div>
         </div>
         <div className="flex-1 min-w-0">
           <h3 className="font-semibold text-[14px] text-[#18181B] mb-1">{title}</h3>
           <p className="text-[12px] text-[#71717A] leading-relaxed">{description}</p>
         </div>
       </div>
-      <button className="inline-flex items-center gap-1.5 text-[12px] font-medium text-[#D85BD6] hover:text-[#C84AC7] transition-colors">
+      <button className="inline-flex items-center gap-1.5 text-[12px] font-medium text-[#6C5DD3] hover:text-[#5B4EC2] transition-colors">
         {action}
         <ArrowRight className="w-3.5 h-3.5" strokeWidth={1.5} />
       </button>
@@ -332,7 +332,7 @@ function TemplateCard({ title, category, uses, src }: { title: string; category:
           <div className="font-semibold text-[13px] text-[#18181B] leading-tight">{title}</div>
           <div className="text-[11px] text-[#A1A1AA] mt-0.5">{uses} uses</div>
         </div>
-        <Play className="w-4 h-4 text-[#D4D4D8] group-hover:text-[#D85BD6] transition-colors flex-shrink-0" strokeWidth={1.5} />
+        <Play className="w-4 h-4 text-[#D4D4D8] group-hover:text-[#6C5DD3] transition-colors flex-shrink-0" strokeWidth={1.5} />
       </div>
     </div>
   )

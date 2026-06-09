@@ -38,10 +38,10 @@ export function Sidebar() {
 
       {/* Logo */}
       <div className="px-6 pt-7 pb-9">
-        <div className="relative h-[34px] w-[160px]">
+        <div className="relative h-[28px] w-[100px]">
           <Image
-            src="/images/Clueso.png"
-            alt="Clueso"
+            src="/images/trupeer.jpeg"
+            alt="Trupeer"
             fill
             className="object-contain object-left"
             priority
@@ -93,16 +93,16 @@ export function Sidebar() {
       {/* Bottom */}
       <div className="px-4 pb-6 space-y-4">
 
-        <button className="flex items-center gap-3 w-full px-3 py-2.5 text-[#D85BD6] hover:text-[#C84AC7] hover:bg-[#FDF4FD] text-[14px] font-medium rounded-lg transition-all duration-200">
+        <button className="flex items-center gap-3 w-full px-3 py-2.5 text-[#6C5DD3] hover:text-[#5B4EC2] hover:bg-[#F5F4FF] text-[14px] font-medium rounded-lg transition-all duration-200">
           <Bell className="w-[18px] h-[18px] flex-shrink-0" strokeWidth={2} />
           <span>What&apos;s new</span>
         </button>
 
         {/* Upgrade card */}
-        <div className="rounded-xl bg-gradient-to-br from-[#FDF4FD] via-white to-[#FDF4FD] border border-[#F1D6F1] p-5">
+        <div className="rounded-xl bg-gradient-to-br from-[#F5F4FF] via-white to-[#F5F4FF] border border-[#E4E1FF] p-5">
           <div className="flex items-start gap-3 mb-4">
-            <div className="p-2 bg-[#D85BD6]/10 rounded-lg">
-              <Zap className="w-4 h-4 text-[#D85BD6]" strokeWidth={2} fill="#D85BD6" />
+            <div className="p-2 bg-[#6C5DD3]/10 rounded-lg">
+              <Zap className="w-4 h-4 text-[#6C5DD3]" strokeWidth={2} fill="#6C5DD3" />
             </div>
             <div className="flex-1 min-w-0">
               <div className="text-[13px] font-semibold text-[#18181B] mb-1">
@@ -113,14 +113,14 @@ export function Sidebar() {
               </div>
             </div>
           </div>
-          <button className="w-full bg-[#D85BD6] hover:bg-[#C84AC7] active:bg-[#B83AB7] text-white text-[13px] font-semibold py-2.5 rounded-lg transition-all duration-200 shadow-sm hover:shadow">
+          <button className="w-full bg-[#6C5DD3] hover:bg-[#5B4EC2] active:bg-[#4A3FB1] text-white text-[13px] font-semibold py-2.5 rounded-lg transition-all duration-200 shadow-sm hover:shadow">
             Upgrade Now
           </button>
         </div>
 
         {/* User profile */}
         <button className="w-full flex items-center gap-3 px-3 py-2.5 hover:bg-[#FAFAFA] rounded-lg transition-all duration-200 group">
-          <div className="w-8 h-8 rounded-full bg-[#D85BD6] flex-shrink-0 flex items-center justify-center text-white text-[13px] font-semibold">
+          <div className="w-8 h-8 rounded-full bg-[#6C5DD3] flex-shrink-0 flex items-center justify-center text-white text-[13px] font-semibold">
             S
           </div>
           <div className="flex-1 text-left min-w-0">
@@ -172,12 +172,12 @@ function NavItem({ icon: Icon, label, href, active }: NavItemProps) {
       )}
     >
       {active && (
-        <div className="absolute left-0 top-1/2 -translate-y-1/2 w-[2px] h-[16px] bg-[#D85BD6] rounded-r-full" />
+        <div className="absolute left-0 top-1/2 -translate-y-1/2 w-[2px] h-[16px] bg-[#6C5DD3] rounded-r-full" />
       )}
       <Icon
         className={cn(
           "w-[18px] h-[18px] flex-shrink-0 transition-colors duration-200",
-          active ? "text-[#D85BD6]" : "text-[#71717A] group-hover:text-[#18181B]"
+          active ? "text-[#6C5DD3]" : "text-[#71717A] group-hover:text-[#18181B]"
         )}
         strokeWidth={2}
       />

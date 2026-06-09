@@ -24,7 +24,7 @@ export function TopNav({ onRecordClick, onUploadClick, onTemplateClick }: TopNav
           {/* Primary CTA */}
           <button
             onClick={() => setShowMenu(true)}
-            className="flex items-center gap-2 px-4 py-2 bg-[#D85BD6] hover:bg-[#C84AC7] text-white font-medium text-[14px] rounded-[10px] transition-colors shadow-sm"
+            className="flex items-center gap-2 px-4 py-2 bg-[#6C5DD3] hover:bg-[#5B4EC2] text-white font-medium text-[14px] rounded-[10px] transition-colors shadow-sm"
           >
             <Plus className="w-4 h-4" strokeWidth={2} />
             Create
@@ -92,13 +92,13 @@ function CreateOption({ icon, title, description, onClick, primary }: CreateOpti
       onClick={onClick}
       className={`w-full text-left p-4 rounded-[12px] border transition-all ${
         primary
-          ? "border-[#D85BD6] bg-[#FAFAFA]"
+          ? "border-[#6C5DD3] bg-[#FAFAFA]"
           : "border-[#E4E4E7] bg-white hover:border-[#D4D4D8] hover:bg-[#FAFAFA]"
       }`}
     >
       <div className="flex items-center gap-3">
         <div className={`p-2 rounded-[8px] flex-shrink-0 ${
-          primary ? "bg-[#FDF4FD] text-[#D85BD6]" : "bg-[#F4F4F5] text-[#52525B]"
+          primary ? "bg-[#F5F4FF] text-[#6C5DD3]" : "bg-[#F4F4F5] text-[#52525B]"
         }`}>
           {icon}
         </div>

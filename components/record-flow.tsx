@@ -177,24 +177,24 @@ export function RecordFlow({ onClose }: { onClose: () => void }) {
                     onClick={() => setMode(m.id)}
                     className={cn(
                       "relative text-left p-4 rounded-2xl border-2 transition-all",
-                      active ? "border-[#D85BD6] bg-[#FDF4FD]" : "border-[#E4E4E7] hover:border-[#D4D4D8] bg-white"
+                      active ? "border-[#6C5DD3] bg-[#F5F4FF]" : "border-[#E4E4E7] hover:border-[#D4D4D8] bg-white"
                     )}
                   >
                     {m.recommended && (
-                      <span className="absolute top-3 right-3 text-[10px] font-semibold text-[#D85BD6] bg-[#F1D6F1] px-2 py-0.5 rounded-full">
+                      <span className="absolute top-3 right-3 text-[10px] font-semibold text-[#6C5DD3] bg-[#E4E1FF] px-2 py-0.5 rounded-full">
                         Recommended
                       </span>
                     )}
                     <div className={cn(
                       "w-9 h-9 rounded-xl flex items-center justify-center mb-3 transition-colors",
-                      active ? "bg-[#D85BD6]/15" : "bg-[#F4F4F5]"
+                      active ? "bg-[#6C5DD3]/15" : "bg-[#F4F4F5]"
                     )}>
-                      <Icon className={cn("w-4 h-4", active ? "text-[#D85BD6]" : "text-[#52525B]")} strokeWidth={1.5} />
+                      <Icon className={cn("w-4 h-4", active ? "text-[#6C5DD3]" : "text-[#52525B]")} strokeWidth={1.5} />
                     </div>
                     <div className="font-semibold text-[14px] text-[#18181B] mb-1">{m.title}</div>
                     <div className="text-[12px] text-[#71717A] leading-relaxed">{m.desc}</div>
                     {active && (
-                      <span className="absolute top-3 left-3 w-4 h-4 rounded-full bg-[#D85BD6] flex items-center justify-center">
+                      <span className="absolute top-3 left-3 w-4 h-4 rounded-full bg-[#6C5DD3] flex items-center justify-center">
                         <Check className="w-2.5 h-2.5 text-white" strokeWidth={3} />
                       </span>
                     )}
@@ -228,14 +228,14 @@ export function RecordFlow({ onClose }: { onClose: () => void }) {
                     onClick={() => setSource(s.id)}
                     className={cn(
                       "w-full flex items-center justify-between px-4 py-3.5 rounded-xl border-2 text-left transition-all",
-                      active ? "border-[#D85BD6] bg-[#FDF4FD]" : "border-[#E4E4E7] hover:border-[#D4D4D8]"
+                      active ? "border-[#6C5DD3] bg-[#F5F4FF]" : "border-[#E4E4E7] hover:border-[#D4D4D8]"
                     )}
                   >
                     <span className={cn("font-medium text-[14px]", active ? "text-[#6E6BFF]" : "text-[#18181B]")}>
                       {s.label}
                     </span>
                     {active && (
-                      <span className="w-5 h-5 rounded-full bg-[#D85BD6] flex items-center justify-center">
+                      <span className="w-5 h-5 rounded-full bg-[#6C5DD3] flex items-center justify-center">
                         <Check className="w-3 h-3 text-white" strokeWidth={3} />
                       </span>
                     )}
@@ -260,7 +260,7 @@ export function RecordFlow({ onClose }: { onClose: () => void }) {
               </button>
               <button
                 onClick={() => { setSeconds(0); setPaused(false); setStep("recording") }}
-                className="flex-1 flex items-center justify-center gap-2.5 bg-[#D85BD6] hover:bg-[#C84AC7] text-white font-semibold text-[14px] py-3 rounded-xl transition-colors"
+                className="flex-1 flex items-center justify-center gap-2.5 bg-[#6C5DD3] hover:bg-[#5B4EC2] text-white font-semibold text-[14px] py-3 rounded-xl transition-colors"
               >
                 <span className="w-2 h-2 rounded-full bg-red-400" />
                 Start Recording
@@ -351,7 +351,7 @@ export function RecordFlow({ onClose }: { onClose: () => void }) {
   if (step === "processing") {
     return (
       <FullPage>
-        <div className="w-14 h-14 bg-[#D85BD6] rounded-2xl flex items-center justify-center mb-10">
+        <div className="w-14 h-14 bg-[#6C5DD3] rounded-2xl flex items-center justify-center mb-10">
           <CluesoMark size={26} />
         </div>
         <h2 className="text-[28px] font-semibold text-[#111111] mb-3 text-center">Hold tight…</h2>
@@ -365,10 +365,10 @@ export function RecordFlow({ onClose }: { onClose: () => void }) {
               <div key={label} className={cn("flex items-center gap-3.5 transition-opacity duration-300", done || current ? "opacity-100" : "opacity-25")}>
                 <span className={cn(
                   "w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 transition-all",
-                  done    ? "bg-[#D85BD6]"               : "border-2 border-[#D4D4D8]"
+                  done    ? "bg-[#6C5DD3]"               : "border-2 border-[#D4D4D8]"
                 )}>
                   {done    && <Check className="w-3.5 h-3.5 text-white" strokeWidth={2.5} />}
-                  {current && <span className="w-2 h-2 rounded-full bg-[#D85BD6] animate-pulse" />}
+                  {current && <span className="w-2 h-2 rounded-full bg-[#6C5DD3] animate-pulse" />}
                 </span>
                 <span className={cn("text-[14px]", done ? "text-[#111111] font-medium" : "text-[#71717A]")}>{label}</span>
               </div>
@@ -379,7 +379,7 @@ export function RecordFlow({ onClose }: { onClose: () => void }) {
         {/* Progress bar */}
         <div className="w-full max-w-[360px] h-1 bg-[#F4F4F5] rounded-full overflow-hidden">
           <div
-            className="h-full bg-[#D85BD6] rounded-full transition-all duration-500"
+            className="h-full bg-[#6C5DD3] rounded-full transition-all duration-500"
             style={{ width: `${Math.max(4, ((processingIdx + 1) / PROCESSING_STEPS.length) * 100)}%` }}
           />
         </div>
@@ -391,8 +391,8 @@ export function RecordFlow({ onClose }: { onClose: () => void }) {
   if (step === "understanding") {
     return (
       <FullPage>
-        <div className="w-20 h-20 rounded-full bg-[#FDF4FD] flex items-center justify-center mb-8">
-          <div className="w-12 h-12 rounded-full bg-[#D85BD6] flex items-center justify-center">
+        <div className="w-20 h-20 rounded-full bg-[#F5F4FF] flex items-center justify-center mb-8">
+          <div className="w-12 h-12 rounded-full bg-[#6C5DD3] flex items-center justify-center">
             <Check className="w-6 h-6 text-white" strokeWidth={2.5} />
           </div>
         </div>
@@ -401,8 +401,8 @@ export function RecordFlow({ onClose }: { onClose: () => void }) {
 
         <div className="w-full max-w-[380px] space-y-2.5 mb-12">
           {AI_FINDINGS.map((f, i) => (
-            <div key={i} className="flex items-center gap-3 bg-[#FDF4FD] border border-[#F1D6F1] rounded-xl px-4 py-3">
-              <span className="w-5 h-5 rounded-full bg-[#D85BD6] flex items-center justify-center flex-shrink-0">
+            <div key={i} className="flex items-center gap-3 bg-[#F5F4FF] border border-[#E4E1FF] rounded-xl px-4 py-3">
+              <span className="w-5 h-5 rounded-full bg-[#6C5DD3] flex items-center justify-center flex-shrink-0">
                 <Check className="w-3 h-3 text-white" strokeWidth={3} />
               </span>
               <span className="text-[14px] font-medium text-[#18181B]">{f}</span>
@@ -441,13 +441,13 @@ export function RecordFlow({ onClose }: { onClose: () => void }) {
                 className={cn(
                   "flex flex-col items-center text-center p-6 rounded-[18px] border-2 transition-all",
                   active
-                    ? "border-[#D85BD6] bg-[#FDF4FD]"
+                    ? "border-[#6C5DD3] bg-[#F5F4FF]"
                     : "border-[#E4E4E7] hover:border-[#D4D4D8] bg-white hover:shadow-md"
                 )}
               >
                 <div className={cn(
                   "w-12 h-12 rounded-2xl flex items-center justify-center mb-4 transition-colors",
-                  active ? "bg-[#D85BD6]" : "bg-[#F4F4F5]"
+                  active ? "bg-[#6C5DD3]" : "bg-[#F4F4F5]"
                 )}>
                   <Icon className={cn("w-5 h-5", active ? "text-white" : "text-[#52525B]")} strokeWidth={1.5} />
                 </div>
@@ -466,7 +466,7 @@ export function RecordFlow({ onClose }: { onClose: () => void }) {
           className={cn(
             "flex items-center gap-2 font-semibold text-[15px] px-10 py-3.5 rounded-xl transition-all",
             selectedOutput
-              ? "bg-[#D85BD6] hover:bg-[#C84AC7] text-white"
+              ? "bg-[#6C5DD3] hover:bg-[#5B4EC2] text-white"
               : "bg-[#F4F4F5] text-[#A1A1AA] cursor-not-allowed"
           )}
         >
@@ -481,7 +481,7 @@ export function RecordFlow({ onClose }: { onClose: () => void }) {
   if (step === "generating") {
     return (
       <FullPage>
-        <div className="w-14 h-14 bg-[#D85BD6] rounded-2xl flex items-center justify-center mb-10">
+        <div className="w-14 h-14 bg-[#6C5DD3] rounded-2xl flex items-center justify-center mb-10">
           <CluesoMark size={26} />
         </div>
         <h2 className="text-[26px] font-semibold text-[#111111] mb-2 text-center">
@@ -492,10 +492,10 @@ export function RecordFlow({ onClose }: { onClose: () => void }) {
         <div className="w-full max-w-[400px] mb-8">
           <div className="flex items-center justify-between text-[13px] mb-2.5">
             <span className="text-[#52525B] font-medium">{currentGenSteps[Math.min(genStepIdx, currentGenSteps.length - 1)]}</span>
-            <span className="text-[#D85BD6] font-semibold">{Math.round(genProgress)}%</span>
+            <span className="text-[#6C5DD3] font-semibold">{Math.round(genProgress)}%</span>
           </div>
           <div className="h-2 bg-[#F4F4F5] rounded-full overflow-hidden">
-            <div className="h-full bg-[#D85BD6] rounded-full transition-all duration-75" style={{ width: `${genProgress}%` }} />
+            <div className="h-full bg-[#6C5DD3] rounded-full transition-all duration-75" style={{ width: `${genProgress}%` }} />
           </div>
         </div>
 
@@ -507,10 +507,10 @@ export function RecordFlow({ onClose }: { onClose: () => void }) {
               <div key={label} className={cn("flex items-center gap-3", done || current ? "opacity-100" : "opacity-25")}>
                 <span className={cn(
                   "w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0",
-                  done    ? "bg-[#D85BD6]"                : current ? "border-2 border-[#D85BD6]" : "border-2 border-[#D4D4D8]"
+                  done    ? "bg-[#6C5DD3]"                : current ? "border-2 border-[#6C5DD3]" : "border-2 border-[#D4D4D8]"
                 )}>
                   {done    && <Check className="w-3 h-3 text-white" strokeWidth={2.5} />}
-                  {current && <span className="w-2 h-2 rounded-full bg-[#D85BD6] animate-pulse" />}
+                  {current && <span className="w-2 h-2 rounded-full bg-[#6C5DD3] animate-pulse" />}
                 </span>
                 <span className={cn("text-[13px]", done || current ? "text-[#18181B]" : "text-[#A1A1AA]")}>{label}</span>
               </div>
@@ -530,7 +530,7 @@ export function RecordFlow({ onClose }: { onClose: () => void }) {
           <X className="w-4 h-4 text-[#71717A]" strokeWidth={2} />
         </button>
 
-        <div className="flex items-center gap-2 bg-[#FDF4FD] text-[#D85BD6] text-[13px] font-semibold px-4 py-2 rounded-full mb-8">
+        <div className="flex items-center gap-2 bg-[#F5F4FF] text-[#6C5DD3] text-[13px] font-semibold px-4 py-2 rounded-full mb-8">
           <Check className="w-3.5 h-3.5" strokeWidth={2.5} />
           Generated successfully
         </div>
@@ -545,8 +545,8 @@ export function RecordFlow({ onClose }: { onClose: () => void }) {
         {/* Preview placeholder */}
         <div className="w-full max-w-[680px] aspect-video bg-[#F8F8F7] rounded-2xl border border-[#E4E4E7] mb-10 flex items-center justify-center">
           <div className="text-center">
-            <div className="w-16 h-16 rounded-2xl bg-[#D85BD6]/10 flex items-center justify-center mx-auto mb-4">
-              <OutputIcon className="w-8 h-8 text-[#D85BD6]" strokeWidth={1.5} />
+            <div className="w-16 h-16 rounded-2xl bg-[#6C5DD3]/10 flex items-center justify-center mx-auto mb-4">
+              <OutputIcon className="w-8 h-8 text-[#6C5DD3]" strokeWidth={1.5} />
             </div>
             <p className="text-[14px] text-[#A1A1AA]">{outputLabel} preview</p>
           </div>
@@ -557,7 +557,7 @@ export function RecordFlow({ onClose }: { onClose: () => void }) {
           <button className="px-6 py-2.5 text-[14px] font-medium text-[#52525B] border border-[#E4E4E7] hover:bg-[#F5F5F5] rounded-xl transition-colors">
             Edit
           </button>
-          <button className="px-8 py-2.5 text-[14px] font-semibold bg-[#D85BD6] hover:bg-[#C84AC7] text-white rounded-xl transition-colors">
+          <button className="px-8 py-2.5 text-[14px] font-semibold bg-[#6C5DD3] hover:bg-[#5B4EC2] text-white rounded-xl transition-colors">
             Publish
           </button>
           <button className="px-6 py-2.5 text-[14px] font-medium text-[#52525B] border border-[#E4E4E7] hover:bg-[#F5F5F5] rounded-xl transition-colors">
@@ -635,7 +635,7 @@ function PrimaryBtn({
       onClick={onClick}
       disabled={disabled}
       className={cn(
-        "flex items-center gap-2 bg-[#D85BD6] hover:bg-[#C84AC7] text-white font-semibold text-[14px] px-6 py-3 rounded-xl transition-colors w-full justify-center",
+        "flex items-center gap-2 bg-[#6C5DD3] hover:bg-[#5B4EC2] text-white font-semibold text-[14px] px-6 py-3 rounded-xl transition-colors w-full justify-center",
         disabled && "opacity-50 cursor-not-allowed",
         className
       )}
@@ -664,7 +664,7 @@ function Toggle({
       </div>
       <button
         onClick={onToggle}
-        className={cn("relative w-10 h-6 rounded-full transition-colors", enabled ? "bg-[#D85BD6]" : "bg-[#D4D4D8]")}
+        className={cn("relative w-10 h-6 rounded-full transition-colors", enabled ? "bg-[#6C5DD3]" : "bg-[#D4D4D8]")}
       >
         <span
           className={cn(

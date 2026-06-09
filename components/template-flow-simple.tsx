@@ -240,7 +240,7 @@ function TemplateCard({ template, onClick }: TemplateCardProps) {
   return (
     <button
       onClick={onClick}
-      className="group text-left bg-white border border-[#E4E4E7] rounded-[12px] overflow-hidden hover:border-[#D85BD6] hover:shadow-lg transition-all"
+      className="group text-left bg-white border border-[#E4E4E7] rounded-[12px] overflow-hidden hover:border-[#6C5DD3] hover:shadow-lg transition-all"
     >
       {/* Real Template Image */}
       <div className="aspect-video bg-[#F4F4F5] relative overflow-hidden">
@@ -267,8 +267,8 @@ function TemplateCard({ template, onClick }: TemplateCardProps) {
         </div>
 
         <div className="flex items-center justify-between pt-3 border-t border-[#E4E4E7]">
-          <span className="text-[12px] font-medium text-[#D85BD6]">Use Template</span>
-          <ArrowRight className="w-3.5 h-3.5 text-[#D85BD6]" strokeWidth={1.5} />
+          <span className="text-[12px] font-medium text-[#6C5DD3]">Use Template</span>
+          <ArrowRight className="w-3.5 h-3.5 text-[#6C5DD3]" strokeWidth={1.5} />
         </div>
       </div>
     </button>
@@ -344,7 +344,7 @@ function PersonalizationScreen({
               value={projectName}
               onChange={(e) => setProjectName(e.target.value)}
               placeholder="e.g., Q1 Product Launch"
-              className="w-full px-3 py-2.5 border border-[#E4E4E7] rounded-[10px] text-[14px] text-[#111111] placeholder:text-[#A1A1AA] focus:outline-none focus:border-[#D85BD6] transition-colors"
+              className="w-full px-3 py-2.5 border border-[#E4E4E7] rounded-[10px] text-[14px] text-[#111111] placeholder:text-[#A1A1AA] focus:outline-none focus:border-[#6C5DD3] transition-colors"
             />
           </div>
 
@@ -357,7 +357,7 @@ function PersonalizationScreen({
               value={productName}
               onChange={(e) => setProductName(e.target.value)}
               placeholder="e.g., Clueso"
-              className="w-full px-3 py-2.5 border border-[#E4E4E7] rounded-[10px] text-[14px] text-[#111111] placeholder:text-[#A1A1AA] focus:outline-none focus:border-[#D85BD6] transition-colors"
+              className="w-full px-3 py-2.5 border border-[#E4E4E7] rounded-[10px] text-[14px] text-[#111111] placeholder:text-[#A1A1AA] focus:outline-none focus:border-[#6C5DD3] transition-colors"
             />
           </div>
 
@@ -370,7 +370,7 @@ function PersonalizationScreen({
               value={targetAudience}
               onChange={(e) => setTargetAudience(e.target.value)}
               placeholder="e.g., New users, Sales team, Developers"
-              className="w-full px-3 py-2.5 border border-[#E4E4E7] rounded-[10px] text-[14px] text-[#111111] placeholder:text-[#A1A1AA] focus:outline-none focus:border-[#D85BD6] transition-colors"
+              className="w-full px-3 py-2.5 border border-[#E4E4E7] rounded-[10px] text-[14px] text-[#111111] placeholder:text-[#A1A1AA] focus:outline-none focus:border-[#6C5DD3] transition-colors"
             />
           </div>
 
@@ -381,7 +381,7 @@ function PersonalizationScreen({
           <button
             onClick={onContinue}
             disabled={!projectName || !productName}
-            className="w-full py-2.5 bg-[#D85BD6] hover:bg-[#C84AC7] disabled:bg-[#E4E4E7] disabled:text-[#A1A1AA] text-white font-medium text-[14px] rounded-[10px] transition-colors"
+            className="w-full py-2.5 bg-[#6C5DD3] hover:bg-[#5B4EC2] disabled:bg-[#E4E4E7] disabled:text-[#A1A1AA] text-white font-medium text-[14px] rounded-[10px] transition-colors"
           >
             Continue
           </button>
@@ -462,18 +462,18 @@ function ContentSourceCard({ icon, title, description, recommended, onClick }: C
       onClick={onClick}
       className={`text-left p-5 rounded-[12px] border transition-all ${
         recommended
-          ? "border-[#D85BD6] bg-[#FAFAFA]"
+          ? "border-[#6C5DD3] bg-[#FAFAFA]"
           : "border-[#E4E4E7] bg-white hover:border-[#D4D4D8] hover:bg-[#FAFAFA]"
       }`}
     >
       <div className="flex items-start gap-3 mb-3">
         <div className={`p-2 rounded-[8px] flex-shrink-0 ${
-          recommended ? "bg-[#FDF4FD] text-[#D85BD6]" : "bg-[#F4F4F5] text-[#52525B]"
+          recommended ? "bg-[#F5F4FF] text-[#6C5DD3]" : "bg-[#F4F4F5] text-[#52525B]"
         }`}>
           {icon}
         </div>
         {recommended && (
-          <Check className="w-4 h-4 text-[#D85BD6] ml-auto" strokeWidth={2} />
+          <Check className="w-4 h-4 text-[#6C5DD3] ml-auto" strokeWidth={2} />
         )}
       </div>
       
@@ -503,7 +503,7 @@ function AISetupScreen({ template, onComplete }: AISetupScreenProps) {
         
         {/* Spinner */}
         <div className="w-12 h-12 mx-auto mb-8">
-          <div className="w-full h-full border-[3px] border-[#E4E4E7] border-t-[#D85BD6] rounded-full animate-spin" />
+          <div className="w-full h-full border-[3px] border-[#E4E4E7] border-t-[#6C5DD3] rounded-full animate-spin" />
         </div>
 
         {/* Heading */}
@@ -515,7 +515,7 @@ function AISetupScreen({ template, onComplete }: AISetupScreenProps) {
         </p>
 
         {/* Status */}
-        <div className="inline-flex items-center gap-2 bg-[#FDF4FD] text-[#D85BD6] text-[13px] font-medium px-4 py-2 rounded-full">
+        <div className="inline-flex items-center gap-2 bg-[#F5F4FF] text-[#6C5DD3] text-[13px] font-medium px-4 py-2 rounded-full">
           <Loader2 className="w-3.5 h-3.5 animate-spin" strokeWidth={2} />
           Template Ready
         </div>
@@ -562,7 +562,7 @@ function WorkspaceCreationScreen({ onComplete }: WorkspaceCreationScreenProps) {
         
         {/* Spinner */}
         <div className="w-12 h-12 mx-auto mb-8">
-          <div className="w-full h-full border-[3px] border-[#E4E4E7] border-t-[#D85BD6] rounded-full animate-spin" />
+          <div className="w-full h-full border-[3px] border-[#E4E4E7] border-t-[#6C5DD3] rounded-full animate-spin" />
         </div>
 
         {/* Heading */}
@@ -584,9 +584,9 @@ function WorkspaceCreationScreen({ onComplete }: WorkspaceCreationScreenProps) {
             >
               <div className={`w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 ${
                 index < currentStep
-                  ? "bg-[#D85BD6]"
+                  ? "bg-[#6C5DD3]"
                   : index === currentStep
-                  ? "border-2 border-[#D85BD6]"
+                  ? "border-2 border-[#6C5DD3]"
                   : "border-2 border-[#E4E4E7]"
               }`}>
                 {index < currentStep && (
@@ -639,7 +639,7 @@ function EditorPreview({ template, projectName, onClose }: EditorPreviewProps) {
             <button className="px-4 py-2 border border-[#E4E4E7] hover:border-[#D4D4D8] text-[#52525B] hover:text-[#111111] font-medium text-[14px] rounded-[10px] transition-all">
               Generate Script
             </button>
-            <button className="px-4 py-2 bg-[#D85BD6] hover:bg-[#C84AC7] text-white font-medium text-[14px] rounded-[10px] transition-colors">
+            <button className="px-4 py-2 bg-[#6C5DD3] hover:bg-[#5B4EC2] text-white font-medium text-[14px] rounded-[10px] transition-colors">
               Publish
             </button>
             <button
@@ -656,9 +656,9 @@ function EditorPreview({ template, projectName, onClose }: EditorPreviewProps) {
       <div className="max-w-[1400px] mx-auto px-8 py-12">
         
         {/* Success Message */}
-        <div className="bg-[#FDF4FD] border border-[#D85BD6]/20 rounded-[12px] p-5 mb-8 flex items-start gap-3">
-          <div className="w-8 h-8 rounded-[8px] bg-[#D85BD6]/10 flex items-center justify-center flex-shrink-0">
-            <Check className="w-4 h-4 text-[#D85BD6]" strokeWidth={2} />
+        <div className="bg-[#F5F4FF] border border-[#6C5DD3]/20 rounded-[12px] p-5 mb-8 flex items-start gap-3">
+          <div className="w-8 h-8 rounded-[8px] bg-[#6C5DD3]/10 flex items-center justify-center flex-shrink-0">
+            <Check className="w-4 h-4 text-[#6C5DD3]" strokeWidth={2} />
           </div>
           <div>
             <h3 className="text-[15px] font-semibold text-[#111111] mb-1">
@@ -700,7 +700,7 @@ function SectionCard({ title, index }: SectionCardProps) {
           <p className="text-[14px] text-[#71717A] leading-relaxed mb-4">
             AI-generated content will appear here. Click "Generate Script" to create content for this section.
           </p>
-          <button className="text-[13px] font-medium text-[#D85BD6] hover:text-[#C84AC7] transition-colors">
+          <button className="text-[13px] font-medium text-[#6C5DD3] hover:text-[#5B4EC2] transition-colors">
             Edit section
           </button>
         </div>

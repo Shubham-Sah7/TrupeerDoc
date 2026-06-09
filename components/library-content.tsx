@@ -33,7 +33,7 @@ export function LibraryContent() {
                 <Upload className="w-4 h-4 inline mr-2" strokeWidth={1.5} />
                 Import Content
               </button>
-              <button className="px-4 py-2.5 text-[13px] font-medium text-white bg-[#D85BD6] rounded-lg hover:bg-[#C84AC7] hover:shadow-lg transition-all">
+              <button className="px-4 py-2.5 text-[13px] font-medium text-white bg-[#6C5DD3] rounded-lg hover:bg-[#5B4EC2] hover:shadow-lg transition-all">
                 <Plus className="w-4 h-4 inline mr-2" strokeWidth={1.5} />
                 New Content
               </button>
@@ -46,7 +46,7 @@ export function LibraryContent() {
             <input
               type="text"
               placeholder="Search videos, guides, demos, assets, or ask AI..."
-              className="w-full pl-12 pr-20 py-3.5 text-[15px] bg-white border border-[#E8E8E6] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#D85BD6] focus:border-transparent transition-all shadow-sm"
+              className="w-full pl-12 pr-20 py-3.5 text-[15px] bg-white border border-[#E8E8E6] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#6C5DD3] focus:border-transparent transition-all shadow-sm"
             />
             <div className="absolute right-4 top-1/2 -translate-y-1/2 flex items-center gap-2">
               <kbd className="text-[11px] text-[#A1A1AA] font-mono bg-[#F5F5F3] px-2 py-1 rounded">⌘K</kbd>
@@ -196,7 +196,7 @@ export function LibraryContent() {
         {/* AI Recommendations */}
         <section className="mb-10">
           <div className="flex items-center gap-2.5 mb-5">
-            <Sparkles className="w-5 h-5 text-[#D85BD6]" strokeWidth={1.5} />
+            <Sparkles className="w-5 h-5 text-[#6C5DD3]" strokeWidth={1.5} />
             <h2 className="text-[20px] font-semibold text-[#18181B]">AI Recommendations</h2>
           </div>
           <div className="grid grid-cols-3 gap-4">
@@ -335,7 +335,7 @@ export function LibraryContent() {
         <section className="mb-10">
           <div className="flex items-center justify-between mb-5">
             <h2 className="text-[20px] font-semibold text-[#18181B]">Template Library</h2>
-            <button className="text-[13px] font-medium text-[#D85BD6] hover:text-[#C84AC7] transition-colors">
+            <button className="text-[13px] font-medium text-[#6C5DD3] hover:text-[#5B4EC2] transition-colors">
               Browse all templates
             </button>
           </div>
@@ -410,11 +410,11 @@ function OverviewCard({ icon, label, count, growth, active }: OverviewCardProps)
   return (
     <div className={`bg-white border rounded-lg p-5 transition-all ${
       active 
-        ? "border-[#D85BD6] shadow-[0_0_0_3px_rgba(143,140,255,0.1)]" 
+        ? "border-[#6C5DD3] shadow-[0_0_0_3px_rgba(143,140,255,0.1)]" 
         : "border-[#E8E8E6] hover:border-[#D4D4D2]"
     }`}>
-      <div className={`p-2.5 rounded-lg inline-flex mb-3 ${active ? "bg-[#FDF4FD]" : "bg-[#F5F5F3]"}`}>
-        <div className={active ? "text-[#D85BD6]" : "text-[#52525B]"}>
+      <div className={`p-2.5 rounded-lg inline-flex mb-3 ${active ? "bg-[#F5F4FF]" : "bg-[#F5F5F3]"}`}>
+        <div className={active ? "text-[#6C5DD3]" : "text-[#52525B]"}>
           {icon}
         </div>
       </div>
@@ -440,14 +440,14 @@ function CollectionCard({ icon, title, count, active, onClick, highlight }: Coll
       onClick={onClick}
       className={`flex items-center gap-3 p-4 rounded-lg border transition-all text-left ${
         active
-          ? "bg-[#FDF4FD] border-[#D85BD6] shadow-sm"
+          ? "bg-[#F5F4FF] border-[#6C5DD3] shadow-sm"
           : highlight
-          ? "bg-[#FDF4FD] border-[#F1D6F1] hover:border-[#D85BD6]"
+          ? "bg-[#F5F4FF] border-[#E4E1FF] hover:border-[#6C5DD3]"
           : "bg-white border-[#E8E8E6] hover:border-[#D4D4D2]"
       }`}
     >
       <div className={`p-2 rounded-md ${active || highlight ? "bg-white" : "bg-[#F5F5F3]"}`}>
-        <div className={active || highlight ? "text-[#D85BD6]" : "text-[#52525B]"}>
+        <div className={active || highlight ? "text-[#6C5DD3]" : "text-[#52525B]"}>
           {icon}
         </div>
       </div>
@@ -478,7 +478,7 @@ function QuickAccessCard({ thumbnail, type, title, lastEdited, progress }: Quick
         />
         <div className="absolute inset-0 flex items-center justify-center">
           <div className="w-12 h-12 rounded-full bg-white/90 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-            <Play className="w-5 h-5 text-[#D85BD6] ml-0.5" strokeWidth={1.5} />
+            <Play className="w-5 h-5 text-[#6C5DD3] ml-0.5" strokeWidth={1.5} />
           </div>
         </div>
         <div className="absolute top-2 left-2 bg-white/95 backdrop-blur-sm text-[#52525B] text-[11px] font-medium px-2 py-1 rounded">
@@ -490,11 +490,11 @@ function QuickAccessCard({ thumbnail, type, title, lastEdited, progress }: Quick
         <div className="text-[11px] text-[#A1A1AA] mb-2">{lastEdited}</div>
         <div className="flex items-center justify-between text-[11px] mb-1.5">
           <span className="text-[#71717A]">Progress</span>
-          <span className="text-[#D85BD6] font-medium">{progress}%</span>
+          <span className="text-[#6C5DD3] font-medium">{progress}%</span>
         </div>
         <div className="w-full bg-[#F5F5F3] h-1 rounded-full overflow-hidden">
           <div 
-            className="bg-[#D85BD6] h-full rounded-full transition-all"
+            className="bg-[#6C5DD3] h-full rounded-full transition-all"
             style={{ width: `${progress}%` }}
           />
         </div>
@@ -510,14 +510,14 @@ interface AIRecommendationCardProps {
 
 function AIRecommendationCard({ title, action }: AIRecommendationCardProps) {
   return (
-    <div className="bg-[#FDF4FD] border border-[#F1D6F1] rounded-lg p-4 hover:border-[#D85BD6] hover:shadow-md hover:-translate-y-0.5 transition-all cursor-pointer group">
+    <div className="bg-[#F5F4FF] border border-[#E4E1FF] rounded-lg p-4 hover:border-[#6C5DD3] hover:shadow-md hover:-translate-y-0.5 transition-all cursor-pointer group">
       <div className="flex items-start gap-3 mb-3">
         <div className="p-2 bg-white rounded-md">
-          <Sparkles className="w-4 h-4 text-[#D85BD6]" strokeWidth={1.5} />
+          <Sparkles className="w-4 h-4 text-[#6C5DD3]" strokeWidth={1.5} />
         </div>
         <p className="text-[13px] text-[#18181B] leading-relaxed flex-1">{title}</p>
       </div>
-      <button className="flex items-center gap-1.5 text-[12px] font-medium text-[#D85BD6] group-hover:gap-2 transition-all">
+      <button className="flex items-center gap-1.5 text-[12px] font-medium text-[#6C5DD3] group-hover:gap-2 transition-all">
         {action}
         <ArrowRight className="w-3 h-3" strokeWidth={2} />
       </button>
@@ -538,7 +538,7 @@ function LibraryTab({ label, count, active, onClick }: LibraryTabProps) {
       onClick={onClick}
       className={`px-4 py-3 text-[13px] font-medium border-b-2 transition-colors ${
         active
-          ? "text-[#D85BD6] border-[#D85BD6]"
+          ? "text-[#6C5DD3] border-[#6C5DD3]"
           : "text-[#71717A] border-transparent hover:text-[#18181B]"
       }`}
     >
@@ -567,7 +567,7 @@ function ContentCard({
   const statusColors = {
     Published: "bg-[#F0FDF4] text-[#15803D] border-[#BBF7D0]",
     Draft: "bg-[#F5F5F3] text-[#52525B] border-[#E8E8E6]",
-    Review: "bg-[#FDF4FD] text-[#D85BD6] border-[#F1D6F1]"
+    Review: "bg-[#F5F4FF] text-[#6C5DD3] border-[#E4E1FF]"
   }
 
   return (
@@ -590,7 +590,7 @@ function ContentCard({
         />
         <div className="absolute inset-0 flex items-center justify-center">
           <div className="w-12 h-12 rounded-full bg-white/90 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-            <Play className="w-5 h-5 text-[#D85BD6] ml-0.5" strokeWidth={1.5} />
+            <Play className="w-5 h-5 text-[#6C5DD3] ml-0.5" strokeWidth={1.5} />
           </div>
         </div>
         <div className="absolute bottom-2 right-2 bg-[#18181B]/80 text-white text-[11px] font-medium px-2 py-1 rounded">
@@ -601,7 +601,7 @@ function ContentCard({
             {type}
           </span>
           {aiGenerated && (
-            <span className="bg-[#FDF4FD]/95 backdrop-blur-sm text-[#D85BD6] text-[11px] font-medium px-2 py-1 rounded flex items-center gap-1">
+            <span className="bg-[#F5F4FF]/95 backdrop-blur-sm text-[#6C5DD3] text-[11px] font-medium px-2 py-1 rounded flex items-center gap-1">
               <Sparkles className="w-3 h-3" strokeWidth={1.5} />
               AI
             </span>
@@ -645,7 +645,7 @@ interface TemplateCardProps {
 
 function TemplateCard({ title, uses, thumbnail }: TemplateCardProps) {
   return (
-    <div className="bg-white border border-[#E8E8E6] rounded-lg overflow-hidden hover:border-[#D85BD6] hover:shadow-sm hover:-translate-y-0.5 transition-all cursor-pointer group">
+    <div className="bg-white border border-[#E8E8E6] rounded-lg overflow-hidden hover:border-[#6C5DD3] hover:shadow-sm hover:-translate-y-0.5 transition-all cursor-pointer group">
       <div className="aspect-square bg-[#F5F5F3] relative overflow-hidden">
         <img 
           src={thumbnail} 
@@ -685,7 +685,7 @@ function ActivityItem({ user, action, target, time, type }: ActivityItemProps) {
     <div className="flex items-center justify-between p-4 hover:bg-[#FAFAF8] transition-colors">
       <div className="flex items-center gap-3">
         <div className={`w-8 h-8 rounded-full flex items-center justify-center text-[13px] font-medium ${
-          isAI ? "bg-[#FDF4FD] text-[#D85BD6]" : "bg-[#F5F5F3] text-[#52525B]"
+          isAI ? "bg-[#F5F4FF] text-[#6C5DD3]" : "bg-[#F5F5F3] text-[#52525B]"
         }`}>
           {getIcon()}
         </div>
