@@ -6,8 +6,11 @@ import {
   FileText, Video, BookOpen, GraduationCap,
   MoreHorizontal, Edit, Sparkles
 } from "lucide-react"
+import { useRouter } from "next/navigation"
 
 export function SharedPagesContent() {
+  const router = useRouter()
+
   return (
     <main className="flex-1 overflow-auto">
       <div className="max-w-[1400px] mx-auto px-16 py-10">
@@ -23,7 +26,10 @@ export function SharedPagesContent() {
                 Manage every published page, guide, demo, and document from one place.
               </p>
             </div>
-            <button className="px-4 py-2.5 text-[13px] font-medium text-white bg-[#6C5DD3] rounded-lg hover:bg-[#5B4EC2] hover:shadow-lg transition-all">
+            <button
+              onClick={() => router.push("/document-editor")}
+              className="px-4 py-2.5 text-[13px] font-medium text-white bg-[#6C5DD3] rounded-lg hover:bg-[#5B4EC2] hover:shadow-lg transition-all cursor-pointer"
+            >
               <Share2 className="w-4 h-4 inline mr-2" strokeWidth={1.5} />
               Create Shared Page
             </button>
@@ -60,7 +66,10 @@ export function SharedPagesContent() {
         <section className="mb-12">
           <div className="flex items-center justify-between mb-5">
             <h2 className="text-[20px] font-semibold text-[#18181B]">Analytics</h2>
-            <button className="text-[13px] text-[#71717A] hover:text-[#18181B] transition-colors">
+            <button
+              onClick={() => router.push("/documents")}
+              className="text-[13px] text-[#71717A] hover:text-[#18181B] transition-colors cursor-pointer"
+            >
               View All →
             </button>
           </div>
@@ -146,6 +155,7 @@ export function SharedPagesContent() {
               lastUpdated="2 hours ago"
               status="Published"
               access="Public"
+              onClick={() => router.push("/editor")}
             />
             <SharedPageCard
               type="Demo"
@@ -154,6 +164,7 @@ export function SharedPagesContent() {
               lastUpdated="5 hours ago"
               status="Published"
               access="Public"
+              onClick={() => router.push("/demos")}
             />
             <SharedPageCard
               type="Documentation"
@@ -162,6 +173,7 @@ export function SharedPagesContent() {
               lastUpdated="Yesterday"
               status="Published"
               access="Password"
+              onClick={() => router.push("/document-editor")}
             />
             <SharedPageCard
               type="Training"
@@ -170,6 +182,7 @@ export function SharedPagesContent() {
               lastUpdated="2 days ago"
               status="Published"
               access="Public"
+              onClick={() => router.push("/document-editor")}
             />
             <SharedPageCard
               type="Guide"
@@ -178,6 +191,7 @@ export function SharedPagesContent() {
               lastUpdated="3 days ago"
               status="Published"
               access="Team"
+              onClick={() => router.push("/editor")}
             />
             <SharedPageCard
               type="Documentation"
@@ -186,6 +200,7 @@ export function SharedPagesContent() {
               lastUpdated="1 week ago"
               status="Published"
               access="Public"
+              onClick={() => router.push("/document-editor")}
             />
             <SharedPageCard
               type="Demo"
@@ -194,6 +209,7 @@ export function SharedPagesContent() {
               lastUpdated="1 week ago"
               status="Published"
               access="Public"
+              onClick={() => router.push("/demos")}
             />
             <SharedPageCard
               type="Guide"
@@ -202,6 +218,7 @@ export function SharedPagesContent() {
               lastUpdated="2 weeks ago"
               status="Published"
               access="Team"
+              onClick={() => router.push("/editor")}
             />
             <SharedPageCard
               type="Training"
@@ -210,6 +227,7 @@ export function SharedPagesContent() {
               lastUpdated="3 weeks ago"
               status="Draft"
               access="Team"
+              onClick={() => router.push("/document-editor")}
             />
           </div>
         </section>
@@ -291,9 +309,10 @@ interface SharedPageCardProps {
   lastUpdated: string
   status: string
   access: string
+  onClick?: () => void
 }
 
-function SharedPageCard({ type, title, views, lastUpdated, status, access }: SharedPageCardProps) {
+function SharedPageCard({ type, title, views, lastUpdated, status, access, onClick }: SharedPageCardProps) {
   const getTypeIcon = () => {
     switch (type) {
       case "Guide":
@@ -323,7 +342,10 @@ function SharedPageCard({ type, title, views, lastUpdated, status, access }: Sha
   }
 
   return (
-    <div className="group bg-white border border-[#E8E8E6] rounded-lg overflow-hidden hover:border-[#D4D4D2] hover:shadow-md hover:-translate-y-0.5 transition-all cursor-pointer relative">
+    <div
+      onClick={onClick}
+      className="group bg-white border border-[#E8E8E6] rounded-lg overflow-hidden hover:border-[#D4D4D2] hover:shadow-md hover:-translate-y-0.5 transition-all cursor-pointer relative"
+    >
       {/* Quick Actions */}
       <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity z-10 flex gap-1">
         <button className="p-1.5 bg-white/95 backdrop-blur-sm rounded shadow-lg hover:bg-white transition-colors" title="Open">

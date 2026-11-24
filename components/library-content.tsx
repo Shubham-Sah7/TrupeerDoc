@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import { useRouter } from "next/navigation"
 import { 
   Plus, Upload, Search, Filter, Play, MoreHorizontal, 
   Video, FileText, Presentation, Image, Sparkles, 
@@ -10,6 +11,7 @@ import {
 } from "lucide-react"
 
 export function LibraryContent() {
+  const router = useRouter()
   const [activeTab, setActiveTab] = useState<string>("all")
   const [activeCollection, setActiveCollection] = useState<string | null>(null)
 
@@ -29,11 +31,17 @@ export function LibraryContent() {
               </p>
             </div>
             <div className="flex items-center gap-3">
-              <button className="px-4 py-2.5 text-[13px] font-medium text-[#52525B] bg-white border border-[#E8E8E6] rounded-lg hover:border-[#D4D4D2] hover:shadow-sm transition-all">
+              <button
+                onClick={() => router.push("/record")}
+                className="px-4 py-2.5 text-[13px] font-medium text-[#52525B] bg-white border border-[#E8E8E6] rounded-lg hover:border-[#D4D4D2] hover:shadow-sm transition-all cursor-pointer"
+              >
                 <Upload className="w-4 h-4 inline mr-2" strokeWidth={1.5} />
                 Import Content
               </button>
-              <button className="px-4 py-2.5 text-[13px] font-medium text-white bg-[#6C5DD3] rounded-lg hover:bg-[#5B4EC2] hover:shadow-lg transition-all">
+              <button
+                onClick={() => router.push("/editor")}
+                className="px-4 py-2.5 text-[13px] font-medium text-white bg-[#6C5DD3] rounded-lg hover:bg-[#5B4EC2] hover:shadow-lg transition-all cursor-pointer"
+              >
                 <Plus className="w-4 h-4 inline mr-2" strokeWidth={1.5} />
                 New Content
               </button>
@@ -65,24 +73,28 @@ export function LibraryContent() {
               label="Videos"
               count={24}
               growth="+3 this week"
+              onClick={() => setActiveTab("videos")}
             />
             <OverviewCard
               icon={<FileText className="w-5 h-5" strokeWidth={1.5} />}
               label="Documentation"
               count={18}
               growth="+5 this week"
+              onClick={() => setActiveTab("documentation")}
             />
             <OverviewCard
               icon={<Presentation className="w-5 h-5" strokeWidth={1.5} />}
               label="Interactive Demos"
               count={12}
               growth="+2 this week"
+              onClick={() => setActiveTab("demos")}
             />
             <OverviewCard
               icon={<Image className="w-5 h-5" strokeWidth={1.5} />}
               label="Assets"
               count={156}
               growth="+12 this week"
+              onClick={() => setActiveTab("assets")}
             />
             <OverviewCard
               icon={<CheckCircle2 className="w-5 h-5" strokeWidth={1.5} />}
@@ -90,6 +102,7 @@ export function LibraryContent() {
               count={32}
               growth="+4 this week"
               active
+              onClick={() => setActiveTab("published")}
             />
           </div>
         </section>
@@ -168,6 +181,7 @@ export function LibraryContent() {
               title="Product Onboarding"
               lastEdited="2 hours ago"
               progress={65}
+              onClick={() => router.push("/editor")}
             />
             <QuickAccessCard
               thumbnail="/images/screenshot-2.png"
@@ -175,6 +189,7 @@ export function LibraryContent() {
               title="API Documentation"
               lastEdited="5 hours ago"
               progress={80}
+              onClick={() => router.push("/document-editor")}
             />
             <QuickAccessCard
               thumbnail="/images/screenshot-3.png"
@@ -182,6 +197,7 @@ export function LibraryContent() {
               title="Feature Walkthrough"
               lastEdited="Yesterday"
               progress={45}
+              onClick={() => router.push("/demos")}
             />
             <QuickAccessCard
               thumbnail="/images/screenshot-4.png"
@@ -189,6 +205,7 @@ export function LibraryContent() {
               title="Customer Training"
               lastEdited="2 days ago"
               progress={90}
+              onClick={() => router.push("/editor")}
             />
           </div>
         </section>
@@ -203,14 +220,17 @@ export function LibraryContent() {
             <AIRecommendationCard
               title="Generate documentation for Product Demo"
               action="Generate"
+              onClick={() => router.push("/document-editor")}
             />
             <AIRecommendationCard
               title="Translate onboarding guide to Spanish"
               action="Translate"
+              onClick={() => router.push("/ai-studio")}
             />
             <AIRecommendationCard
               title="Create interactive version of Feature Tour"
               action="Create"
+              onClick={() => router.push("/demos")}
             />
           </div>
         </section>
@@ -243,6 +263,7 @@ export function LibraryContent() {
               views={1243}
               duration="4:32"
               aiGenerated={false}
+              onClick={() => router.push("/editor")}
             />
             <ContentCard
               thumbnail="/images/screenshot-6.png"
@@ -255,6 +276,7 @@ export function LibraryContent() {
               views={856}
               duration="8 min read"
               aiGenerated={true}
+              onClick={() => router.push("/document-editor")}
             />
             <ContentCard
               thumbnail="/images/screenshot-7.png"
@@ -267,6 +289,7 @@ export function LibraryContent() {
               views={2104}
               duration="3:15"
               aiGenerated={false}
+              onClick={() => router.push("/demos")}
             />
             <ContentCard
               thumbnail="/images/screenshot-8.png"
@@ -279,6 +302,7 @@ export function LibraryContent() {
               views={3421}
               duration="2:45"
               aiGenerated={false}
+              onClick={() => router.push("/editor")}
             />
             <ContentCard
               thumbnail="/images/screenshot-1.png"
@@ -291,6 +315,7 @@ export function LibraryContent() {
               views={645}
               duration="12 min read"
               aiGenerated={true}
+              onClick={() => router.push("/document-editor")}
             />
             <ContentCard
               thumbnail="/images/screenshot-2.png"
@@ -303,6 +328,7 @@ export function LibraryContent() {
               views={1876}
               duration="5:20"
               aiGenerated={false}
+              onClick={() => router.push("/demos")}
             />
             <ContentCard
               thumbnail="/images/screenshot-3.png"
@@ -315,6 +341,7 @@ export function LibraryContent() {
               views={987}
               duration="3:50"
               aiGenerated={false}
+              onClick={() => router.push("/editor")}
             />
             <ContentCard
               thumbnail="/images/screenshot-4.png"
@@ -327,6 +354,7 @@ export function LibraryContent() {
               views={432}
               duration="15 min read"
               aiGenerated={true}
+              onClick={() => router.push("/document-editor")}
             />
           </div>
         </section>
@@ -335,17 +363,20 @@ export function LibraryContent() {
         <section className="mb-10">
           <div className="flex items-center justify-between mb-5">
             <h2 className="text-[20px] font-semibold text-[#18181B]">Template Library</h2>
-            <button className="text-[13px] font-medium text-[#6C5DD3] hover:text-[#5B4EC2] transition-colors">
-              Browse all templates
+            <button
+              onClick={() => router.push("/shared-pages")}
+              className="text-[13px] font-medium text-[#6C5DD3] hover:text-[#5B4EC2] transition-colors cursor-pointer"
+            >
+              Browse all templates →
             </button>
           </div>
           <div className="grid grid-cols-6 gap-3">
-            <TemplateCard title="Product Demo" uses="2.4k" thumbnail="/images/template/template-1.png" />
-            <TemplateCard title="Feature Walkthrough" uses="1.8k" thumbnail="/images/template/template-2.png" />
-            <TemplateCard title="Employee Training" uses="1.5k" thumbnail="/images/template/template-3.png" />
-            <TemplateCard title="Customer Onboarding" uses="1.2k" thumbnail="/images/template/template-4.png" />
-            <TemplateCard title="API Guide" uses="980" thumbnail="/images/template/template-5.png" />
-            <TemplateCard title="Release Notes" uses="756" thumbnail="/images/template/template-6.png" />
+            <TemplateCard title="Product Demo" uses="2.4k" thumbnail="/images/template/template-1.png" onClick={() => router.push("/editor")} />
+            <TemplateCard title="Feature Walkthrough" uses="1.8k" thumbnail="/images/template/template-2.png" onClick={() => router.push("/editor")} />
+            <TemplateCard title="Employee Training" uses="1.5k" thumbnail="/images/template/template-3.png" onClick={() => router.push("/editor")} />
+            <TemplateCard title="Customer Onboarding" uses="1.2k" thumbnail="/images/template/template-4.png" onClick={() => router.push("/editor")} />
+            <TemplateCard title="API Guide" uses="980" thumbnail="/images/template/template-5.png" onClick={() => router.push("/editor")} />
+            <TemplateCard title="Release Notes" uses="756" thumbnail="/images/template/template-6.png" onClick={() => router.push("/editor")} />
           </div>
         </section>
 
@@ -404,15 +435,19 @@ interface OverviewCardProps {
   count: number
   growth: string
   active?: boolean
+  onClick?: () => void
 }
 
-function OverviewCard({ icon, label, count, growth, active }: OverviewCardProps) {
+function OverviewCard({ icon, label, count, growth, active, onClick }: OverviewCardProps) {
   return (
-    <div className={`bg-white border rounded-lg p-5 transition-all ${
-      active 
-        ? "border-[#6C5DD3] shadow-[0_0_0_3px_rgba(143,140,255,0.1)]" 
-        : "border-[#E8E8E6] hover:border-[#D4D4D2]"
-    }`}>
+    <div
+      onClick={onClick}
+      className={`bg-white border rounded-lg p-5 transition-all cursor-pointer ${
+        active 
+          ? "border-[#6C5DD3] shadow-[0_0_0_3px_rgba(143,140,255,0.1)]" 
+          : "border-[#E8E8E6] hover:border-[#D4D4D2]"
+      }`}
+    >
       <div className={`p-2.5 rounded-lg inline-flex mb-3 ${active ? "bg-[#F5F4FF]" : "bg-[#F5F5F3]"}`}>
         <div className={active ? "text-[#6C5DD3]" : "text-[#52525B]"}>
           {icon}
@@ -438,7 +473,7 @@ function CollectionCard({ icon, title, count, active, onClick, highlight }: Coll
   return (
     <button
       onClick={onClick}
-      className={`flex items-center gap-3 p-4 rounded-lg border transition-all text-left ${
+      className={`flex items-center gap-3 p-4 rounded-lg border transition-all text-left cursor-pointer ${
         active
           ? "bg-[#F5F4FF] border-[#6C5DD3] shadow-sm"
           : highlight
@@ -465,11 +500,15 @@ interface QuickAccessCardProps {
   title: string
   lastEdited: string
   progress: number
+  onClick?: () => void
 }
 
-function QuickAccessCard({ thumbnail, type, title, lastEdited, progress }: QuickAccessCardProps) {
+function QuickAccessCard({ thumbnail, type, title, lastEdited, progress, onClick }: QuickAccessCardProps) {
   return (
-    <div className="group bg-white border border-[#E8E8E6] rounded-lg overflow-hidden hover:border-[#D4D4D2] hover:shadow-md hover:-translate-y-0.5 transition-all cursor-pointer">
+    <div
+      onClick={onClick}
+      className="group bg-white border border-[#E8E8E6] rounded-lg overflow-hidden hover:border-[#D4D4D2] hover:shadow-md hover:-translate-y-0.5 transition-all cursor-pointer"
+    >
       <div className="aspect-video bg-[#F5F5F3] relative overflow-hidden">
         <img 
           src={thumbnail} 
@@ -506,11 +545,15 @@ function QuickAccessCard({ thumbnail, type, title, lastEdited, progress }: Quick
 interface AIRecommendationCardProps {
   title: string
   action: string
+  onClick?: () => void
 }
 
-function AIRecommendationCard({ title, action }: AIRecommendationCardProps) {
+function AIRecommendationCard({ title, action, onClick }: AIRecommendationCardProps) {
   return (
-    <div className="bg-[#F5F4FF] border border-[#E4E1FF] rounded-lg p-4 hover:border-[#6C5DD3] hover:shadow-md hover:-translate-y-0.5 transition-all cursor-pointer group">
+    <div
+      onClick={onClick}
+      className="bg-[#F5F4FF] border border-[#E4E1FF] rounded-lg p-4 hover:border-[#6C5DD3] hover:shadow-md hover:-translate-y-0.5 transition-all cursor-pointer group"
+    >
       <div className="flex items-start gap-3 mb-3">
         <div className="p-2 bg-white rounded-md">
           <Sparkles className="w-4 h-4 text-[#6C5DD3]" strokeWidth={1.5} />
@@ -536,7 +579,7 @@ function LibraryTab({ label, count, active, onClick }: LibraryTabProps) {
   return (
     <button
       onClick={onClick}
-      className={`px-4 py-3 text-[13px] font-medium border-b-2 transition-colors ${
+      className={`px-4 py-3 text-[13px] font-medium border-b-2 transition-colors cursor-pointer ${
         active
           ? "text-[#6C5DD3] border-[#6C5DD3]"
           : "text-[#71717A] border-transparent hover:text-[#18181B]"
@@ -558,11 +601,12 @@ interface ContentCardProps {
   views: number
   duration: string
   aiGenerated: boolean
+  onClick?: () => void
 }
 
 function ContentCard({ 
   thumbnail, type, title, status, lastEdited, 
-  owner, language, views, duration, aiGenerated 
+  owner, language, views, duration, aiGenerated, onClick
 }: ContentCardProps) {
   const statusColors = {
     Published: "bg-[#F0FDF4] text-[#15803D] border-[#BBF7D0]",
@@ -571,7 +615,10 @@ function ContentCard({
   }
 
   return (
-    <div className="group bg-white border border-[#E8E8E6] rounded-lg overflow-hidden hover:border-[#D4D4D2] hover:shadow-md hover:-translate-y-0.5 transition-all cursor-pointer relative">
+    <div
+      onClick={onClick}
+      className="group bg-white border border-[#E8E8E6] rounded-lg overflow-hidden hover:border-[#D4D4D2] hover:shadow-md hover:-translate-y-0.5 transition-all cursor-pointer relative"
+    >
       {/* Quick Actions */}
       <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity z-10 flex gap-1">
         <button className="p-1.5 bg-white/95 backdrop-blur-sm rounded shadow-lg hover:bg-white transition-colors">
@@ -641,11 +688,15 @@ interface TemplateCardProps {
   title: string
   uses: string
   thumbnail: string
+  onClick?: () => void
 }
 
-function TemplateCard({ title, uses, thumbnail }: TemplateCardProps) {
+function TemplateCard({ title, uses, thumbnail, onClick }: TemplateCardProps) {
   return (
-    <div className="bg-white border border-[#E8E8E6] rounded-lg overflow-hidden hover:border-[#6C5DD3] hover:shadow-sm hover:-translate-y-0.5 transition-all cursor-pointer group">
+    <div
+      onClick={onClick}
+      className="bg-white border border-[#E8E8E6] rounded-lg overflow-hidden hover:border-[#6C5DD3] hover:shadow-sm hover:-translate-y-0.5 transition-all cursor-pointer group"
+    >
       <div className="aspect-square bg-[#F5F5F3] relative overflow-hidden">
         <img 
           src={thumbnail} 
@@ -684,7 +735,7 @@ function ActivityItem({ user, action, target, time, type }: ActivityItemProps) {
   return (
     <div className="flex items-center justify-between p-4 hover:bg-[#FAFAF8] transition-colors">
       <div className="flex items-center gap-3">
-        <div className={`w-8 h-8 rounded-full flex items-center justify-center text-[13px] font-medium ${
+        <div className={`w-8 h-8 rounded-full flex items-center justify-center ${
           isAI ? "bg-[#F5F4FF] text-[#6C5DD3]" : "bg-[#F5F5F3] text-[#52525B]"
         }`}>
           {getIcon()}

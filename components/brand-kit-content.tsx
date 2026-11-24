@@ -1,13 +1,40 @@
 "use client"
 
+import { useRef, useState } from "react"
 import { 
   Upload, Image, Type, Palette, Volume2, 
-  CheckCircle2, Plus, Edit
+  CheckCircle2, Plus, Edit, Check
 } from "lucide-react"
 
 export function BrandKitContent() {
+  const fileInputRef = useRef<HTMLInputElement>(null)
+  const [notification, setNotification] = useState<string | null>(null)
+
+  const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files[0]) {
+      const fileName = e.target.files[0].name
+      setNotification(`Uploaded brand asset "${fileName}" successfully!`)
+      setTimeout(() => setNotification(null), 3500)
+    }
+  }
+
   return (
     <main className="flex-1 overflow-auto">
+      {notification && (
+        <div className="fixed top-6 right-6 z-50 bg-[#18181B] text-white px-4 py-2.5 rounded-xl shadow-xl text-[13px] flex items-center gap-2 animate-in fade-in slide-in-from-top-2">
+          <Check className="w-4 h-4 text-[#10B981]" />
+          <span>{notification}</span>
+        </div>
+      )}
+
+      <input
+        type="file"
+        ref={fileInputRef}
+        onChange={handleFileUpload}
+        className="hidden"
+        accept="image/*,font/*,.svg,.png,.jpg"
+      />
+
       <div className="max-w-[1200px] mx-auto px-16 py-10">
         
         {/* Hero */}
@@ -21,7 +48,10 @@ export function BrandKitContent() {
                 Manage logos, colors, fonts, voiceovers, and brand guidelines in one place.
               </p>
             </div>
-            <button className="px-4 py-2.5 text-[13px] font-medium text-white bg-[#6C5DD3] rounded-lg hover:bg-[#5B4EC2] hover:shadow-lg transition-all">
+            <button
+              onClick={() => fileInputRef.current?.click()}
+              className="px-4 py-2.5 text-[13px] font-medium text-white bg-[#6C5DD3] rounded-lg hover:bg-[#5B4EC2] hover:shadow-lg transition-all cursor-pointer"
+            >
               <Upload className="w-4 h-4 inline mr-2" strokeWidth={1.5} />
               Upload Brand Assets
             </button>
@@ -68,7 +98,10 @@ export function BrandKitContent() {
         <section className="mb-12">
           <div className="flex items-center justify-between mb-5">
             <h2 className="text-[20px] font-semibold text-[#18181B]">Assets</h2>
-            <button className="text-[13px] font-medium text-[#6C5DD3] hover:text-[#5B4EC2] transition-colors">
+            <button
+              onClick={() => fileInputRef.current?.click()}
+              className="text-[13px] font-medium text-[#6C5DD3] hover:text-[#5B4EC2] transition-colors cursor-pointer"
+            >
               <Plus className="w-4 h-4 inline mr-1" strokeWidth={1.5} />
               Add Asset
             </button>

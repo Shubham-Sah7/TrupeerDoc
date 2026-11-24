@@ -1,5 +1,7 @@
 "use client"
 
+import { useState } from "react"
+import { useRouter } from "next/navigation"
 import { 
   Sparkles, ArrowRight, FileText, Presentation, 
   Languages, Zap, Video, BookOpen, Loader2,
@@ -7,6 +9,18 @@ import {
 } from "lucide-react"
 
 export function AIStudioContent() {
+  const router = useRouter()
+  const [prompt, setPrompt] = useState("")
+
+  const handleGenerate = () => {
+    if (!prompt.trim()) return
+    if (prompt.toLowerCase().includes("doc") || prompt.toLowerCase().includes("guide")) {
+      router.push("/document-editor")
+    } else {
+      router.push("/editor")
+    }
+  }
+
   return (
     <main className="flex-1 overflow-auto">
       <div className="max-w-[1200px] mx-auto px-16 py-12">
@@ -30,10 +44,15 @@ export function AIStudioContent() {
           <div className="bg-white border-2 border-[#E8E8E6] rounded-2xl p-8 hover:border-[#6C5DD3] transition-all shadow-sm">
             <div className="relative">
               <textarea
-                placeholder="Ask AI to help you create..."
+                value={prompt}
+                onChange={(e) => setPrompt(e.target.value)}
+                placeholder="Ask AI to help you create documentation, interactive tours, or video scripts..."
                 className="w-full h-32 text-[16px] bg-transparent resize-none focus:outline-none text-[#18181B] placeholder:text-[#A1A1AA]"
               />
-              <button className="absolute bottom-0 right-0 px-5 py-2.5 bg-[#6C5DD3] text-white text-[14px] font-medium rounded-lg hover:bg-[#5B4EC2] transition-all shadow-sm">
+              <button
+                onClick={handleGenerate}
+                className="absolute bottom-0 right-0 px-5 py-2.5 bg-[#6C5DD3] text-white text-[14px] font-medium rounded-lg hover:bg-[#5B4EC2] transition-all shadow-sm cursor-pointer"
+              >
                 Generate
                 <ArrowRight className="w-4 h-4 inline ml-2" strokeWidth={2} />
               </button>
@@ -43,10 +62,10 @@ export function AIStudioContent() {
           {/* Example Prompts */}
           <div className="flex items-center justify-center gap-2 flex-wrap mt-4">
             <span className="text-[12px] text-[#A1A1AA]">Try:</span>
-            <ExamplePrompt text="Generate onboarding documentation" />
-            <ExamplePrompt text="Create a sales demo" />
-            <ExamplePrompt text="Translate this guide" />
-            <ExamplePrompt text="Improve narration" />
+            <ExamplePrompt text="Generate onboarding documentation" onSelect={(t) => setPrompt(t)} />
+            <ExamplePrompt text="Create a sales demo" onSelect={(t) => setPrompt(t)} />
+            <ExamplePrompt text="Translate this guide" onSelect={(t) => setPrompt(t)} />
+            <ExamplePrompt text="Improve narration" onSelect={(t) => setPrompt(t)} />
           </div>
         </section>
 
@@ -58,31 +77,37 @@ export function AIStudioContent() {
               icon={<FileText className="w-6 h-6" strokeWidth={1.5} />}
               title="Generate Documentation"
               description="Create guides from videos and recordings"
+              onClick={() => router.push("/document-editor")}
             />
             <AIActionCard
               icon={<Presentation className="w-6 h-6" strokeWidth={1.5} />}
               title="Create Interactive Demo"
               description="Build product walkthroughs automatically"
+              onClick={() => router.push("/demos")}
             />
             <AIActionCard
               icon={<Zap className="w-6 h-6" strokeWidth={1.5} />}
               title="Improve Narration"
               description="Enhance voice quality and clarity"
+              onClick={() => setPrompt("Improve voiceover narration clarity and professional tone")}
             />
             <AIActionCard
               icon={<Languages className="w-6 h-6" strokeWidth={1.5} />}
               title="Translate Content"
               description="Convert to multiple languages"
+              onClick={() => setPrompt("Translate content into Spanish, French, and German")}
             />
             <AIActionCard
               icon={<Video className="w-6 h-6" strokeWidth={1.5} />}
               title="Generate Script"
               description="Create video scripts from outlines"
+              onClick={() => setPrompt("Write a structured 2-minute product walkthrough video script")}
             />
             <AIActionCard
               icon={<BookOpen className="w-6 h-6" strokeWidth={1.5} />}
               title="Create Training Guide"
               description="Build educational materials"
+              onClick={() => router.push("/document-editor")}
             />
           </div>
         </section>
@@ -123,21 +148,25 @@ export function AIStudioContent() {
               title="Your onboarding video can become a guide"
               description="Convert Product Onboarding into step-by-step documentation"
               action="Generate Guide"
+              onClick={() => router.push("/document-editor")}
             />
             <RecommendationCard
               title="Your API documentation needs updating"
               description="Refresh outdated content with latest information"
               action="Update Now"
+              onClick={() => router.push("/document-editor")}
             />
             <RecommendationCard
               title="Translate your top-performing content"
               description="Product Demo has 3.4k views - add Spanish & French"
               action="Translate"
+              onClick={() => setPrompt("Translate Product Demo documentation into Spanish & French")}
             />
             <RecommendationCard
               title="Create a demo from your latest recording"
               description="Feature Walkthrough can become an interactive demo"
               action="Create Demo"
+              onClick={() => router.push("/demos")}
             />
           </div>
         </section>
@@ -147,13 +176,13 @@ export function AIStudioContent() {
           <h2 className="text-[22px] font-semibold text-[#18181B] mb-6">AI Playground</h2>
           <div className="bg-white border border-[#E8E8E6] rounded-xl p-6">
             <p className="text-[14px] text-[#71717A] mb-4">
-              Experiment with AI capabilities. Try different prompts to discover what's possible.
+              Experiment with AI capabilities. Try different prompts to discover what&apos;s possible.
             </p>
             <div className="grid grid-cols-2 gap-3">
-              <PlaygroundPrompt text="Turn this into a customer onboarding guide" />
-              <PlaygroundPrompt text="Generate FAQ from this recording" />
-              <PlaygroundPrompt text="Create a product walkthrough" />
-              <PlaygroundPrompt text="Summarize documentation" />
+              <PlaygroundPrompt text="Turn this into a customer onboarding guide" onSelect={(t) => setPrompt(t)} />
+              <PlaygroundPrompt text="Generate FAQ from this recording" onSelect={(t) => setPrompt(t)} />
+              <PlaygroundPrompt text="Create a product walkthrough" onSelect={(t) => setPrompt(t)} />
+              <PlaygroundPrompt text="Summarize documentation" onSelect={(t) => setPrompt(t)} />
             </div>
           </div>
         </section>
@@ -166,41 +195,49 @@ export function AIStudioContent() {
               type="Documentation"
               title="API Integration Guide"
               date="2 hours ago"
+              onClick={() => router.push("/document-editor")}
             />
             <GeneratedContentCard
               type="Script"
               title="Product Demo Script"
               date="5 hours ago"
+              onClick={() => router.push("/editor")}
             />
             <GeneratedContentCard
               type="Demo"
               title="Onboarding Walkthrough"
               date="Yesterday"
+              onClick={() => router.push("/demos")}
             />
             <GeneratedContentCard
               type="Translation"
               title="Spanish Guide"
               date="2 days ago"
+              onClick={() => router.push("/document-editor")}
             />
             <GeneratedContentCard
               type="Training"
               title="Employee Training"
               date="3 days ago"
+              onClick={() => router.push("/document-editor")}
             />
             <GeneratedContentCard
               type="Documentation"
               title="Feature Overview"
               date="1 week ago"
+              onClick={() => router.push("/document-editor")}
             />
             <GeneratedContentCard
               type="Script"
               title="Sales Presentation"
               date="1 week ago"
+              onClick={() => router.push("/editor")}
             />
             <GeneratedContentCard
               type="Demo"
               title="Product Tour"
               date="2 weeks ago"
+              onClick={() => router.push("/demos")}
             />
           </div>
         </section>
@@ -241,11 +278,15 @@ export function AIStudioContent() {
 
 interface ExamplePromptProps {
   text: string
+  onSelect: (text: string) => void
 }
 
-function ExamplePrompt({ text }: ExamplePromptProps) {
+function ExamplePrompt({ text, onSelect }: ExamplePromptProps) {
   return (
-    <button className="text-[12px] text-[#71717A] bg-white border border-[#E8E8E6] px-3 py-1.5 rounded-full hover:border-[#6C5DD3] hover:text-[#6C5DD3] transition-all">
+    <button
+      onClick={() => onSelect(text)}
+      className="text-[12px] text-[#71717A] bg-white border border-[#E8E8E6] px-3 py-1.5 rounded-full hover:border-[#6C5DD3] hover:text-[#6C5DD3] transition-all cursor-pointer"
+    >
       {text}
     </button>
   )
@@ -255,11 +296,15 @@ interface AIActionCardProps {
   icon: React.ReactNode
   title: string
   description: string
+  onClick?: () => void
 }
 
-function AIActionCard({ icon, title, description }: AIActionCardProps) {
+function AIActionCard({ icon, title, description, onClick }: AIActionCardProps) {
   return (
-    <button className="group bg-white border border-[#E8E8E6] rounded-xl p-6 hover:border-[#6C5DD3] hover:shadow-lg hover:-translate-y-1 transition-all text-left">
+    <button
+      onClick={onClick}
+      className="group bg-white border border-[#E8E8E6] rounded-xl p-6 hover:border-[#6C5DD3] hover:shadow-lg hover:-translate-y-1 transition-all text-left cursor-pointer"
+    >
       <div className="p-3 bg-[#F5F5F3] rounded-lg inline-flex mb-4 group-hover:bg-[#F5F4FF] transition-colors">
         <div className="text-[#52525B] group-hover:text-[#6C5DD3] transition-colors">
           {icon}
@@ -312,11 +357,15 @@ interface RecommendationCardProps {
   title: string
   description: string
   action: string
+  onClick?: () => void
 }
 
-function RecommendationCard({ title, description, action }: RecommendationCardProps) {
+function RecommendationCard({ title, description, action, onClick }: RecommendationCardProps) {
   return (
-    <div className="bg-[#F5F4FF] border border-[#E4E1FF] rounded-lg p-5 hover:border-[#6C5DD3] hover:shadow-md hover:-translate-y-0.5 transition-all cursor-pointer group">
+    <div
+      onClick={onClick}
+      className="bg-[#F5F4FF] border border-[#E4E1FF] rounded-lg p-5 hover:border-[#6C5DD3] hover:shadow-md hover:-translate-y-0.5 transition-all cursor-pointer group"
+    >
       <div className="flex items-start gap-3 mb-4">
         <div className="p-2 bg-white rounded-md">
           <Sparkles className="w-4 h-4 text-[#6C5DD3]" strokeWidth={1.5} />
@@ -336,11 +385,15 @@ function RecommendationCard({ title, description, action }: RecommendationCardPr
 
 interface PlaygroundPromptProps {
   text: string
+  onSelect: (text: string) => void
 }
 
-function PlaygroundPrompt({ text }: PlaygroundPromptProps) {
+function PlaygroundPrompt({ text, onSelect }: PlaygroundPromptProps) {
   return (
-    <button className="text-left p-4 bg-[#F5F5F3] rounded-lg hover:bg-[#F5F4FF] hover:border hover:border-[#6C5DD3] transition-all group">
+    <button
+      onClick={() => onSelect(text)}
+      className="text-left p-4 bg-[#F5F5F3] rounded-lg hover:bg-[#F5F4FF] hover:border hover:border-[#6C5DD3] transition-all group cursor-pointer"
+    >
       <p className="text-[13px] text-[#52525B] group-hover:text-[#18181B]">{text}</p>
     </button>
   )
@@ -350,9 +403,10 @@ interface GeneratedContentCardProps {
   type: string
   title: string
   date: string
+  onClick?: () => void
 }
 
-function GeneratedContentCard({ type, title, date }: GeneratedContentCardProps) {
+function GeneratedContentCard({ type, title, date, onClick }: GeneratedContentCardProps) {
   const getIcon = () => {
     switch (type) {
       case "Documentation": return <FileText className="w-4 h-4" strokeWidth={1.5} />
@@ -365,7 +419,10 @@ function GeneratedContentCard({ type, title, date }: GeneratedContentCardProps) 
   }
 
   return (
-    <div className="bg-white border border-[#E8E8E6] rounded-lg p-4 hover:border-[#D4D4D2] hover:shadow-sm hover:-translate-y-0.5 transition-all cursor-pointer">
+    <div
+      onClick={onClick}
+      className="bg-white border border-[#E8E8E6] rounded-lg p-4 hover:border-[#D4D4D2] hover:shadow-sm hover:-translate-y-0.5 transition-all cursor-pointer"
+    >
       <div className="flex items-center gap-2 mb-3">
         <div className="p-1.5 bg-[#F5F4FF] rounded text-[#6C5DD3]">
           {getIcon()}

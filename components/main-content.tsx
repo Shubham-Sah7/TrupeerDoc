@@ -65,20 +65,24 @@ export function MainContent() {
               icon={<Upload className="w-[18px] h-[18px]" strokeWidth={1.5} />}
               title="Upload Screenshots"
               description="Build a guide from images or recordings"
-              disabled
+              onClick={() => setShowUploadFlow(true)}
             />
             <QuickAction
               icon={<FileText className="w-[18px] h-[18px]" strokeWidth={1.5} />}
               title="Create Documentation"
               description="Start from a proven template"
-              disabled
+              onClick={() => setShowTemplateFlow(true)}
             />
           </div>
         </section>
 
         {/* Continue Working */}
         <section className="mb-16 max-w-[1400px]">
-          <SectionHeader title="Continue Working" action="View all" />
+          <SectionHeader
+            title="Continue Working"
+            action="View all"
+            onAction={() => router.push("/projects")}
+          />
           <div className="grid grid-cols-3 gap-5">
             <DocCard
               title="Product Onboarding Guide"
@@ -99,7 +103,7 @@ export function MainContent() {
               views={1204}
               contributors={2}
               screenshotIndex={1}
-              disabled
+              onClick={() => router.push("/document-editor")}
             />
             <DocCard
               title="Employee Training Guide"
@@ -109,62 +113,100 @@ export function MainContent() {
               views={47}
               contributors={1}
               screenshotIndex={2}
-              disabled
+              onClick={() => router.push("/editor")}
             />
           </div>
         </section>
 
         {/* AI Recommendations */}
         <section className="mb-16 max-w-[1400px]">
-          <SectionHeader title="AI Recommendations" />
-          <div className="grid grid-cols-3 gap-4 opacity-40 pointer-events-none select-none">
+          <SectionHeader
+            title="AI Recommendations"
+            action="Explore AI Studio"
+            onAction={() => router.push("/ai-studio")}
+          />
+          <div className="grid grid-cols-3 gap-4">
             <RecommendationCard
               icon={<FileText className="w-4 h-4" strokeWidth={1.5} />}
               title="Generate SOP"
               description="Turn your workflow recording into a standard operating procedure."
               action="Generate"
+              onClick={() => router.push("/ai-studio")}
             />
             <RecommendationCard
               icon={<Layers className="w-4 h-4" strokeWidth={1.5} />}
               title="Create Interactive Walkthrough"
               description="Convert your guide into a clickable product tour."
               action="Create"
+              onClick={() => router.push("/demos")}
             />
             <RecommendationCard
               icon={<BookOpen className="w-4 h-4" strokeWidth={1.5} />}
               title="Generate API Documentation"
               description="Produce structured API docs from your workflow capture."
               action="Generate"
+              onClick={() => router.push("/document-editor")}
             />
             <RecommendationCard
               icon={<Sparkles className="w-4 h-4" strokeWidth={1.5} />}
               title="Improve Existing Documentation"
               description="AI rewrites, clarifies, and fills gaps in your current docs."
               action="Improve"
+              onClick={() => router.push("/ai-studio")}
             />
             <RecommendationCard
               icon={<Globe className="w-4 h-4" strokeWidth={1.5} />}
               title="Translate Documentation"
               description="Instantly localize guides into Spanish, French, German, and more."
               action="Translate"
+              onClick={() => router.push("/ai-studio")}
             />
             <RecommendationCard
               icon={<BookOpen className="w-4 h-4" strokeWidth={1.5} />}
               title="Generate Knowledge Base"
               description="Organize all your guides into a searchable knowledge hub."
               action="Generate"
+              onClick={() => router.push("/knowledge")}
             />
           </div>
         </section>
 
         {/* Popular Templates */}
         <section className="max-w-[1400px]">
-          <SectionHeader title="Popular Templates" action="Browse all" />
-          <div className="grid grid-cols-4 gap-4 opacity-40 pointer-events-none select-none">
-            <TemplateCard title="Product Onboarding" category="Onboarding" uses="3.1k" src="/images/template/template-1.png" />
-            <TemplateCard title="API Documentation"  category="Technical"  uses="2.4k" src="/images/template/template-2.png" />
-            <TemplateCard title="Employee Training"  category="Training"   uses="1.9k" src="/images/template/template-3.png" />
-            <TemplateCard title="Standard SOP"       category="Operations" uses="1.6k" src="/images/template/template-4.png" />
+          <SectionHeader
+            title="Popular Templates"
+            action="Browse all"
+            onAction={() => router.push("/shared-pages")}
+          />
+          <div className="grid grid-cols-4 gap-4">
+            <TemplateCard
+              title="Product Onboarding"
+              category="Onboarding"
+              uses="3.1k"
+              src="/images/template/template-1.png"
+              onClick={() => setShowTemplateFlow(true)}
+            />
+            <TemplateCard
+              title="API Documentation"
+              category="Technical"
+              uses="2.4k"
+              src="/images/template/template-2.png"
+              onClick={() => setShowTemplateFlow(true)}
+            />
+            <TemplateCard
+              title="Employee Training"
+              category="Training"
+              uses="1.9k"
+              src="/images/template/template-3.png"
+              onClick={() => setShowTemplateFlow(true)}
+            />
+            <TemplateCard
+              title="Standard SOP"
+              category="Operations"
+              uses="1.6k"
+              src="/images/template/template-4.png"
+              onClick={() => setShowTemplateFlow(true)}
+            />
           </div>
         </section>
 
@@ -175,12 +217,17 @@ export function MainContent() {
 
 // ── Shared ────────────────────────────────────────────────────────────────────
 
-function SectionHeader({ title, action }: { title: string; action?: string }) {
+function SectionHeader({
+  title, action, onAction,
+}: { title: string; action?: string; onAction?: () => void }) {
   return (
     <div className="flex items-center justify-between mb-5">
       <h2 className="text-[20px] font-semibold text-[#18181B]">{title}</h2>
       {action && (
-        <button className="text-[13px] text-[#6C5DD3] hover:text-[#5B4EC2] font-medium transition-colors flex items-center gap-1.5">
+        <button
+          onClick={onAction}
+          className="text-[13px] text-[#6C5DD3] hover:text-[#5B4EC2] font-medium transition-colors flex items-center gap-1.5 cursor-pointer"
+        >
           {action}
           <ArrowRight className="w-4 h-4" strokeWidth={1.5} />
         </button>
@@ -213,7 +260,7 @@ function QuickAction({
     <button
       onClick={onClick}
       className={cn(
-        "group flex items-center gap-3.5 px-5 py-4 rounded-[10px] border text-left transition-all duration-200 active:scale-[0.98]",
+        "group flex items-center gap-3.5 px-5 py-4 rounded-[10px] border text-left transition-all duration-200 active:scale-[0.98] cursor-pointer",
         primary
           ? "bg-[#6C5DD3] border-[#6C5DD3] hover:bg-[#5B4EC2] hover:border-[#5B4EC2] hover:shadow-lg"
           : "border-[#E4E4E7] bg-white hover:border-[#D4D4D8] hover:shadow-md"
@@ -314,10 +361,13 @@ function DocCard({
 // ── AI Recommendations ────────────────────────────────────────────────────────
 
 function RecommendationCard({
-  icon, title, description, action,
-}: { icon: React.ReactNode; title: string; description: string; action: string }) {
+  icon, title, description, action, onClick,
+}: { icon: React.ReactNode; title: string; description: string; action: string; onClick?: () => void }) {
   return (
-    <div className="group bg-white border border-[#E4E4E7] rounded-[10px] p-4 hover:border-[#E4E1FF] hover:shadow-sm transition-all duration-200 cursor-pointer">
+    <div
+      onClick={onClick}
+      className="group bg-white border border-[#E4E4E7] rounded-[10px] p-4 hover:border-[#6C5DD3] hover:shadow-sm transition-all duration-200 cursor-pointer"
+    >
       <div className="flex items-start gap-3 mb-3">
         <div className="p-2 bg-[#F5F4FF] rounded-[8px] flex-shrink-0 group-hover:bg-[#E4E1FF] transition-colors">
           <div className="text-[#6C5DD3]">{icon}</div>
@@ -327,7 +377,7 @@ function RecommendationCard({
           <p className="text-[12px] text-[#71717A] leading-relaxed">{description}</p>
         </div>
       </div>
-      <button className="inline-flex items-center gap-1.5 text-[12px] font-medium text-[#6C5DD3] hover:text-[#5B4EC2] transition-colors">
+      <button className="inline-flex items-center gap-1.5 text-[12px] font-medium text-[#6C5DD3] group-hover:text-[#5B4EC2] transition-colors">
         {action}
         <ArrowRight className="w-3.5 h-3.5" strokeWidth={1.5} />
       </button>
@@ -337,9 +387,14 @@ function RecommendationCard({
 
 // ── Template Card ─────────────────────────────────────────────────────────────
 
-function TemplateCard({ title, category, uses, src }: { title: string; category: string; uses: string; src: string }) {
+function TemplateCard({
+  title, category, uses, src, onClick,
+}: { title: string; category: string; uses: string; src: string; onClick?: () => void }) {
   return (
-    <div className="group bg-white border border-[#E4E4E7] rounded-[12px] overflow-hidden hover:border-[#D4D4D8] hover:shadow-md hover:-translate-y-0.5 transition-all duration-200 cursor-pointer">
+    <div
+      onClick={onClick}
+      className="group bg-white border border-[#E4E4E7] rounded-[12px] overflow-hidden hover:border-[#D4D4D8] hover:shadow-md hover:-translate-y-0.5 transition-all duration-200 cursor-pointer"
+    >
       <div className="relative overflow-hidden" style={{ aspectRatio: "16/10" }}>
         <Image
           src={src}

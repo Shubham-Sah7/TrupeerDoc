@@ -5,8 +5,11 @@ import {
   Share2, CheckCircle2, Eye, Clock, Sparkles,
   ArrowRight, MoreHorizontal, Filter, Search
 } from "lucide-react"
+import { useRouter } from "next/navigation"
 
 export function DocumentsContent() {
+  const router = useRouter()
+
   return (
     <main className="flex-1 overflow-auto">
       <div className="max-w-[1400px] mx-auto px-16 py-10">
@@ -23,11 +26,17 @@ export function DocumentsContent() {
               </p>
             </div>
             <div className="flex items-center gap-3">
-              <button className="px-4 py-2.5 text-[13px] font-medium text-[#52525B] bg-white border border-[#E8E8E6] rounded-lg hover:border-[#D4D4D2] hover:shadow-sm transition-all">
+              <button
+                onClick={() => router.push("/record")}
+                className="px-4 py-2.5 text-[13px] font-medium text-[#52525B] bg-white border border-[#E8E8E6] rounded-lg hover:border-[#D4D4D2] hover:shadow-sm transition-all cursor-pointer"
+              >
                 <Sparkles className="w-4 h-4 inline mr-2" strokeWidth={1.5} />
                 Generate From Recording
               </button>
-              <button className="px-4 py-2.5 text-[13px] font-medium text-white bg-[#6C5DD3] rounded-lg hover:bg-[#5B4EC2] hover:shadow-lg transition-all">
+              <button
+                onClick={() => router.push("/document-editor")}
+                className="px-4 py-2.5 text-[13px] font-medium text-white bg-[#6C5DD3] rounded-lg hover:bg-[#5B4EC2] hover:shadow-lg transition-all cursor-pointer"
+              >
                 <Plus className="w-4 h-4 inline mr-2" strokeWidth={2} />
                 Create Document
               </button>
@@ -43,21 +52,25 @@ export function DocumentsContent() {
               icon={<FileText className="w-6 h-6" strokeWidth={1.5} />}
               title="Blank Document"
               description="Start from scratch"
+              onClick={() => router.push("/document-editor")}
             />
             <QuickStartCard
               icon={<Video className="w-6 h-6" strokeWidth={1.5} />}
               title="From Video"
               description="Generate from recording"
+              onClick={() => router.push("/record")}
             />
             <QuickStartCard
               icon={<Upload className="w-6 h-6" strokeWidth={1.5} />}
               title="From Recording"
               description="Upload and convert"
+              onClick={() => router.push("/record")}
             />
             <QuickStartCard
               icon={<FileText className="w-6 h-6" strokeWidth={1.5} />}
               title="Use Template"
               description="Start with a template"
+              onClick={() => router.push("/shared-pages")}
             />
           </div>
         </section>
@@ -73,6 +86,7 @@ export function DocumentsContent() {
               status="Draft"
               readingTime="8 min"
               progress={65}
+              onClick={() => router.push("/document-editor")}
             />
             <ContinueWorkingCard
               title="API Integration Documentation"
@@ -81,6 +95,7 @@ export function DocumentsContent() {
               status="Review"
               readingTime="12 min"
               progress={90}
+              onClick={() => router.push("/document-editor")}
             />
             <ContinueWorkingCard
               title="Feature Walkthrough"
@@ -89,6 +104,7 @@ export function DocumentsContent() {
               status="Draft"
               readingTime="6 min"
               progress={45}
+              onClick={() => router.push("/document-editor")}
             />
             <ContinueWorkingCard
               title="Customer Training Manual"
@@ -97,6 +113,7 @@ export function DocumentsContent() {
               status="Published"
               readingTime="15 min"
               progress={100}
+              onClick={() => router.push("/document-editor")}
             />
           </div>
         </section>
@@ -105,12 +122,12 @@ export function DocumentsContent() {
         <section className="mb-12">
           <h2 className="text-[20px] font-semibold text-[#18181B] mb-5">Templates</h2>
           <div className="grid grid-cols-6 gap-3">
-            <TemplateCard title="Product Guide" thumbnail="/images/template/template-1.png" />
-            <TemplateCard title="SOP" thumbnail="/images/template/template-2.png" />
-            <TemplateCard title="Onboarding Guide" thumbnail="/images/template/template-3.png" />
-            <TemplateCard title="API Documentation" thumbnail="/images/template/template-4.png" />
-            <TemplateCard title="Training Material" thumbnail="/images/template/template-5.png" />
-            <TemplateCard title="Release Notes" thumbnail="/images/template/template-6.png" />
+            <TemplateCard title="Product Guide" thumbnail="/images/template/template-1.png" onClick={() => router.push("/document-editor")} />
+            <TemplateCard title="SOP" thumbnail="/images/template/template-2.png" onClick={() => router.push("/document-editor")} />
+            <TemplateCard title="Onboarding Guide" thumbnail="/images/template/template-3.png" onClick={() => router.push("/document-editor")} />
+            <TemplateCard title="API Documentation" thumbnail="/images/template/template-4.png" onClick={() => router.push("/document-editor")} />
+            <TemplateCard title="Training Material" thumbnail="/images/template/template-5.png" onClick={() => router.push("/document-editor")} />
+            <TemplateCard title="Release Notes" thumbnail="/images/template/template-6.png" onClick={() => router.push("/document-editor")} />
           </div>
         </section>
 
@@ -125,16 +142,19 @@ export function DocumentsContent() {
               title="Complete Setup Guide"
               source="Product Walkthrough Video"
               readingTime="10 min"
+              onClick={() => router.push("/document-editor")}
             />
             <AIGeneratedCard
               title="Feature Documentation"
               source="Screen Recording"
               readingTime="7 min"
+              onClick={() => router.push("/document-editor")}
             />
             <AIGeneratedCard
               title="Interactive Demo Guide"
               source="Product Demo"
               readingTime="5 min"
+              onClick={() => router.push("/document-editor")}
             />
           </div>
         </section>
@@ -164,14 +184,17 @@ export function DocumentsContent() {
             <AISuggestionCard
               title="Generate document from latest recording"
               description="Product Demo (4:32)"
+              onClick={() => router.push("/record")}
             />
             <AISuggestionCard
               title="Update outdated guide"
               description="API Documentation needs refresh"
+              onClick={() => router.push("/document-editor")}
             />
             <AISuggestionCard
               title="Create onboarding version"
               description="From Feature Walkthrough"
+              onClick={() => router.push("/ai-studio")}
             />
           </div>
         </section>
@@ -187,6 +210,7 @@ export function DocumentsContent() {
               owner="Sarah Chen"
               readingTime="8 min"
               status="Published"
+              onClick={() => router.push("/document-editor")}
             />
             <DocumentCard
               title="API Authentication Guide"
@@ -195,6 +219,7 @@ export function DocumentsContent() {
               owner="Michael Park"
               readingTime="12 min"
               status="Published"
+              onClick={() => router.push("/document-editor")}
             />
             <DocumentCard
               title="Customer Onboarding Checklist"
@@ -203,6 +228,7 @@ export function DocumentsContent() {
               owner="John Smith"
               readingTime="6 min"
               status="Review"
+              onClick={() => router.push("/document-editor")}
             />
             <DocumentCard
               title="Feature Release Notes"
@@ -211,6 +237,7 @@ export function DocumentsContent() {
               owner="Sarah Chen"
               readingTime="4 min"
               status="Published"
+              onClick={() => router.push("/document-editor")}
             />
             <DocumentCard
               title="Internal SOP Documentation"
@@ -219,6 +246,7 @@ export function DocumentsContent() {
               owner="Alex Johnson"
               readingTime="10 min"
               status="Draft"
+              onClick={() => router.push("/document-editor")}
             />
             <DocumentCard
               title="Training Manual v2"
@@ -227,6 +255,7 @@ export function DocumentsContent() {
               owner="Michael Park"
               readingTime="15 min"
               status="Published"
+              onClick={() => router.push("/document-editor")}
             />
             <DocumentCard
               title="Help Center Article"
@@ -235,6 +264,7 @@ export function DocumentsContent() {
               owner="John Smith"
               readingTime="5 min"
               status="Draft"
+              onClick={() => router.push("/document-editor")}
             />
             <DocumentCard
               title="Product Walkthrough"
@@ -243,6 +273,7 @@ export function DocumentsContent() {
               owner="Sarah Chen"
               readingTime="9 min"
               status="Review"
+              onClick={() => router.push("/document-editor")}
             />
           </div>
         </section>
@@ -289,11 +320,15 @@ interface QuickStartCardProps {
   icon: React.ReactNode
   title: string
   description: string
+  onClick?: () => void
 }
 
-function QuickStartCard({ icon, title, description }: QuickStartCardProps) {
+function QuickStartCard({ icon, title, description, onClick }: QuickStartCardProps) {
   return (
-    <button className="group flex flex-col items-center justify-center p-6 bg-white border border-[#E8E8E6] rounded-lg hover:border-[#6C5DD3] hover:shadow-md hover:-translate-y-0.5 transition-all">
+    <button
+      onClick={onClick}
+      className="group flex flex-col items-center justify-center p-6 bg-white border border-[#E8E8E6] rounded-lg hover:border-[#6C5DD3] hover:shadow-md hover:-translate-y-0.5 transition-all cursor-pointer"
+    >
       <div className="p-3 bg-[#F5F5F3] rounded-lg mb-3 group-hover:bg-[#F5F4FF] transition-colors">
         <div className="text-[#52525B] group-hover:text-[#6C5DD3] transition-colors">
           {icon}
@@ -312,9 +347,10 @@ interface ContinueWorkingCardProps {
   status: string
   readingTime: string
   progress: number
+  onClick?: () => void
 }
 
-function ContinueWorkingCard({ title, type, lastUpdated, status, readingTime, progress }: ContinueWorkingCardProps) {
+function ContinueWorkingCard({ title, type, lastUpdated, status, readingTime, progress, onClick }: ContinueWorkingCardProps) {
   const statusColors = {
     Published: "bg-[#F0FDF4] text-[#15803D] border-[#BBF7D0]",
     Draft: "bg-[#F5F5F3] text-[#52525B] border-[#E8E8E6]",
@@ -322,7 +358,10 @@ function ContinueWorkingCard({ title, type, lastUpdated, status, readingTime, pr
   }
 
   return (
-    <div className="group bg-white border border-[#E8E8E6] rounded-lg p-4 hover:border-[#D4D4D2] hover:shadow-md hover:-translate-y-0.5 transition-all cursor-pointer">
+    <div
+      onClick={onClick}
+      className="group bg-white border border-[#E8E8E6] rounded-lg p-4 hover:border-[#D4D4D2] hover:shadow-md hover:-translate-y-0.5 transition-all cursor-pointer"
+    >
       <div className="flex items-start justify-between mb-3">
         <span className="text-[11px] bg-[#F5F5F3] text-[#52525B] px-2 py-1 rounded font-medium">
           {type}
@@ -351,7 +390,7 @@ function ContinueWorkingCard({ title, type, lastUpdated, status, readingTime, pr
         </div>
       </div>
 
-      <button className="w-full py-1.5 text-[12px] font-medium text-[#6C5DD3] bg-[#F5F4FF] rounded hover:bg-[#E4E1FF] transition-colors opacity-0 group-hover:opacity-100">
+      <button className="w-full py-1.5 text-[12px] font-medium text-[#6C5DD3] bg-[#F5F4FF] rounded hover:bg-[#E4E1FF] transition-colors">
         Continue Editing
       </button>
     </div>
@@ -361,11 +400,15 @@ function ContinueWorkingCard({ title, type, lastUpdated, status, readingTime, pr
 interface TemplateCardProps {
   title: string
   thumbnail: string
+  onClick?: () => void
 }
 
-function TemplateCard({ title, thumbnail }: TemplateCardProps) {
+function TemplateCard({ title, thumbnail, onClick }: TemplateCardProps) {
   return (
-    <button className="bg-white border border-[#E8E8E6] rounded-lg overflow-hidden hover:border-[#6C5DD3] hover:shadow-sm hover:-translate-y-0.5 transition-all group">
+    <button
+      onClick={onClick}
+      className="bg-white border border-[#E8E8E6] rounded-lg overflow-hidden hover:border-[#6C5DD3] hover:shadow-sm hover:-translate-y-0.5 transition-all group cursor-pointer"
+    >
       <div className="aspect-square bg-[#FAFAF9] relative overflow-hidden">
         <img 
           src={thumbnail} 
@@ -385,11 +428,15 @@ interface AIGeneratedCardProps {
   title: string
   source: string
   readingTime: string
+  onClick?: () => void
 }
 
-function AIGeneratedCard({ title, source, readingTime }: AIGeneratedCardProps) {
+function AIGeneratedCard({ title, source, readingTime, onClick }: AIGeneratedCardProps) {
   return (
-    <div className="bg-[#F5F4FF] border border-[#E4E1FF] rounded-lg p-5 hover:border-[#6C5DD3] hover:shadow-md hover:-translate-y-0.5 transition-all cursor-pointer group">
+    <div
+      onClick={onClick}
+      className="bg-[#F5F4FF] border border-[#E4E1FF] rounded-lg p-5 hover:border-[#6C5DD3] hover:shadow-md hover:-translate-y-0.5 transition-all cursor-pointer group"
+    >
       <div className="flex items-start gap-3 mb-4">
         <div className="p-2 bg-white rounded-md">
           <Sparkles className="w-4 h-4 text-[#6C5DD3]" strokeWidth={1.5} />
@@ -405,7 +452,7 @@ function AIGeneratedCard({ title, source, readingTime }: AIGeneratedCardProps) {
           <Clock className="w-3 h-3" strokeWidth={1.5} />
           {readingTime}
         </div>
-        <button className="text-[12px] font-medium text-[#6C5DD3] opacity-0 group-hover:opacity-100 transition-opacity">
+        <button className="text-[12px] font-medium text-[#6C5DD3] group-hover:underline">
           Open →
         </button>
       </div>
@@ -416,11 +463,15 @@ function AIGeneratedCard({ title, source, readingTime }: AIGeneratedCardProps) {
 interface AISuggestionCardProps {
   title: string
   description: string
+  onClick?: () => void
 }
 
-function AISuggestionCard({ title, description }: AISuggestionCardProps) {
+function AISuggestionCard({ title, description, onClick }: AISuggestionCardProps) {
   return (
-    <div className="bg-white border border-[#E8E8E6] rounded-lg p-5 hover:border-[#6C5DD3] hover:shadow-md hover:-translate-y-0.5 transition-all cursor-pointer group">
+    <div
+      onClick={onClick}
+      className="bg-white border border-[#E8E8E6] rounded-lg p-5 hover:border-[#6C5DD3] hover:shadow-md hover:-translate-y-0.5 transition-all cursor-pointer group"
+    >
       <div className="flex items-start gap-3 mb-4">
         <div className="p-2 bg-[#F5F4FF] rounded-md">
           <Sparkles className="w-4 h-4 text-[#6C5DD3]" strokeWidth={1.5} />
@@ -445,9 +496,10 @@ interface DocumentCardProps {
   owner: string
   readingTime: string
   status: string
+  onClick?: () => void
 }
 
-function DocumentCard({ title, category, lastUpdated, owner, readingTime, status }: DocumentCardProps) {
+function DocumentCard({ title, category, lastUpdated, owner, readingTime, status, onClick }: DocumentCardProps) {
   const statusColors = {
     Published: "bg-[#F0FDF4] text-[#15803D] border-[#BBF7D0]",
     Draft: "bg-[#F5F5F3] text-[#52525B] border-[#E8E8E6]",
@@ -455,7 +507,10 @@ function DocumentCard({ title, category, lastUpdated, owner, readingTime, status
   }
 
   return (
-    <div className="group bg-white border border-[#E8E8E6] rounded-lg p-4 hover:border-[#D4D4D2] hover:shadow-md hover:-translate-y-0.5 transition-all cursor-pointer relative">
+    <div
+      onClick={onClick}
+      className="group bg-white border border-[#E8E8E6] rounded-lg p-4 hover:border-[#D4D4D2] hover:shadow-md hover:-translate-y-0.5 transition-all cursor-pointer relative"
+    >
       {/* Quick Actions */}
       <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity">
         <button className="p-1.5 bg-white/95 backdrop-blur-sm rounded shadow-lg hover:bg-white transition-colors">

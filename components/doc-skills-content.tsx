@@ -4,6 +4,7 @@ import {
   GraduationCap, HelpCircle, Layers, FileCode2,
   Settings2, ArrowRight, Sparkles,
 } from "lucide-react"
+import { useRouter } from "next/navigation"
 
 const SKILLS = [
   {
@@ -47,6 +48,8 @@ const APPLIED = [
 ]
 
 export function DocSkillsContent() {
+  const router = useRouter()
+
   return (
     <main className="flex-1 overflow-auto bg-[#FAFAFA]">
       <div className="max-w-[900px] mx-auto px-12 py-14">
@@ -64,7 +67,10 @@ export function DocSkillsContent() {
               AI-powered tools that transform your documentation into assessments, quick-reference cards, FAQs, and PRDs — without rewriting anything.
             </p>
           </div>
-          <button className="flex items-center gap-1.5 px-3.5 py-2 text-[13px] font-medium text-[#52525B] border border-[#E4E4E7] rounded-[8px] hover:border-[#D0D0D5] transition-colors shrink-0">
+          <button
+            onClick={() => router.push("/brand-kit")}
+            className="flex items-center gap-1.5 px-3.5 py-2 text-[13px] font-medium text-[#52525B] border border-[#E4E4E7] rounded-[8px] hover:border-[#D0D0D5] transition-colors shrink-0 cursor-pointer"
+          >
             <Settings2 className="w-3.5 h-3.5" strokeWidth={1.5} />
             Manage Doc Skills
           </button>
@@ -88,7 +94,10 @@ export function DocSkillsContent() {
                 </div>
                 <h3 className="text-[15px] font-semibold text-[#111] mb-1.5">{label}</h3>
                 <p className="text-[13px] text-[#6B7280] leading-relaxed mb-4">{description}</p>
-                <button className="flex items-center gap-1.5 text-[12.5px] font-medium text-[#6C5DD3] hover:gap-2.5 transition-all">
+                <button
+                  onClick={() => router.push("/document-editor")}
+                  className="flex items-center gap-1.5 text-[12.5px] font-medium text-[#6C5DD3] hover:gap-2.5 transition-all cursor-pointer"
+                >
                   Generate
                   <ArrowRight className="w-3.5 h-3.5" strokeWidth={2} />
                 </button>
@@ -104,7 +113,11 @@ export function DocSkillsContent() {
           </h2>
           <div className="bg-white border border-[#E4E4E7] rounded-[12px] divide-y divide-[#F4F4F5]">
             {APPLIED.map(({ title, skills }) => (
-              <div key={title} className="flex items-center justify-between px-5 py-3.5 group hover:bg-[#FAFAFA] transition-colors">
+              <div
+                key={title}
+                onClick={() => router.push("/document-editor")}
+                className="flex items-center justify-between px-5 py-3.5 group hover:bg-[#FAFAFA] transition-colors cursor-pointer"
+              >
                 <div>
                   <p className="text-[14px] font-medium text-[#111]">{title}</p>
                   <p className="text-[12px] text-[#9CA3AF] mt-0.5">{skills.join(" · ")}</p>

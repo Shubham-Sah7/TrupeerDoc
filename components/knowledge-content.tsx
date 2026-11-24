@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import { useRouter } from "next/navigation"
 import { 
   Plus, Upload, Search, Sparkles, ArrowRight, 
   BookOpen, FileText, HelpCircle, Zap, TrendingUp,
@@ -10,7 +11,15 @@ import {
 } from "lucide-react"
 
 export function KnowledgeContent() {
+  const router = useRouter()
   const [activeCollection, setActiveCollection] = useState<string | null>(null)
+  const [searchQuery, setSearchQuery] = useState("")
+
+  const handleSearch = () => {
+    if (searchQuery.trim()) {
+      router.push("/documents")
+    }
+  }
 
   return (
     <main className="flex-1 overflow-auto">
@@ -28,15 +37,24 @@ export function KnowledgeContent() {
               </p>
             </div>
             <div className="flex items-center gap-3">
-              <button className="px-4 py-2.5 text-[13px] font-medium text-[#52525B] bg-white border border-[#E8E8E6] rounded-lg hover:border-[#D4D4D2] hover:shadow-sm transition-all">
+              <button
+                onClick={() => router.push("/documents")}
+                className="px-4 py-2.5 text-[13px] font-medium text-[#52525B] bg-white border border-[#E8E8E6] rounded-lg hover:border-[#D4D4D2] hover:shadow-sm transition-all cursor-pointer"
+              >
                 <Upload className="w-4 h-4 inline mr-2" strokeWidth={1.5} />
                 Import Docs
               </button>
-              <button className="px-4 py-2.5 text-[13px] font-medium text-[#52525B] bg-white border border-[#E8E8E6] rounded-lg hover:border-[#D4D4D2] hover:shadow-sm transition-all">
+              <button
+                onClick={() => router.push("/document-editor")}
+                className="px-4 py-2.5 text-[13px] font-medium text-[#52525B] bg-white border border-[#E8E8E6] rounded-lg hover:border-[#D4D4D2] hover:shadow-sm transition-all cursor-pointer"
+              >
                 <Plus className="w-4 h-4 inline mr-2" strokeWidth={1.5} />
                 Create Article
               </button>
-              <button className="px-4 py-2.5 text-[13px] font-medium text-white bg-[#6C5DD3] rounded-lg hover:bg-[#5B4EC2] hover:shadow-lg transition-all">
+              <button
+                onClick={() => router.push("/ai-studio")}
+                className="px-4 py-2.5 text-[13px] font-medium text-white bg-[#6C5DD3] rounded-lg hover:bg-[#5B4EC2] hover:shadow-lg transition-all cursor-pointer"
+              >
                 <Sparkles className="w-4 h-4 inline mr-2" strokeWidth={1.5} />
                 Generate With AI
               </button>
@@ -65,10 +83,16 @@ export function KnowledgeContent() {
               <Search className="absolute left-5 top-1/2 -translate-y-1/2 w-5 h-5 text-[#A1A1AA]" strokeWidth={1.5} />
               <input
                 type="text"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                onKeyDown={(e) => e.key === "Enter" && handleSearch()}
                 placeholder="Ask anything about your content..."
                 className="w-full pl-14 pr-14 py-4 text-[15px] bg-[#F5F5F3] border-2 border-transparent rounded-xl focus:outline-none focus:ring-2 focus:ring-[#6C5DD3] focus:bg-white focus:border-[#6C5DD3] transition-all"
               />
-              <button className="absolute right-3 top-1/2 -translate-y-1/2 p-2 bg-[#6C5DD3] text-white rounded-lg hover:bg-[#5B4EC2] transition-colors">
+              <button
+                onClick={handleSearch}
+                className="absolute right-3 top-1/2 -translate-y-1/2 p-2 bg-[#6C5DD3] text-white rounded-lg hover:bg-[#5B4EC2] transition-colors cursor-pointer"
+              >
                 <ArrowRight className="w-5 h-5" strokeWidth={2} />
               </button>
             </div>
@@ -76,9 +100,9 @@ export function KnowledgeContent() {
             {/* Example Queries */}
             <div className="flex items-center justify-center gap-2 flex-wrap">
               <span className="text-[12px] text-[#A1A1AA]">Try:</span>
-              <ExampleQuery text="How does onboarding work?" />
-              <ExampleQuery text="Show API authentication guide" />
-              <ExampleQuery text="Find sales demo documentation" />
+              <ExampleQuery text="How does onboarding work?" onSelect={(t) => setSearchQuery(t)} />
+              <ExampleQuery text="Show API authentication guide" onSelect={(t) => setSearchQuery(t)} />
+              <ExampleQuery text="Find sales demo documentation" onSelect={(t) => setSearchQuery(t)} />
             </div>
           </div>
         </section>
@@ -92,18 +116,21 @@ export function KnowledgeContent() {
               label="Articles"
               count={124}
               growth="+12 this week"
+              onClick={() => router.push("/documents")}
             />
             <OverviewCard
               icon={<BookOpen className="w-5 h-5" strokeWidth={1.5} />}
               label="Guides"
               count={48}
               growth="+5 this week"
+              onClick={() => router.push("/library")}
             />
             <OverviewCard
               icon={<HelpCircle className="w-5 h-5" strokeWidth={1.5} />}
               label="FAQs"
               count={86}
               growth="+8 this week"
+              onClick={() => router.push("/documents")}
             />
             <OverviewCard
               icon={<Sparkles className="w-5 h-5" strokeWidth={1.5} />}
@@ -111,6 +138,7 @@ export function KnowledgeContent() {
               count={67}
               growth="+15 this week"
               active
+              onClick={() => router.push("/ai-studio")}
             />
           </div>
         </section>
@@ -164,6 +192,7 @@ export function KnowledgeContent() {
               type="Documentation"
               generatedFrom="video"
               views={1243}
+              onClick={() => router.push("/document-editor")}
             />
             <AutoGeneratedCard
               source="Onboarding Demo"
@@ -171,6 +200,7 @@ export function KnowledgeContent() {
               type="Guide"
               generatedFrom="demo"
               views={856}
+              onClick={() => router.push("/document-editor")}
             />
             <AutoGeneratedCard
               source="Feature Recording"
@@ -178,6 +208,7 @@ export function KnowledgeContent() {
               type="FAQ"
               generatedFrom="recording"
               views={2104}
+              onClick={() => router.push("/document-editor")}
             />
           </div>
         </section>
@@ -193,16 +224,19 @@ export function KnowledgeContent() {
               title="Generate docs from Product Demo"
               description="Create comprehensive documentation"
               action="Generate"
+              onClick={() => router.push("/document-editor")}
             />
             <AIRecommendationCard
               title="Create FAQ from onboarding video"
               description="Extract common questions"
               action="Create"
+              onClick={() => router.push("/document-editor")}
             />
             <AIRecommendationCard
               title="Update outdated guide"
               description="API Guide needs refresh"
               action="Update"
+              onClick={() => router.push("/document-editor")}
             />
           </div>
         </section>
@@ -211,16 +245,16 @@ export function KnowledgeContent() {
         <section className="mb-12">
           <h2 className="text-[20px] font-semibold text-[#18181B] mb-5">Browse Topics</h2>
           <div className="grid grid-cols-5 gap-3">
-            <TopicCard title="Product" count={45} />
-            <TopicCard title="API" count={32} />
-            <TopicCard title="Customer Support" count={28} />
-            <TopicCard title="Onboarding" count={24} />
-            <TopicCard title="Training" count={18} />
-            <TopicCard title="Internal Processes" count={15} />
-            <TopicCard title="Sales" count={12} />
-            <TopicCard title="Marketing" count={10} />
-            <TopicCard title="Design" count={8} />
-            <TopicCard title="Engineering" count={22} />
+            <TopicCard title="Product" count={45} onClick={() => router.push("/documents")} />
+            <TopicCard title="API" count={32} onClick={() => router.push("/documents")} />
+            <TopicCard title="Customer Support" count={28} onClick={() => router.push("/documents")} />
+            <TopicCard title="Onboarding" count={24} onClick={() => router.push("/documents")} />
+            <TopicCard title="Training" count={18} onClick={() => router.push("/documents")} />
+            <TopicCard title="Internal Processes" count={15} onClick={() => router.push("/documents")} />
+            <TopicCard title="Sales" count={12} onClick={() => router.push("/documents")} />
+            <TopicCard title="Marketing" count={10} onClick={() => router.push("/documents")} />
+            <TopicCard title="Design" count={8} onClick={() => router.push("/documents")} />
+            <TopicCard title="Engineering" count={22} onClick={() => router.push("/documents")} />
           </div>
         </section>
 
@@ -228,8 +262,11 @@ export function KnowledgeContent() {
         <section className="mb-12">
           <div className="flex items-center justify-between mb-5">
             <h2 className="text-[20px] font-semibold text-[#18181B]">Documentation Hub</h2>
-            <button className="text-[13px] font-medium text-[#6C5DD3] hover:text-[#5B4EC2] transition-colors">
-              View all articles
+            <button
+              onClick={() => router.push("/documents")}
+              className="text-[13px] font-medium text-[#6C5DD3] hover:text-[#5B4EC2] transition-colors cursor-pointer"
+            >
+              View all articles →
             </button>
           </div>
           <div className="grid grid-cols-3 gap-5">
@@ -244,6 +281,7 @@ export function KnowledgeContent() {
               aiGenerated={false}
               language="English"
               readingTime="8 min"
+              onClick={() => router.push("/document-editor")}
             />
             <DocumentationCard
               title="API Authentication Guide"
@@ -256,6 +294,7 @@ export function KnowledgeContent() {
               aiGenerated={true}
               language="English, Spanish"
               readingTime="12 min"
+              onClick={() => router.push("/document-editor")}
             />
             <DocumentationCard
               title="Customer Onboarding Best Practices"
@@ -268,6 +307,7 @@ export function KnowledgeContent() {
               aiGenerated={true}
               language="English"
               readingTime="10 min"
+              onClick={() => router.push("/document-editor")}
             />
           </div>
         </section>
@@ -280,21 +320,25 @@ export function KnowledgeContent() {
               title="Product Demo Guide"
               views={5234}
               badge="Most Read"
+              onClick={() => router.push("/document-editor")}
             />
             <PopularCard
               title="API Quick Start"
               views={4102}
               badge="Most Shared"
+              onClick={() => router.push("/document-editor")}
             />
             <PopularCard
               title="Onboarding Checklist"
               views={3876}
               badge="Trending"
+              onClick={() => router.push("/document-editor")}
             />
             <PopularCard
               title="Feature Release Notes"
               views={2945}
               badge="Recently Published"
+              onClick={() => router.push("/document-editor")}
             />
           </div>
         </section>
@@ -370,11 +414,15 @@ export function KnowledgeContent() {
 
 interface ExampleQueryProps {
   text: string
+  onSelect: (text: string) => void
 }
 
-function ExampleQuery({ text }: ExampleQueryProps) {
+function ExampleQuery({ text, onSelect }: ExampleQueryProps) {
   return (
-    <button className="text-[12px] text-[#71717A] bg-white border border-[#E8E8E6] px-3 py-1.5 rounded-full hover:border-[#6C5DD3] hover:text-[#6C5DD3] transition-all">
+    <button
+      onClick={() => onSelect(text)}
+      className="text-[12px] text-[#71717A] bg-white border border-[#E8E8E6] px-3 py-1.5 rounded-full hover:border-[#6C5DD3] hover:text-[#6C5DD3] transition-all cursor-pointer"
+    >
       {text}
     </button>
   )
@@ -386,15 +434,19 @@ interface OverviewCardProps {
   count: number
   growth: string
   active?: boolean
+  onClick?: () => void
 }
 
-function OverviewCard({ icon, label, count, growth, active }: OverviewCardProps) {
+function OverviewCard({ icon, label, count, growth, active, onClick }: OverviewCardProps) {
   return (
-    <div className={`bg-white border rounded-lg p-5 transition-all ${
-      active 
-        ? "border-[#6C5DD3] shadow-[0_0_0_3px_rgba(143,140,255,0.1)]" 
-        : "border-[#E8E8E6] hover:border-[#D4D4D2]"
-    }`}>
+    <div
+      onClick={onClick}
+      className={`bg-white border rounded-lg p-5 transition-all cursor-pointer ${
+        active 
+          ? "border-[#6C5DD3] shadow-[0_0_0_3px_rgba(143,140,255,0.1)]" 
+          : "border-[#E8E8E6] hover:border-[#D4D4D2] hover:shadow-sm"
+      }`}
+    >
       <div className={`p-2.5 rounded-lg inline-flex mb-3 ${active ? "bg-[#F5F4FF]" : "bg-[#F5F5F3]"}`}>
         <div className={active ? "text-[#6C5DD3]" : "text-[#52525B]"}>
           {icon}
@@ -420,7 +472,7 @@ function CollectionCard({ icon, title, count, active, onClick, highlight }: Coll
   return (
     <button
       onClick={onClick}
-      className={`flex items-center gap-3 p-4 rounded-lg border transition-all text-left ${
+      className={`flex items-center gap-3 p-4 rounded-lg border transition-all text-left cursor-pointer ${
         active
           ? "bg-[#F5F4FF] border-[#6C5DD3] shadow-sm"
           : highlight
@@ -447,9 +499,10 @@ interface AutoGeneratedCardProps {
   type: string
   generatedFrom: "video" | "demo" | "recording"
   views: number
+  onClick?: () => void
 }
 
-function AutoGeneratedCard({ source, title, type, generatedFrom, views }: AutoGeneratedCardProps) {
+function AutoGeneratedCard({ source, title, type, generatedFrom, views, onClick }: AutoGeneratedCardProps) {
   const getIcon = () => {
     switch (generatedFrom) {
       case "video": return <Video className="w-4 h-4" strokeWidth={1.5} />
@@ -459,7 +512,10 @@ function AutoGeneratedCard({ source, title, type, generatedFrom, views }: AutoGe
   }
 
   return (
-    <div className="bg-[#F5F4FF] border border-[#E4E1FF] rounded-lg p-5 hover:border-[#6C5DD3] hover:shadow-md hover:-translate-y-0.5 transition-all cursor-pointer group">
+    <div
+      onClick={onClick}
+      className="bg-[#F5F4FF] border border-[#E4E1FF] rounded-lg p-5 hover:border-[#6C5DD3] hover:shadow-md hover:-translate-y-0.5 transition-all cursor-pointer group"
+    >
       <div className="flex items-start gap-3 mb-4">
         <div className="p-2 bg-white rounded-md text-[#6C5DD3]">
           <Sparkles className="w-4 h-4" strokeWidth={1.5} />
@@ -490,11 +546,15 @@ interface AIRecommendationCardProps {
   title: string
   description: string
   action: string
+  onClick?: () => void
 }
 
-function AIRecommendationCard({ title, description, action }: AIRecommendationCardProps) {
+function AIRecommendationCard({ title, description, action, onClick }: AIRecommendationCardProps) {
   return (
-    <div className="bg-white border border-[#E8E8E6] rounded-lg p-5 hover:border-[#6C5DD3] hover:shadow-md hover:-translate-y-0.5 transition-all cursor-pointer group">
+    <div
+      onClick={onClick}
+      className="bg-white border border-[#E8E8E6] rounded-lg p-5 hover:border-[#6C5DD3] hover:shadow-md hover:-translate-y-0.5 transition-all cursor-pointer group"
+    >
       <div className="flex items-start gap-3 mb-4">
         <div className="p-2 bg-[#F5F4FF] rounded-md text-[#6C5DD3]">
           <Zap className="w-4 h-4" strokeWidth={1.5} />
@@ -515,11 +575,15 @@ function AIRecommendationCard({ title, description, action }: AIRecommendationCa
 interface TopicCardProps {
   title: string
   count: number
+  onClick?: () => void
 }
 
-function TopicCard({ title, count }: TopicCardProps) {
+function TopicCard({ title, count, onClick }: TopicCardProps) {
   return (
-    <button className="bg-white border border-[#E8E8E6] rounded-lg p-4 hover:border-[#6C5DD3] hover:shadow-sm hover:-translate-y-0.5 transition-all text-left group">
+    <button
+      onClick={onClick}
+      className="bg-white border border-[#E8E8E6] rounded-lg p-4 hover:border-[#6C5DD3] hover:shadow-sm hover:-translate-y-0.5 transition-all text-left group cursor-pointer"
+    >
       <div className="font-medium text-[14px] text-[#18181B] mb-1 group-hover:text-[#6C5DD3] transition-colors">
         {title}
       </div>
@@ -539,11 +603,12 @@ interface DocumentationCardProps {
   aiGenerated: boolean
   language: string
   readingTime: string
+  onClick?: () => void
 }
 
 function DocumentationCard({
   title, description, category, owner, lastUpdated,
-  views, status, aiGenerated, language, readingTime
+  views, status, aiGenerated, language, readingTime, onClick
 }: DocumentationCardProps) {
   const statusColors = {
     Published: "bg-[#F0FDF4] text-[#15803D] border-[#BBF7D0]",
@@ -552,7 +617,10 @@ function DocumentationCard({
   }
 
   return (
-    <div className="group bg-white border border-[#E8E8E6] rounded-lg p-5 hover:border-[#D4D4D2] hover:shadow-md hover:-translate-y-0.5 transition-all cursor-pointer relative">
+    <div
+      onClick={onClick}
+      className="group bg-white border border-[#E8E8E6] rounded-lg p-5 hover:border-[#D4D4D2] hover:shadow-md hover:-translate-y-0.5 transition-all cursor-pointer relative"
+    >
       {/* Quick Actions */}
       <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity flex gap-1">
         <button className="p-1.5 bg-white/95 backdrop-blur-sm rounded shadow-lg hover:bg-white transition-colors">
@@ -615,11 +683,15 @@ interface PopularCardProps {
   title: string
   views: number
   badge: string
+  onClick?: () => void
 }
 
-function PopularCard({ title, views, badge }: PopularCardProps) {
+function PopularCard({ title, views, badge, onClick }: PopularCardProps) {
   return (
-    <div className="bg-white border border-[#E8E8E6] rounded-lg p-4 hover:border-[#D4D4D2] hover:shadow-sm hover:-translate-y-0.5 transition-all cursor-pointer">
+    <div
+      onClick={onClick}
+      className="bg-white border border-[#E8E8E6] rounded-lg p-4 hover:border-[#D4D4D2] hover:shadow-sm hover:-translate-y-0.5 transition-all cursor-pointer"
+    >
       <div className="flex items-start justify-between mb-3">
         <h3 className="font-medium text-[14px] text-[#18181B] leading-snug flex-1">{title}</h3>
         <TrendingUp className="w-4 h-4 text-[#10B981] flex-shrink-0" strokeWidth={1.5} />

@@ -1,14 +1,44 @@
 "use client"
 
+import { useRef, useState } from "react"
+import { useRouter } from "next/navigation"
 import { 
   Upload, Image, Video, Monitor, Volume2, 
   Sparkles, Search, Eye, Download, Link2, 
-  Plus, FileText, MoreHorizontal
+  Plus, FileText, MoreHorizontal, Check
 } from "lucide-react"
 
 export function TeamAssetsContent() {
+  const router = useRouter()
+  const fileInputRef = useRef<HTMLInputElement>(null)
+  const [searchQuery, setSearchQuery] = useState("")
+  const [notification, setNotification] = useState<string | null>(null)
+
+  const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files[0]) {
+      const fileName = e.target.files[0].name
+      setNotification(`Uploaded "${fileName}" successfully!`)
+      setTimeout(() => setNotification(null), 3500)
+    }
+  }
+
   return (
     <main className="flex-1 overflow-auto">
+      {notification && (
+        <div className="fixed top-6 right-6 z-50 bg-[#18181B] text-white px-4 py-2.5 rounded-xl shadow-xl text-[13px] flex items-center gap-2 animate-in fade-in slide-in-from-top-2">
+          <Check className="w-4 h-4 text-[#10B981]" />
+          <span>{notification}</span>
+        </div>
+      )}
+
+      <input
+        type="file"
+        ref={fileInputRef}
+        onChange={handleFileUpload}
+        className="hidden"
+        accept="image/*,video/*,audio/*"
+      />
+
       <div className="max-w-[1400px] mx-auto px-16 py-10">
         
         {/* Hero */}
@@ -22,7 +52,10 @@ export function TeamAssetsContent() {
                 Store and organize screenshots, videos, logos, voiceovers, templates, and media files.
               </p>
             </div>
-            <button className="px-4 py-2.5 text-[13px] font-medium text-white bg-[#6C5DD3] rounded-lg hover:bg-[#5B4EC2] hover:shadow-lg transition-all">
+            <button
+              onClick={() => fileInputRef.current?.click()}
+              className="px-4 py-2.5 text-[13px] font-medium text-white bg-[#6C5DD3] rounded-lg hover:bg-[#5B4EC2] hover:shadow-lg transition-all cursor-pointer"
+            >
               <Upload className="w-4 h-4 inline mr-2" strokeWidth={1.5} />
               Upload Asset
             </button>
@@ -72,7 +105,9 @@ export function TeamAssetsContent() {
             <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-[#A1A1AA]" strokeWidth={1.5} />
             <input
               type="text"
-              placeholder="Search assets..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              placeholder="Search assets by name, tag, or category..."
               className="w-full pl-12 pr-4 py-3 text-[14px] bg-white border border-[#E8E8E6] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#6C5DD3] focus:border-transparent transition-all"
             />
           </div>
@@ -82,11 +117,11 @@ export function TeamAssetsContent() {
         <section className="mb-12">
           <h2 className="text-[20px] font-semibold text-[#18181B] mb-5">Team Collections</h2>
           <div className="grid grid-cols-5 gap-4">
-            <CollectionCard title="Product Screenshots" count={45} thumbnail="/images/screenshot-1.png" />
-            <CollectionCard title="Marketing Assets" count={32} thumbnail="/images/screenshot-2.png" />
-            <CollectionCard title="Brand Resources" count={28} thumbnail="/images/screenshot-3.png" />
-            <CollectionCard title="Training Material" count={18} thumbnail="/images/screenshot-4.png" />
-            <CollectionCard title="Customer Success" count={24} thumbnail="/images/screenshot-5.png" />
+            <CollectionCard title="Product Screenshots" count={45} thumbnail="/images/screenshot-1.png" onClick={() => router.push("/editor")} />
+            <CollectionCard title="Marketing Assets" count={32} thumbnail="/images/screenshot-2.png" onClick={() => router.push("/editor")} />
+            <CollectionCard title="Brand Resources" count={28} thumbnail="/images/screenshot-3.png" onClick={() => router.push("/brand-kit")} />
+            <CollectionCard title="Training Material" count={18} thumbnail="/images/screenshot-4.png" onClick={() => router.push("/document-editor")} />
+            <CollectionCard title="Customer Success" count={24} thumbnail="/images/screenshot-5.png" onClick={() => router.push("/demos")} />
           </div>
         </section>
 
@@ -207,7 +242,7 @@ interface CategoryCardProps {
 
 function CategoryCard({ icon, title, count }: CategoryCardProps) {
   return (
-    <button className="group bg-white border border-[#E8E8E6] rounded-lg p-5 hover:border-[#6C5DD3] hover:shadow-md hover:-translate-y-0.5 transition-all">
+    <button className="group bg-white border border-[#E8E8E6] rounded-lg p-5 hover:border-[#6C5DD3] hover:shadow-md hover:-translate-y-0.5 transition-all text-center">
       <div className="p-3 bg-[#F5F5F3] rounded-lg inline-flex mb-3 group-hover:bg-[#F5F4FF] transition-colors">
         <div className="text-[#52525B] group-hover:text-[#6C5DD3] transition-colors">
           {icon}
@@ -223,11 +258,15 @@ interface CollectionCardProps {
   title: string
   count: number
   thumbnail: string
+  onClick?: () => void
 }
 
-function CollectionCard({ title, count, thumbnail }: CollectionCardProps) {
+function CollectionCard({ title, count, thumbnail, onClick }: CollectionCardProps) {
   return (
-    <button className="bg-white border border-[#E8E8E6] rounded-lg overflow-hidden hover:border-[#D4D4D2] hover:shadow-sm hover:-translate-y-0.5 transition-all text-left">
+    <button
+      onClick={onClick}
+      className="bg-white border border-[#E8E8E6] rounded-lg overflow-hidden hover:border-[#D4D4D2] hover:shadow-sm hover:-translate-y-0.5 transition-all text-left cursor-pointer"
+    >
       <div className="aspect-video bg-[#F5F5F3] relative overflow-hidden">
         <img 
           src={thumbnail} 
@@ -287,16 +326,16 @@ function AssetCard({ type, name, uploadedBy, dateAdded, thumbnail }: AssetCardPr
         
         {/* Quick Actions on Hover */}
         <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">
-          <button className="p-2 bg-white rounded-lg hover:bg-[#F5F5F3] transition-colors">
+          <button className="p-2 bg-white rounded-lg hover:bg-[#F5F5F3] transition-colors" title="View">
             <Eye className="w-4 h-4 text-[#18181B]" strokeWidth={1.5} />
           </button>
-          <button className="p-2 bg-white rounded-lg hover:bg-[#F5F5F3] transition-colors">
+          <button className="p-2 bg-white rounded-lg hover:bg-[#F5F5F3] transition-colors" title="Download">
             <Download className="w-4 h-4 text-[#18181B]" strokeWidth={1.5} />
           </button>
-          <button className="p-2 bg-white rounded-lg hover:bg-[#F5F5F3] transition-colors">
+          <button className="p-2 bg-white rounded-lg hover:bg-[#F5F5F3] transition-colors" title="Copy Link">
             <Link2 className="w-4 h-4 text-[#18181B]" strokeWidth={1.5} />
           </button>
-          <button className="p-2 bg-white rounded-lg hover:bg-[#F5F5F3] transition-colors">
+          <button className="p-2 bg-white rounded-lg hover:bg-[#F5F5F3] transition-colors" title="Add to Project">
             <Plus className="w-4 h-4 text-[#18181B]" strokeWidth={1.5} />
           </button>
         </div>
@@ -321,4 +360,3 @@ function AssetCard({ type, name, uploadedBy, dateAdded, thumbnail }: AssetCardPr
     </div>
   )
 }
-

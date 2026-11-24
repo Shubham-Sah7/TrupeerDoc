@@ -5,8 +5,11 @@ import {
   Edit, Share2, CheckCircle2, Eye, Clock, 
   TrendingUp, Sparkles, ArrowRight, MoreHorizontal
 } from "lucide-react"
+import { useRouter } from "next/navigation"
 
 export function DemosContent() {
+  const router = useRouter()
+
   return (
     <main className="flex-1 overflow-auto">
       <div className="max-w-[1400px] mx-auto px-16 py-10">
@@ -22,7 +25,10 @@ export function DemosContent() {
                 Convert recordings and guides into engaging product walkthroughs.
               </p>
             </div>
-            <button className="px-5 py-3 text-[14px] font-medium text-white bg-[#6C5DD3] rounded-lg hover:bg-[#5B4EC2] hover:shadow-lg transition-all">
+            <button
+              onClick={() => router.push("/record")}
+              className="px-5 py-3 text-[14px] font-medium text-white bg-[#6C5DD3] rounded-lg hover:bg-[#5B4EC2] hover:shadow-lg transition-all cursor-pointer"
+            >
               <Plus className="w-4 h-4 inline mr-2" strokeWidth={2} />
               Create Demo
             </button>
@@ -37,16 +43,19 @@ export function DemosContent() {
               icon={<Video className="w-6 h-6" strokeWidth={1.5} />}
               title="From Video"
               description="Turn recordings into demos"
+              onClick={() => router.push("/record")}
             />
             <QuickStartCard
               icon={<FileText className="w-6 h-6" strokeWidth={1.5} />}
               title="From Documentation"
               description="Convert guides to interactive"
+              onClick={() => router.push("/document-editor")}
             />
             <QuickStartCard
               icon={<FolderOpen className="w-6 h-6" strokeWidth={1.5} />}
               title="From Existing Project"
               description="Build on previous work"
+              onClick={() => router.push("/projects")}
             />
           </div>
         </section>
@@ -60,36 +69,42 @@ export function DemosContent() {
               description="Showcase key features"
               uses="2.4k"
               thumbnail="/images/template/template-1.png"
+              onClick={() => router.push("/editor")}
             />
             <TemplateCard
               title="Customer Onboarding"
               description="Guide new users"
               uses="1.8k"
               thumbnail="/images/template/template-2.png"
+              onClick={() => router.push("/editor")}
             />
             <TemplateCard
               title="Feature Walkthrough"
               description="Explain new features"
               uses="1.5k"
               thumbnail="/images/template/template-3.png"
+              onClick={() => router.push("/editor")}
             />
             <TemplateCard
               title="Sales Demo"
               description="Convert prospects"
               uses="1.2k"
               thumbnail="/images/template/template-4.png"
+              onClick={() => router.push("/editor")}
             />
             <TemplateCard
               title="Employee Training"
               description="Train your team"
               uses="980"
               thumbnail="/images/template/template-5.png"
+              onClick={() => router.push("/editor")}
             />
             <TemplateCard
               title="Help Center Walkthrough"
               description="Self-service support"
               uses="756"
               thumbnail="/images/template/template-6.png"
+              onClick={() => router.push("/editor")}
             />
           </div>
         </section>
@@ -129,14 +144,17 @@ export function DemosContent() {
             <AISuggestionCard
               title="Convert Product Walkthrough into Demo"
               source="From recent recording"
+              onClick={() => router.push("/editor")}
             />
             <AISuggestionCard
               title="Create Interactive Onboarding"
               source="From documentation"
+              onClick={() => router.push("/document-editor")}
             />
             <AISuggestionCard
               title="Build Sales Demo"
               source="From feature guide"
+              onClick={() => router.push("/editor")}
             />
           </div>
         </section>
@@ -151,6 +169,7 @@ export function DemosContent() {
               views={2104}
               lastEdited="2 days ago"
               thumbnail="/images/screenshot-1.png"
+              onClick={() => router.push("/editor")}
             />
             <DemoCard
               title="Feature Tour 2024"
@@ -158,6 +177,7 @@ export function DemosContent() {
               views={0}
               lastEdited="5 hours ago"
               thumbnail="/images/screenshot-2.png"
+              onClick={() => router.push("/editor")}
             />
             <DemoCard
               title="API Integration Guide"
@@ -165,6 +185,7 @@ export function DemosContent() {
               views={1543}
               lastEdited="1 week ago"
               thumbnail="/images/screenshot-3.png"
+              onClick={() => router.push("/editor")}
             />
             <DemoCard
               title="Customer Success Demo"
@@ -172,6 +193,7 @@ export function DemosContent() {
               views={3421}
               lastEdited="2 weeks ago"
               thumbnail="/images/screenshot-4.png"
+              onClick={() => router.push("/editor")}
             />
             <DemoCard
               title="Sales Presentation"
@@ -179,6 +201,7 @@ export function DemosContent() {
               views={0}
               lastEdited="Yesterday"
               thumbnail="/images/screenshot-5.png"
+              onClick={() => router.push("/editor")}
             />
             <DemoCard
               title="Training Walkthrough"
@@ -186,6 +209,7 @@ export function DemosContent() {
               views={876}
               lastEdited="3 days ago"
               thumbnail="/images/screenshot-6.png"
+              onClick={() => router.push("/editor")}
             />
             <DemoCard
               title="Help Center Tour"
@@ -193,6 +217,7 @@ export function DemosContent() {
               views={1234}
               lastEdited="1 week ago"
               thumbnail="/images/screenshot-7.png"
+              onClick={() => router.push("/editor")}
             />
             <DemoCard
               title="Mobile App Demo"
@@ -200,6 +225,7 @@ export function DemosContent() {
               views={0}
               lastEdited="4 days ago"
               thumbnail="/images/screenshot-8.png"
+              onClick={() => router.push("/editor")}
             />
           </div>
         </section>
@@ -215,11 +241,15 @@ interface QuickStartCardProps {
   icon: React.ReactNode
   title: string
   description: string
+  onClick?: () => void
 }
 
-function QuickStartCard({ icon, title, description }: QuickStartCardProps) {
+function QuickStartCard({ icon, title, description, onClick }: QuickStartCardProps) {
   return (
-    <button className="group flex items-start gap-4 p-6 bg-white border border-[#E8E8E6] rounded-xl hover:border-[#6C5DD3] hover:shadow-lg hover:-translate-y-1 transition-all text-left">
+    <button
+      onClick={onClick}
+      className="group flex items-start gap-4 p-6 bg-white border border-[#E8E8E6] rounded-xl hover:border-[#6C5DD3] hover:shadow-lg hover:-translate-y-1 transition-all text-left cursor-pointer"
+    >
       <div className="p-3 bg-[#F5F5F3] rounded-lg group-hover:bg-[#F5F4FF] transition-colors">
         <div className="text-[#52525B] group-hover:text-[#6C5DD3] transition-colors">
           {icon}
@@ -238,11 +268,15 @@ interface TemplateCardProps {
   description: string
   uses: string
   thumbnail: string
+  onClick?: () => void
 }
 
-function TemplateCard({ title, description, uses, thumbnail }: TemplateCardProps) {
+function TemplateCard({ title, description, uses, thumbnail, onClick }: TemplateCardProps) {
   return (
-    <button className="group bg-white border border-[#E8E8E6] rounded-lg p-5 hover:border-[#6C5DD3] hover:shadow-md hover:-translate-y-0.5 transition-all text-left">
+    <button
+      onClick={onClick}
+      className="group bg-white border border-[#E8E8E6] rounded-lg p-5 hover:border-[#6C5DD3] hover:shadow-md hover:-translate-y-0.5 transition-all text-left cursor-pointer"
+    >
       <div className="aspect-video bg-[#F5F5F3] rounded-lg mb-4 relative overflow-hidden">
         <img 
           src={thumbnail} 
@@ -287,11 +321,15 @@ function AnalyticsCard({ icon, label, value, change }: AnalyticsCardProps) {
 interface AISuggestionCardProps {
   title: string
   source: string
+  onClick?: () => void
 }
 
-function AISuggestionCard({ title, source }: AISuggestionCardProps) {
+function AISuggestionCard({ title, source, onClick }: AISuggestionCardProps) {
   return (
-    <div className="bg-[#F5F4FF] border border-[#E4E1FF] rounded-lg p-5 hover:border-[#6C5DD3] hover:shadow-md hover:-translate-y-0.5 transition-all cursor-pointer group">
+    <div
+      onClick={onClick}
+      className="bg-[#F5F4FF] border border-[#E4E1FF] rounded-lg p-5 hover:border-[#6C5DD3] hover:shadow-md hover:-translate-y-0.5 transition-all cursor-pointer group"
+    >
       <div className="flex items-start gap-3 mb-4">
         <div className="p-2 bg-white rounded-md">
           <Sparkles className="w-4 h-4 text-[#6C5DD3]" strokeWidth={1.5} />
@@ -315,16 +353,20 @@ interface DemoCardProps {
   views: number
   lastEdited: string
   thumbnail: string
+  onClick?: () => void
 }
 
-function DemoCard({ title, status, views, lastEdited, thumbnail }: DemoCardProps) {
+function DemoCard({ title, status, views, lastEdited, thumbnail, onClick }: DemoCardProps) {
   const statusColors = {
     Published: "bg-[#F0FDF4] text-[#15803D] border-[#BBF7D0]",
     Draft: "bg-[#F5F5F3] text-[#52525B] border-[#E8E8E6]"
   }
 
   return (
-    <div className="group bg-white border border-[#E8E8E6] rounded-lg overflow-hidden hover:border-[#D4D4D2] hover:shadow-md hover:-translate-y-0.5 transition-all cursor-pointer relative">
+    <div
+      onClick={onClick}
+      className="group bg-white border border-[#E8E8E6] rounded-lg overflow-hidden hover:border-[#D4D4D2] hover:shadow-md hover:-translate-y-0.5 transition-all cursor-pointer relative"
+    >
       {/* Quick Actions */}
       <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity z-10">
         <button className="p-1.5 bg-white/95 backdrop-blur-sm rounded shadow-lg hover:bg-white transition-colors">

@@ -2,8 +2,10 @@
 
 import { Plus, Upload, Search, Filter, Play, MoreHorizontal, Users, Clock, Sparkles, Video, FileText, Presentation, Languages, ArrowRight, TrendingUp, CheckCircle2, AlertCircle, Eye } from "lucide-react"
 import { useState } from "react"
+import { useRouter } from "next/navigation"
 
 export function ProjectsContent() {
+  const router = useRouter()
   const [activeView, setActiveView] = useState<string>("all")
 
   return (
@@ -22,11 +24,17 @@ export function ProjectsContent() {
               </p>
             </div>
             <div className="flex items-center gap-3">
-              <button className="px-4 py-2.5 text-[13px] font-medium text-[#52525B] bg-white border border-[#E8E8E6] rounded-lg hover:border-[#D4D4D2] hover:shadow-sm transition-all">
+              <button
+                onClick={() => router.push("/record")}
+                className="px-4 py-2.5 text-[13px] font-medium text-[#52525B] bg-white border border-[#E8E8E6] rounded-lg hover:border-[#D4D4D2] hover:shadow-sm transition-all cursor-pointer"
+              >
                 <Upload className="w-4 h-4 inline mr-2" strokeWidth={1.5} />
                 Import Project
               </button>
-              <button className="px-4 py-2.5 text-[13px] font-medium text-white bg-[#6C5DD3] rounded-lg hover:bg-[#5B4EC2] hover:shadow-lg transition-all">
+              <button
+                onClick={() => router.push("/record")}
+                className="px-4 py-2.5 text-[13px] font-medium text-white bg-[#6C5DD3] rounded-lg hover:bg-[#5B4EC2] hover:shadow-lg transition-all cursor-pointer"
+              >
                 <Plus className="w-4 h-4 inline mr-2" strokeWidth={1.5} />
                 New Project
               </button>
@@ -92,6 +100,7 @@ export function ProjectsContent() {
               progress={65}
               aiStatus="Processing"
               collaborators={3}
+              onClick={() => router.push("/editor")}
             />
             <ContinueWorkingCard
               thumbnail="/images/screenshot-2.png"
@@ -101,6 +110,7 @@ export function ProjectsContent() {
               progress={90}
               aiStatus="Complete"
               collaborators={2}
+              onClick={() => router.push("/editor")}
             />
             <ContinueWorkingCard
               thumbnail="/images/screenshot-3.png"
@@ -110,6 +120,7 @@ export function ProjectsContent() {
               progress={40}
               aiStatus="Generating"
               collaborators={1}
+              onClick={() => router.push("/document-editor")}
             />
           </div>
         </section>
@@ -125,21 +136,25 @@ export function ProjectsContent() {
               title="Finish Product Walkthrough"
               description="65% complete"
               action="Continue"
+              onClick={() => router.push("/editor")}
             />
             <AIInsightCard
               title="Generate Documentation"
               description="From latest recording"
               action="Generate"
+              onClick={() => router.push("/document-editor")}
             />
             <AIInsightCard
               title="Translate API Guide"
               description="To Spanish & French"
               action="Translate"
+              onClick={() => router.push("/ai-studio")}
             />
             <AIInsightCard
               title="Improve Narration"
               description="3 videos ready"
               action="Enhance"
+              onClick={() => router.push("/ai-studio")}
             />
           </div>
         </section>
@@ -168,6 +183,7 @@ export function ProjectsContent() {
               collaborators={3}
               status="Published"
               progress={100}
+              onClick={() => router.push("/editor")}
             />
             <ProjectCard
               thumbnail="/images/screenshot-5.png"
@@ -178,6 +194,7 @@ export function ProjectsContent() {
               collaborators={2}
               status="Draft"
               progress={75}
+              onClick={() => router.push("/document-editor")}
             />
             <ProjectCard
               thumbnail="/images/screenshot-6.png"
@@ -188,6 +205,7 @@ export function ProjectsContent() {
               collaborators={4}
               status="Review"
               progress={85}
+              onClick={() => router.push("/editor")}
             />
             <ProjectCard
               thumbnail="/images/screenshot-7.png"
@@ -198,6 +216,7 @@ export function ProjectsContent() {
               collaborators={1}
               status="Published"
               progress={100}
+              onClick={() => router.push("/editor")}
             />
             <ProjectCard
               thumbnail="/images/screenshot-8.png"
@@ -208,6 +227,7 @@ export function ProjectsContent() {
               collaborators={3}
               status="Draft"
               progress={60}
+              onClick={() => router.push("/document-editor")}
             />
             <ProjectCard
               thumbnail="/images/screenshot-1.png"
@@ -218,6 +238,7 @@ export function ProjectsContent() {
               collaborators={2}
               status="Published"
               progress={100}
+              onClick={() => router.push("/editor")}
             />
             <ProjectCard
               thumbnail="/images/screenshot-2.png"
@@ -228,6 +249,7 @@ export function ProjectsContent() {
               collaborators={2}
               status="Review"
               progress={90}
+              onClick={() => router.push("/editor")}
             />
             <ProjectCard
               thumbnail="/images/screenshot-3.png"
@@ -238,6 +260,7 @@ export function ProjectsContent() {
               collaborators={1}
               status="Draft"
               progress={45}
+              onClick={() => router.push("/document-editor")}
             />
           </div>
         </section>
@@ -246,17 +269,20 @@ export function ProjectsContent() {
         <section className="mb-12">
           <div className="flex items-center justify-between mb-5">
             <h2 className="text-[20px] font-semibold text-[#18181B]">Start From Template</h2>
-            <button className="text-[13px] font-medium text-[#6C5DD3] hover:text-[#5B4EC2] transition-colors">
-              Browse all templates
+            <button
+              onClick={() => router.push("/shared-pages")}
+              className="text-[13px] font-medium text-[#6C5DD3] hover:text-[#5B4EC2] transition-colors cursor-pointer"
+            >
+              Browse all templates →
             </button>
           </div>
           <div className="grid grid-cols-6 gap-3">
-            <TemplateCard title="Product Demo" image="/images/template/template-1.png" />
-            <TemplateCard title="Feature Launch" image="/images/template/template-2.png" />
-            <TemplateCard title="Customer Onboarding" image="/images/template/template-3.png" />
-            <TemplateCard title="Employee Training" image="/images/template/template-4.png" />
-            <TemplateCard title="API Walkthrough" image="/images/template/template-5.png" />
-            <TemplateCard title="Release Notes" image="/images/template/template-6.png" />
+            <TemplateCard title="Product Demo" image="/images/template/template-1.png" onClick={() => router.push("/editor")} />
+            <TemplateCard title="Feature Launch" image="/images/template/template-2.png" onClick={() => router.push("/editor")} />
+            <TemplateCard title="Customer Onboarding" image="/images/template/template-3.png" onClick={() => router.push("/editor")} />
+            <TemplateCard title="Employee Training" image="/images/template/template-4.png" onClick={() => router.push("/editor")} />
+            <TemplateCard title="API Walkthrough" image="/images/template/template-5.png" onClick={() => router.push("/editor")} />
+            <TemplateCard title="Release Notes" image="/images/template/template-6.png" onClick={() => router.push("/editor")} />
           </div>
         </section>
 
@@ -339,11 +365,15 @@ interface ContinueWorkingCardProps {
   progress: number
   aiStatus: string
   collaborators: number
+  onClick?: () => void
 }
 
-function ContinueWorkingCard({ thumbnail, type, title, lastEdited, progress, aiStatus, collaborators }: ContinueWorkingCardProps) {
+function ContinueWorkingCard({ thumbnail, type, title, lastEdited, progress, aiStatus, collaborators, onClick }: ContinueWorkingCardProps) {
   return (
-    <div className="group bg-white border border-[#E8E8E6] rounded-lg overflow-hidden hover:border-[#D4D4D2] hover:shadow-lg hover:-translate-y-1 transition-all cursor-pointer">
+    <div
+      onClick={onClick}
+      className="group bg-white border border-[#E8E8E6] rounded-lg overflow-hidden hover:border-[#D4D4D2] hover:shadow-lg hover:-translate-y-1 transition-all cursor-pointer"
+    >
       <div className="aspect-video bg-[#F5F5F3] relative overflow-hidden">
         <img 
           src={thumbnail} 
@@ -398,11 +428,15 @@ interface AIInsightCardProps {
   title: string
   description: string
   action: string
+  onClick?: () => void
 }
 
-function AIInsightCard({ title, description, action }: AIInsightCardProps) {
+function AIInsightCard({ title, description, action, onClick }: AIInsightCardProps) {
   return (
-    <div className="bg-[#F5F4FF] border border-[#E4E1FF] rounded-lg p-4 hover:border-[#6C5DD3] hover:shadow-md hover:-translate-y-0.5 transition-all cursor-pointer group">
+    <div
+      onClick={onClick}
+      className="bg-[#F5F4FF] border border-[#E4E1FF] rounded-lg p-4 hover:border-[#6C5DD3] hover:shadow-md hover:-translate-y-0.5 transition-all cursor-pointer group"
+    >
       <div className="mb-3">
         <h3 className="font-medium text-[14px] text-[#18181B] mb-1">{title}</h3>
         <p className="text-[12px] text-[#71717A]">{description}</p>
@@ -426,7 +460,7 @@ function ViewTab({ label, count, active, onClick }: ViewTabProps) {
   return (
     <button
       onClick={onClick}
-      className={`px-4 py-3 text-[13px] font-medium border-b-2 transition-colors ${
+      className={`px-4 py-3 text-[13px] font-medium border-b-2 transition-colors cursor-pointer ${
         active
           ? "text-[#6C5DD3] border-[#6C5DD3]"
           : "text-[#71717A] border-transparent hover:text-[#18181B]"
@@ -446,9 +480,10 @@ interface ProjectCardProps {
   collaborators: number
   status: string
   progress: number
+  onClick?: () => void
 }
 
-function ProjectCard({ thumbnail, type, title, lastModified, duration, collaborators, status, progress }: ProjectCardProps) {
+function ProjectCard({ thumbnail, type, title, lastModified, duration, collaborators, status, progress, onClick }: ProjectCardProps) {
   const statusColors = {
     Published: "bg-[#F0FDF4] text-[#15803D] border-[#BBF7D0]",
     Draft: "bg-[#F5F5F3] text-[#52525B] border-[#E8E8E6]",
@@ -456,7 +491,10 @@ function ProjectCard({ thumbnail, type, title, lastModified, duration, collabora
   }
 
   return (
-    <div className="group bg-white border border-[#E8E8E6] rounded-lg overflow-hidden hover:border-[#D4D4D2] hover:shadow-md hover:-translate-y-0.5 transition-all cursor-pointer relative">
+    <div
+      onClick={onClick}
+      className="group bg-white border border-[#E8E8E6] rounded-lg overflow-hidden hover:border-[#D4D4D2] hover:shadow-md hover:-translate-y-0.5 transition-all cursor-pointer relative"
+    >
       {/* Quick Actions on Hover */}
       <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity z-10">
         <button className="p-2 bg-white/95 backdrop-blur-sm rounded-md shadow-lg hover:bg-white transition-colors">
@@ -520,11 +558,15 @@ function ProjectCard({ thumbnail, type, title, lastModified, duration, collabora
 interface TemplateCardProps {
   title: string
   image: string
+  onClick?: () => void
 }
 
-function TemplateCard({ title, image }: TemplateCardProps) {
+function TemplateCard({ title, image, onClick }: TemplateCardProps) {
   return (
-    <div className="bg-white border border-[#E8E8E6] rounded-lg overflow-hidden hover:border-[#6C5DD3] hover:shadow-sm hover:-translate-y-0.5 transition-all cursor-pointer group">
+    <div
+      onClick={onClick}
+      className="bg-white border border-[#E8E8E6] rounded-lg overflow-hidden hover:border-[#6C5DD3] hover:shadow-sm hover:-translate-y-0.5 transition-all cursor-pointer group"
+    >
       <div className="aspect-square bg-[#F5F5F3] relative overflow-hidden">
         <img 
           src={image} 
